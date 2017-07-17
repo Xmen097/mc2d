@@ -5,8 +5,8 @@ var socket, players;
 
 function init() {
 	players = [];
-	var ip = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-	var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+	var ip = "127.0.0.1";
+	var port = process.env.PORT || 8080;
 	socket = io.listen( port, ip, function() {
     	console.log((new Date()) + ' Server is listening on port '+port);
 	});
@@ -17,7 +17,6 @@ function init() {
 	setEventHandlers();
 	mapGenerator.generate();
 }
-
 //map generator start
 
 function randomRange(min, max) {
