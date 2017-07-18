@@ -67,6 +67,11 @@ function connectToServer() {
 		}
 
 		function onMapEdit(data) {
+			map[data.x][data.y] = data.block
+			renderMap();
+		}
+
+		function onNewMap(data) {
 			map=data;
 			renderMap();
 		}
@@ -92,6 +97,7 @@ function connectToServer() {
 	    socket.on("map edit", onMapEdit);
     	socket.on("new message", onNewMessage);
     	socket.on("block breaking", onBlockBreaking);
+    	socket.on("new map", onNewMap);
 	    if(map) {
 	    	startMP();
 	    }
