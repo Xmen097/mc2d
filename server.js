@@ -6,7 +6,8 @@ var socket, players;
 function init() {
 	players = [];
 	var ip = process.env.IP || "0.0.0.0";
-	var port = process.env.PORT || 8080;
+	var port = process.env.PORT-1 || 9998;
+	port++;
 	socket = io.listen( port, ip, function() {
     	console.log('Server is listening on port '+port);
 	});
