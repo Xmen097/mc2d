@@ -76,14 +76,16 @@ function checkForInventoryOpen() {
 	}
 }
 window.addEventListener('mousewheel', function(e){
-    var whellDirection = e.wheelDelta < 0 ? 'down' : 'up';
-    if(whellDirection == "up" && activeSlot.slot != 1) {
-    	wheelSelectMe = activeSlot.slot-1;
-    	checkForHotbarItemSelect();
-    }else if(whellDirection == "down" && activeSlot.slot != 9) {
-    	wheelSelectMe = activeSlot.slot+1;
-    	checkForHotbarItemSelect();
-    }
+	if(playing!=0) {
+	    var whellDirection = e.wheelDelta < 0 ? 'down' : 'up';
+	    if(whellDirection == "up" && activeSlot.slot != 1) {
+	    	wheelSelectMe = activeSlot.slot-1;
+	    	checkForHotbarItemSelect();
+	    }else if(whellDirection == "down" && activeSlot.slot != 9) {
+	    	wheelSelectMe = activeSlot.slot+1;
+	    	checkForHotbarItemSelect();
+	    }
+	}
 });
 function checkForHotbarItemSelect() {
 	if(pressedKeys[keys._1] && activeSlot.slot != 1 || wheelSelectMe == 1) {

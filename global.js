@@ -203,6 +203,7 @@ var camera = {
 
 
 window.onload = function() {
+	playing=0
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
 	canvas.tileSize = 50;
