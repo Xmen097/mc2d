@@ -170,7 +170,7 @@ window.onload = function() {
 	}
 	document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
 	menu.main();
-	setTimeout(menu.main, 1);setTimeout(menu.main, 1);setTimeout(menu.main, 1) // workaround for a strange problem
+	setTimeout(menu.main, 1);setTimeout(menu.main, 10);setTimeout(menu.main, 100) // workaround for a strange problem
 }
 
 function stopGame() {
