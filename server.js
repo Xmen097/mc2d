@@ -5,15 +5,22 @@ var socket, players;
 
 function init() {
 	players = [];
-	var porti=process.env.PORT-1
-	socket = io.listen((porti+1));
+	var ip = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+	var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+	socket = io.listen( port, ip, function() {
+    	console.log('Server is listening on port '+port);
+	});
 	socket.configure(function() {
     	socket.set("transports", ["websocket"]);
     	socket.set("log level", 2);
 	});
 	setEventHandlers();
 	mapGenerator.generate();
+	if(map) {
+		util.log("Map was generated")
+	}
 }
+
 //map generator start
 
 function randomRange(min, max) {
