@@ -1,6 +1,6 @@
 {
   "name": "minecraft-2D",
-  "version": "0.2.6",
+  "version": "1.0.0",
   "description": "2D game",
   "engines": {
     "node": "6.11.1"
@@ -10,6 +10,6 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "socket.io": "0.8.2"
+    "socket.io": "0.8.1"
   }
 }

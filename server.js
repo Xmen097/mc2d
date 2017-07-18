@@ -5,9 +5,7 @@ var socket, players;
 
 function init() {
 	players = [];
-	var ip = "127.0.0.1";
-	var port = process.env.PORT || 8080;
-	socket = io.listen(port);
+	socket = io.listen(5000, "0.0.0.0");
 	socket.configure(function() {
     	socket.set("transports", ["websocket"]);
     	socket.set("log level", 2);
