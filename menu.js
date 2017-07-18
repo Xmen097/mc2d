@@ -13,7 +13,7 @@ var menu = {
 			}	
 		}				
 	},
-	main: function() {		
+	main: function() {	
 		menuOn=1;
 		menu.bg();									
 		context.fillStyle="white";
@@ -43,26 +43,40 @@ var menu = {
 		context.fillRect(0.1*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.505*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillStyle="black";
-		context.font=Math.round(0.045*350)+"px Verdana";
+		context.font=Math.round(0.045*canvas.height)+"px Verdana";
 		context.fillText("Play selected",0.18*canvas.width,0.84*canvas.height)
 		context.fillText("Create new",0.60*canvas.width,0.84*canvas.height)
 		},
 	selectMP: function() {
 		menuOn=3;
-		ip=""
+		ip="";
+		if(typeof MPSelected == "undefined")
+			MPSelected=0	
+		savedMPs=[{name: "Official server", ip:"mc2d-officialserver.herokuapp.com"},{name: "Test server(will be removed soon)", ip:"mc2d-testserver.herokuapp.com"}]
 		menu.bg();
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.fillText("Play MultiPlayer!",canvas.width/2-100,60)
 		context.fillStyle="lightgrey";
 		context.fillRect(0.1*canvas.width, 0.25*canvas.height, 0.8*canvas.width, 0.5*canvas.height)
-		context.fillStyle="grey";
+		context.textAlign="center"
+		for(var a=0;a<savedMPs.length;a++) {
+			if(MPSelected == a) {
+				context.fillStyle="black";
+			}else 
+				context.fillStyle="grey";
+			context.fillRect(0.125*canvas.width, 0.275*canvas.height+a*0.125*canvas.height, 0.75*canvas.width, 0.1*canvas.height)
+			context.fillStyle="white";
+			context.font=Math.round(0.045*canvas.height)+"px Verdana";
+			context.fillText(savedMPs[a].name, 0.5*canvas.width, 1.5*Math.round(0.045*canvas.height)+0.275*canvas.height+a*0.125*canvas.height)
+		}
+		context.textAlign="start"
 		context.fillRect(0.1*canvas.width, 0.75*canvas.height, 0.8*canvas.width, 0.13*canvas.height)
 		context.fillStyle="lightgrey";
 		context.fillRect(0.1*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.505*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillStyle="black";
-		context.font=Math.round(0.045*350)+"px Verdana";
+		context.font=Math.round(0.045*canvas.height)+"px Verdana";
 		context.fillText("Connect to selected",0.12*canvas.width,0.84*canvas.height)
 		context.fillText("Connect to new",0.565*canvas.width,0.84*canvas.height)
 	},

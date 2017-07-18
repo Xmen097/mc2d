@@ -21,8 +21,15 @@ onmousedown = function(event) {
 			menu.createSP();
 		} 
 	} else if(menuOn==3){
+		for(var a=0;a<savedMPs.length;a++) {
+			if(x>0.125*canvas.width && y>0.275*canvas.height+a*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+a*0.125*canvas.height) { 
+				MPSelected=a;
+				menu.selectMP();
+			}
+		}
 		if(x>0.1*canvas.width && y>0.76*canvas.height && x<0.495*canvas.width && y<0.88*canvas.height) {
-			//play MP game
+			ip=savedMPs[MPSelected].ip;
+			connectToServer();
 		} else if(x>0.505*canvas.width && y>0.76*canvas.height && x<0.9*canvas.width && y<0.88*canvas.height) {
 			menu.createMP();
 		} 
