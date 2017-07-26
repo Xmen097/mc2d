@@ -23,7 +23,7 @@ var pressedKeys = [];
 onkeyup = function(event) {	
 	pressedKeys[event.keyCode] = false;
 }
-onkeydown = function(event) {	
+onkeydown = function(event) {
 	if(menuOn==5) {
 		if(event.key=="Backspace") {
 			ip = ip.slice(0, ip.length-1)
@@ -31,6 +31,20 @@ onkeydown = function(event) {
 			ip+=event.key
 		}
 		menu.createMP();
+	} else if(menuOn == 6.1) {
+		if(event.key=="Backspace") {
+			name = name.slice(0, name.length-1)
+		}else if(event.key.length==1 && name.length < 40) {
+			name+=event.key
+		}
+		menu.login();
+	} else if(menuOn == 6.2) {
+		if(event.key=="Backspace") {
+			pasw = pasw.slice(0, pasw.length-1)
+		}else if(event.key.length==1 && pasw.length < 40) {
+			pasw+=event.key
+		}
+		menu.login();
 	} else if(playing==2 && event.key=="t" && !chatOn || playing==2 && event.key=="T" && !chatOn) {
 		chatOn=true;
 	} else if(playing==2 && chatOn) {

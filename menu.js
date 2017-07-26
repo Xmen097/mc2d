@@ -114,7 +114,11 @@ var menu = {
 		context.fillText(ip+"|",0.22*canvas.width,0.37*canvas.height)
 	},
 	login: function() {
-		menuOn=6;
+		if(Math.floor(menuOn)!=6){
+			menuOn=6;	
+			name="";
+			pasw="";
+		}
 		menu.bg();
 		context.fillStyle="white";
 		context.textAlign="center";
@@ -131,7 +135,12 @@ var menu = {
 		context.fillStyle="black";
 		context.textAlign="start";
 		context.fillText("Connect",0.43*canvas.width,0.84*canvas.height)
-		context.fillText("|",0.19*canvas.width,0.41*canvas.height)
-		context.fillText("|",0.19*canvas.width,0.63*canvas.height)
+		if(menuOn == 6.1) {
+			context.fillText(name+"|",0.19*canvas.width,0.41*canvas.height)
+			context.fillText(pasw,0.19*canvas.width,0.63*canvas.height)
+		} else if( menuOn == 6.2) {
+			context.fillText(name,0.19*canvas.width,0.41*canvas.height)
+			context.fillText(pasw+"|",0.19*canvas.width,0.63*canvas.height)
+		}
 	}
 }

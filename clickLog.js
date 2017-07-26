@@ -39,20 +39,24 @@ onmousedown = function(event) {
 		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
 			connectToServer();	
 		}
-	} else if(menuOn == 6) {
+	} else if(Math.floor(menuOn) == 6) {
 		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
 			var ajax = new XMLHttpRequest();
 			ajax.onreadystatechange = function() {
 			if (ajax.readyState == 4) {
-			 alert(ajax.responseText);
+				alert(ajax.responseText);
 			}
 			};
-			ajax.open("GET", "index.php?", true);
-			ajax.send(null);
+			ajax.open("POST", "index.php", true);
+			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			ajax.send("name="+name+"&pasw="+pasw);	//sending plane-text password, later should be one-way encrypted (sha-256)
+			console.log(name+" "+pasw)
 		} else if(x>0.175*canvas.width && y>0.35*canvas.height && x<0.825*canvas.width && y<0.45*canvas.height) {
-			console.log("name")
+			menuOn=6.1;
+			menu.login()
 		} else if(x>0.175*canvas.width && y>0.57*canvas.height && x<0.825*canvas.width && y<0.67*canvas.height) {
-			console.log("pasw")
+			menuOn=6.2;
+			menu.login()
 		}
 	} else if(craftingUI==undefined && furnaceUI==undefined && !inventoryOn && x <= canvas.width && y <= canvas.height && x >= 0 && y >= 0) {
 		if(event.button == 0){
