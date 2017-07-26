@@ -112,5 +112,26 @@ var menu = {
 		context.font=Math.round(0.045*350)+"px Verdana";
 		context.fillText("Connect",0.43*canvas.width,0.84*canvas.height)
 		context.fillText(ip+"|",0.22*canvas.width,0.37*canvas.height)
+	},
+	login: function() {
+		menuOn=6;
+		menu.bg();
+		context.fillStyle="white";
+		context.textAlign="center";
+		context.font=Math.round(0.07*canvas.height)+"px Verdana";
+		context.fillText("Login to your account",canvas.width/2,0.18*canvas.height)
+		context.font=Math.round(0.062*canvas.height)+"px Verdana";
+		context.fillText("Name:",canvas.width*0.5,canvas.height*0.335)
+		context.fillText("Password:",canvas.width*0.5,canvas.height*0.55)
+		context.fillStyle="lightgrey";
+		context.fillRect(0.175*canvas.width, 0.35*canvas.height, 0.65*canvas.width, 0.1*canvas.height)
+		context.fillRect(0.175*canvas.width, 0.57*canvas.height, 0.65*canvas.width, 0.1*canvas.height)
+		context.fillRect(0.3*canvas.width, 0.76*canvas.height, 0.4*canvas.width, 0.12*canvas.height)
+		context.font=Math.round(0.045*canvas.height)+"px Verdana";
+		context.fillStyle="black";
+		context.textAlign="start";
+		context.fillText("Connect",0.43*canvas.width,0.84*canvas.height)
+		context.fillText("|",0.19*canvas.width,0.41*canvas.height)
+		context.fillText("|",0.19*canvas.width,0.63*canvas.height)
 	}
 }

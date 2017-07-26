@@ -39,7 +39,22 @@ onmousedown = function(event) {
 		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
 			connectToServer();	
 		}
-	}else if(craftingUI==undefined && furnaceUI==undefined && !inventoryOn && x <= canvas.width && y <= canvas.height && x >= 0 && y >= 0) {
+	} else if(menuOn == 6) {
+		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
+			var ajax = new XMLHttpRequest();
+			ajax.onreadystatechange = function() {
+			if (ajax.readyState == 4) {
+			 alert(ajax.responseText);
+			}
+			};
+			ajax.open("GET", "index.php?", true);
+			ajax.send(null);
+		} else if(x>0.175*canvas.width && y>0.35*canvas.height && x<0.825*canvas.width && y<0.45*canvas.height) {
+			console.log("name")
+		} else if(x>0.175*canvas.width && y>0.57*canvas.height && x<0.825*canvas.width && y<0.67*canvas.height) {
+			console.log("pasw")
+		}
+	} else if(craftingUI==undefined && furnaceUI==undefined && !inventoryOn && x <= canvas.width && y <= canvas.height && x >= 0 && y >= 0) {
 		if(event.button == 0){
 			breakBlock();
 		}else if(event.button == 2){
