@@ -117,6 +117,7 @@ var menu = {
 		if(Math.floor(menuOn)!=6){
 			menuOn=6;	
 			name="";
+			loginToken="";
 			pasw="";
 		}
 		menu.bg();

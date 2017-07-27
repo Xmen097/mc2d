@@ -44,13 +44,21 @@ onmousedown = function(event) {
 			var ajax = new XMLHttpRequest();
 			ajax.onreadystatechange = function() {
 			if (ajax.readyState == 4) {
-				alert(ajax.responseText);
+				if (ajax.responseText) {
+					if(ajax.responseText != 'Login server offline!' && ajax.responseText != 'Invalid name or password!' && ajax.responseText != 'Failed to generate token!') {
+						loginToken = ajax.responseText;
+						menu.main();
+					} else {
+						echo(ajax.responseText);
+					}
+				} else {
+					echo('Login server offline!')
+				}
 			}
 			};
 			ajax.open("POST", "index.php", true);
 			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			ajax.send("name="+name+"&pasw="+pasw);	//sending plane-text password, later should be one-way encrypted (sha-256)
-			console.log(name+" "+pasw)
 		} else if(x>0.175*canvas.width && y>0.35*canvas.height && x<0.825*canvas.width && y<0.45*canvas.height) {
 			menuOn=6.1;
 			menu.login()
