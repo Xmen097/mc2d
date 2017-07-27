@@ -49,10 +49,10 @@ onmousedown = function(event) {
 						loginToken = ajax.responseText;
 						menu.main();
 					} else {
-						echo(ajax.responseText);
+						alert(ajax.responseText);
 					}
 				} else {
-					echo('Login server offline!')
+					alert('Login server offline!')
 				}
 			}
 			};
