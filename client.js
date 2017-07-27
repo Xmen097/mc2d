@@ -1,7 +1,6 @@
 
 function connectToServer() {
 	include("https://"+ip+"/socket.io/socket.io.js", function() {
-		//map=undefined;
 		remotePlayers=[];
 
 		function Player(gtX, gtY, gtID, gtName) {
@@ -21,7 +20,7 @@ function connectToServer() {
 
 		function onConnected() {
 		    console.log("Connected to server");
-		    socket.emit("new player", {x: player.x, y: player.y});
+		    socket.emit("new player", {x: player.x, y: player.y, name: name});
 		};
 
 		function onDisconnect() {
