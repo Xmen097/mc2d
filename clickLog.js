@@ -40,7 +40,7 @@ onmousedown = function(event) {
 			connectToServer();	
 		}
 	} else if(Math.floor(menuOn) == 6) {
-		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
+		if(x>0.3*canvas.width && y>0.72*canvas.height && x<0.7*canvas.width && y<0.84*canvas.height) {
 			var ajax = new XMLHttpRequest();
 			ajax.onreadystatechange = function() {
 			if (ajax.readyState == 4) {
@@ -55,16 +55,47 @@ onmousedown = function(event) {
 					alert('Login server offline!')
 				}
 			}
-			};
+			}
 			ajax.open("POST", "index.php", true);
 			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			ajax.send("name="+name+"&pasw="+pasw);	//sending plane-text password, later should be one-way encrypted (sha-256)
+			ajax.send("name="+name+"&pasw="+pasw+"&type=login");	//sending plane-text password, later should be one-way encrypted (sha-256)
+		} else if(x>0.3*canvas.width && y>0.88*canvas.height && x<0.7*canvas.width && y<0.96*canvas.height) {
+			menu.signIn();
 		} else if(x>0.175*canvas.width && y>0.35*canvas.height && x<0.825*canvas.width && y<0.45*canvas.height) {
 			menuOn=6.1;
 			menu.login()
 		} else if(x>0.175*canvas.width && y>0.57*canvas.height && x<0.825*canvas.width && y<0.67*canvas.height) {
 			menuOn=6.2;
 			menu.login()
+		}
+	} else if(Math.floor(menuOn) == 7) {
+		if(x>0.3*canvas.width && y>0.72*canvas.height && x<0.7*canvas.width && y<0.84*canvas.height) {
+			var ajax = new XMLHttpRequest();
+			ajax.onreadystatechange = function() {
+			if (ajax.readyState == 4) {
+				if (ajax.responseText) {
+					if(ajax.responseText != 'Login server offline!' && ajax.responseText != 'Invalid name or password!' && ajax.responseText != 'Failed to generate token!') {
+						loginToken = ajax.responseText;
+						menu.main();
+					} else {
+						alert(ajax.responseText);
+					}
+				} else {
+					alert('Login server offline!')
+				}
+			}
+			}
+			ajax.open("POST", "index.php", true);
+			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			ajax.send("name="+name+"&pasw="+pasw+"&type=create");
+		} else if(x>0.3*canvas.width && y>0.88*canvas.height && x<0.7*canvas.width && y<0.96*canvas.height) {
+			menu.login();
+		} else if(x>0.175*canvas.width && y>0.35*canvas.height && x<0.825*canvas.width && y<0.45*canvas.height) {
+			menuOn=7.1;
+			menu.signIn()
+		} else if(x>0.175*canvas.width && y>0.57*canvas.height && x<0.825*canvas.width && y<0.67*canvas.height) {
+			menuOn=7.2;
+			menu.signIn()
 		}
 	} else if(craftingUI==undefined && furnaceUI==undefined && !inventoryOn && x <= canvas.width && y <= canvas.height && x >= 0 && y >= 0) {
 		if(event.button == 0){

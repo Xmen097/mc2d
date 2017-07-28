@@ -131,15 +131,54 @@ var menu = {
 		context.fillStyle="lightgrey";
 		context.fillRect(0.175*canvas.width, 0.35*canvas.height, 0.65*canvas.width, 0.1*canvas.height)
 		context.fillRect(0.175*canvas.width, 0.57*canvas.height, 0.65*canvas.width, 0.1*canvas.height)
-		context.fillRect(0.3*canvas.width, 0.76*canvas.height, 0.4*canvas.width, 0.12*canvas.height)
+		context.fillRect(0.3*canvas.width, 0.72*canvas.height, 0.4*canvas.width, 0.12*canvas.height)
+		context.fillRect(0.3*canvas.width, 0.88*canvas.height, 0.4*canvas.width, 0.08*canvas.height)
 		context.font=Math.round(0.045*canvas.height)+"px Verdana";
 		context.fillStyle="black";
+		context.textAlign="center";
+		context.fillText("Login",0.5*canvas.width,0.8*canvas.height)
+		context.font=Math.round(0.04*canvas.height)+"px Verdana";
+		context.fillText("Create account",0.5*canvas.width,0.933*canvas.height)
 		context.textAlign="start";
-		context.fillText("Connect",0.43*canvas.width,0.84*canvas.height)
 		if(menuOn == 6.1) {
 			context.fillText(name+"|",0.19*canvas.width,0.41*canvas.height)
 			context.fillText(pasw,0.19*canvas.width,0.63*canvas.height)
 		} else if( menuOn == 6.2) {
+			context.fillText(name,0.19*canvas.width,0.41*canvas.height)
+			context.fillText(pasw+"|",0.19*canvas.width,0.63*canvas.height)
+		}
+	},
+	signIn: function() {
+		if(Math.floor(menuOn)!=7){
+			menuOn=7;	
+			name="";
+			loginToken="";
+			pasw="";
+		}
+		menu.bg();
+		context.fillStyle="white";
+		context.textAlign="center";
+		context.font=Math.round(0.07*canvas.height)+"px Verdana";
+		context.fillText("Create new account",canvas.width/2,0.18*canvas.height)
+		context.font=Math.round(0.062*canvas.height)+"px Verdana";
+		context.fillText("Name:",canvas.width*0.5,canvas.height*0.335)
+		context.fillText("Password:",canvas.width*0.5,canvas.height*0.55)
+		context.fillStyle="lightgrey";
+		context.fillRect(0.175*canvas.width, 0.35*canvas.height, 0.65*canvas.width, 0.1*canvas.height)
+		context.fillRect(0.175*canvas.width, 0.57*canvas.height, 0.65*canvas.width, 0.1*canvas.height)
+		context.fillRect(0.3*canvas.width, 0.72*canvas.height, 0.4*canvas.width, 0.12*canvas.height)
+		context.fillRect(0.3*canvas.width, 0.88*canvas.height, 0.4*canvas.width, 0.08*canvas.height)
+		context.font=Math.round(0.045*canvas.height)+"px Verdana";
+		context.fillStyle="black";
+		context.textAlign="center";
+		context.fillText("Create account",0.5*canvas.width,0.8*canvas.height)
+		context.font=Math.round(0.04*canvas.height)+"px Verdana";
+		context.fillText("Log in",0.5*canvas.width,0.933*canvas.height)
+		context.textAlign="start";
+		if(menuOn == 7.1) {
+			context.fillText(name+"|",0.19*canvas.width,0.41*canvas.height)
+			context.fillText(pasw,0.19*canvas.width,0.63*canvas.height)
+		} else if( menuOn == 7.2) {
 			context.fillText(name,0.19*canvas.width,0.41*canvas.height)
 			context.fillText(pasw+"|",0.19*canvas.width,0.63*canvas.height)
 		}

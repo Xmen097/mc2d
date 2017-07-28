@@ -31,20 +31,26 @@ onkeydown = function(event) {
 			ip+=event.key
 		}
 		menu.createMP();
-	} else if(menuOn == 6.1) {
+	} else if(menuOn == 6.1 || menuOn == 7.1) {
 		if(event.key=="Backspace") {
 			name = name.slice(0, name.length-1)
 		}else if(event.key.length==1 && name.length < 40) {
 			name+=event.key
 		}
-		menu.login();
-	} else if(menuOn == 6.2) {
+		if(menuOn == 6.1){
+			menu.login();	
+		} else 
+			menu.signIn();
+	} else if(menuOn == 6.2 || menuOn == 7.2) {
 		if(event.key=="Backspace") {
 			pasw = pasw.slice(0, pasw.length-1)
 		}else if(event.key.length==1 && pasw.length < 40) {
 			pasw+=event.key
 		}
-		menu.login();
+		if(menuOn == 6.2){
+			menu.login();	
+		} else 
+			menu.signIn();
 	} else if(playing==2 && event.key=="t" && !chatOn || playing==2 && event.key=="T" && !chatOn) {
 		chatOn=true;
 	} else if(playing==2 && chatOn) {
