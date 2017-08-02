@@ -29,9 +29,9 @@ if(isset($_POST["name"]) && isset($_POST["pasw"]) && isset($_POST["type"])) {
 	$token = pg_query_params($query, array($_POST["name"]));
 	$token = pg_fetch_array($id)[0];
 	if(hash("sha256", $token.$_POST["salt"]) == $_POST["token"]) { 
-		echo("true")
+		echo("true");
 	} else {
-		echo("false")
+		echo("false");
 	}
 } else {
 	header( 'Location: index.html' ) ;  
