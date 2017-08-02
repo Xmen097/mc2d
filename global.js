@@ -213,11 +213,11 @@ window.onload = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 	}
 	document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
-	//menu.login();
-	ip="localhost:8080"
-	loginToken=sha256("ahoj");
-	menu.createMP();
-	//setTimeout(menu.login, 10) // workaround for a strange problem
+	menu.login();
+	//ip="localhost:8080"
+	//loginToken=sha256("ahoj");
+	//menu.createMP();
+	setTimeout(menu.login, 10) // workaround for a strange problem
 }
 
 function stopGame() {
