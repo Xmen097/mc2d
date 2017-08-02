@@ -27,7 +27,7 @@ if(isset($_POST["name"]) && isset($_POST["pasw"]) && isset($_POST["type"])) {
 	$dbConnection = pg_connect(getenv("DATABASE_URL")) or die('Login server offline!');
 	$query="SELECT token FROM users WHERE name=$1";
 	$token = pg_query_params($query, array($_POST["name"]));
-	$token = pg_fetch_array($id)[0];
+	$token = pg_fetch_array($token)[0];
 	if(hash("sha256", $token.$_POST["salt"]) == $_POST["token"]) { 
 		echo("true");
 	} else {
