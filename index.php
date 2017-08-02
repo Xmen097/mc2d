@@ -28,7 +28,7 @@ if(isset($_POST["name"]) && isset($_POST["pasw"]) && isset($_POST["type"])) {
 	$query="SELECT token FROM users WHERE name=$1";
 	$token = pg_query_params($query, array($_POST["name"]));
 	$token = pg_fetch_array($token)[0];
-	if(hash("sha256", $token.$_POST["salt"]) == $_POST["token"]) { 
+	if($token && hash("sha256", $token.$_POST["salt"]) == $_POST["token"]) { 
 		echo("true");
 	} else {
 		echo("false");
