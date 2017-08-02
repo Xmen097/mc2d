@@ -1,6 +1,6 @@
 
 function connectToServer() {
-	include("https://"+ip+"/socket.io/socket.io.js", function() {
+	include("http://"+ip+"/socket.io/socket.io.js", function() {
 		remotePlayers=[];
 
 		function Player(gtX, gtY, gtID, gtName) {
@@ -20,7 +20,6 @@ function connectToServer() {
 
 		function onConnected() {
 		    console.log("Connected to server");
-		    socket.emit("new player", {x: player.x, y: player.y, name: name});
 		};
 
 		function onDisconnect() {
@@ -75,6 +74,10 @@ function connectToServer() {
 			renderMap();
 		}
 
+		function salt(data) {
+		    socket.emit("new player", {x: player.x, y: player.y, name: name, token: sha256(loginToken+data)});
+		}
+
 		function onBlockBreaking(data) {
 			if(data.progress == -1) {
 				delete remoteDestroingBlock[data.id];
@@ -97,6 +100,7 @@ function connectToServer() {
     	socket.on("new message", onNewMessage);
     	socket.on("block breaking", onBlockBreaking);
     	socket.on("new map", onNewMap);
+    	socket.on("salt", salt);
 	    if(map) {
 	    	startMP();
 	    }
