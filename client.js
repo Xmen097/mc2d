@@ -1,6 +1,6 @@
 
 function connectToServer() {
-	include("https://"+ip+"/socket.io/socket.io.js", function() {
+	include("http://"+ip+"/socket.io/socket.io.js", function() {
 		remotePlayers=[];
 
 		function Player(gtX, gtY, gtID, gtName) {
