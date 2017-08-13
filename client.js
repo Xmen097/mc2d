@@ -1,4 +1,4 @@
-function connectToServer() {
+function connectToServer() {//f
 	include("https://"+ip+"/socket.io/socket.io.js", function() {
 		remotePlayers=[];
 
