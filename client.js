@@ -74,7 +74,28 @@ function connectToServer() {//f
 		}
 
 		function onInventory(data) {
-			console.log(data);
+			for(var a of data) {
+				if(a.id < materials.length) {
+					var item=materials[a.id];	
+				} else {
+					for(var b of items) {
+						if(b.id == a.id) {
+							item = b;
+							break;
+						}
+					}
+				}
+				inventory.inventory[a.y][a.x].count=data.amount;
+
+				if(a.y < 3) {
+					inventory.inventory[a.y][a.x].item = item;
+				} else if(a.y == 3) {
+					inventory.hotbar[a.x].item = item;
+				} else if(a.y == 4) {
+					inventory.armor[a.x].item = item;
+				}
+			}
+
 		}
 
 		function salt(data) {
