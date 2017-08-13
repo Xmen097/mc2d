@@ -112,72 +112,72 @@ function drop(item1, count1, condition, item2, count2) {
 }
 
 var items = {
-leatherHelmet:{name: "Leather helmet", stack: 1, x:0, y:0, durability: 200, type: "helmet"},
-chainHelmet:{name: "Chain helmet", stack: 1, x:1, y:0, durability: 400, type: "helmet"},
-ironHelmet:{name: "Iron helmet", stack: 1, x:2, y:0, durability: 600, type: "helmet"},
-diamondHelmet:{name: "Diamond helmet", stack: 1, x:3, y:0, durability: 800, type: "helmet"},
-goldenHelmet:{name: "Golden helmet", stack: 1, x:4, y:0, durability: 1000, type: "helmet"},
+leatherHelmet:{name: "Leather helmet", stack: 1, x:0, y:0, durability: 200, type: "helmet", id:14},
+chainHelmet:{name: "Chain helmet", stack: 1, x:1, y:0, durability: 400, type: "helmet", id:15},
+ironHelmet:{name: "Iron helmet", stack: 1, x:2, y:0, durability: 600, type: "helmet", id:16},
+diamondHelmet:{name: "Diamond helmet", stack: 1, x:3, y:0, durability: 800, type: "helmet", id:17},
+goldenHelmet:{name: "Golden helmet", stack: 1, x:4, y:0, durability: 1000, type: "helmet", id:18},
 
-leatherChestplate:{name: "Leather chestplate", stack: 1, x:0, y:1, durability: 200, type: "chestplate"},
-chainChestplate:{name: "Chain chestplate", stack: 1, x:1, y:1, durability: 400, type: "chestplate"},
-ironChestplate:{name: "Iron chestplate", stack: 1, x:2, y:1, durability: 600, type: "chestplate"},
-diamondChestplate:{name: "Diamond chestplate", stack: 1, x:3, y:1, durability: 800, type: "chestplate"},
-goldenChestplate:{name: "Golden chestplate", stack: 1, x:4, y:1, durability: 1000, type: "chestplate"},
+leatherChestplate:{name: "Leather chestplate", stack: 1, x:0, y:1, durability: 200, type: "chestplate", id:19},
+chainChestplate:{name: "Chain chestplate", stack: 1, x:1, y:1, durability: 400, type: "chestplate", id:20},
+ironChestplate:{name: "Iron chestplate", stack: 1, x:2, y:1, durability: 600, type: "chestplate", id:21},
+diamondChestplate:{name: "Diamond chestplate", stack: 1, x:3, y:1, durability: 800, type: "chestplate", id:22},
+goldenChestplate:{name: "Golden chestplate", stack: 1, x:4, y:1, durability: 1000, type: "chestplate", id:23},
 
-leathertrousers:{name: "Leather trousers", stack: 1, x:0, y:2, durability: 200, type: "trousers"},
-chainTrousers:{name: "Chain trousers", stack: 1, x:1, y:2, durability: 400, type: "trousers"},
-ironTrousers:{name: "Iron trousers", stack: 1, x:2, y:2, durability: 600, type: "trousers"},
-diamondTrousers:{name: "Diamond trousers", stack: 1, x:3, y:2, durability: 800, type: "trousers"},
-goldenTrousers:{name: "Golden trousers", stack: 1, x:4, y:2, durability: 1000, type: "trousers"},
+leathertrousers:{name: "Leather trousers", stack: 1, x:0, y:2, durability: 200, type: "trousers", id:24},
+chainTrousers:{name: "Chain trousers", stack: 1, x:1, y:2, durability: 400, type: "trousers", id:25},
+ironTrousers:{name: "Iron trousers", stack: 1, x:2, y:2, durability: 600, type: "trousers", id:26},
+diamondTrousers:{name: "Diamond trousers", stack: 1, x:3, y:2, durability: 800, type: "trousers", id:27},
+goldenTrousers:{name: "Golden trousers", stack: 1, x:4, y:2, durability: 1000, type: "trousers", id:28},
 
-leatherShoes:{name: "Leather shoes", stack: 1, x:0, y:3, durability: 200, type: "shoes"},
-chainShoes:{name: "Chain shoes", stack: 1, x:1, y:3, durability: 400, type: "shoes"},
-ironShoes:{name: "Iron shoes", stack: 1, x:2, y:3, durability: 600, type: "shoes"},
-diamondShoes:{name: "Diamond shoes", stack: 1, x:3, y:3, durability: 800, type: "shoes"},
-goldenShoes:{name: "Golden shoes", stack: 1, x:4, y:3, durability: 1000, type: "shoes"},
+leatherShoes:{name: "Leather shoes", stack: 1, x:0, y:3, durability: 200, type: "shoes", id:29},
+chainShoes:{name: "Chain shoes", stack: 1, x:1, y:3, durability: 400, type: "shoes", id:30},
+ironShoes:{name: "Iron shoes", stack: 1, x:2, y:3, durability: 600, type: "shoes", id:31},
+diamondShoes:{name: "Diamond shoes", stack: 1, x:3, y:3, durability: 800, type: "shoes", id:32},
+goldenShoes:{name: "Golden shoes", stack: 1, x:4, y:3, durability: 1000, type: "shoes", id:33},
 
-scissors:{name: "Scissors", stack:1, x:13, y:5, durability: 200, type: "scissors", multiplier:2},
+scissors:{name: "Scissors", stack:1, x:13, y:5, durability: 200, type: "scissors", multiplier:2, id:34},
 
-woodPickaxe:{name: "Wood pickaxe", stack:1, x:0, y:6, durability: 500, type: "pickaxe", multiplier:6},
-stonePickaxe:{name: "Stone pickaxe", stack:1, x:1, y:6, durability: 500, type: "pickaxe", multiplier:8},
-ironPickaxe:{name: "Iron pickaxe", stack:1, x:2, y:6, durability: 500, type: "pickaxe", multiplier:10},
-diamondPickaxe:{name: "Diamond pickaxe", stack:1, x:3, y:6, durability: 500, type: "pickaxe", multiplier:12},
-goldPickaxe:{name: "Gold pickaxe", stack:1, x:4, y:6, durability: 500, type: "pickaxe", multiplier:12},
+woodPickaxe:{name: "Wood pickaxe", stack:1, x:0, y:6, durability: 500, type: "pickaxe", multiplier:6, id:35},
+stonePickaxe:{name: "Stone pickaxe", stack:1, x:1, y:6, durability: 500, type: "pickaxe", multiplier:8, id:36},
+ironPickaxe:{name: "Iron pickaxe", stack:1, x:2, y:6, durability: 500, type: "pickaxe", multiplier:10, id:37},
+diamondPickaxe:{name: "Diamond pickaxe", stack:1, x:3, y:6, durability: 500, type: "pickaxe", multiplier:12, id:38},
+goldPickaxe:{name: "Gold pickaxe", stack:1, x:4, y:6, durability: 500, type: "pickaxe", multiplier:12, id:39},
 
-woodAxe:{name: "Wood axe", stack:1, x:0, y:7, durability: 500, type: "axe", multiplier:3},
-stoneAxe:{name: "Stone axe", stack:1, x:1, y:7, durability: 500, type: "axe", multiplier:4},
-ironAxe:{name: "Iron axe", stack:1, x:2, y:7, durability: 500, type: "axe", multiplier:5},
-diamondAxe:{name: "Diamond axe", stack:1, x:3, y:7, durability: 500, type: "axe", multiplier:6},
-goldAxe:{name: "Gold axe", stack:1, x:4, y:7, durability: 500, type: "axe", multiplier:6},
+woodAxe:{name: "Wood axe", stack:1, x:0, y:7, durability: 500, type: "axe", multiplier:3, id:40},
+stoneAxe:{name: "Stone axe", stack:1, x:1, y:7, durability: 500, type: "axe", multiplier:4, id:41},
+ironAxe:{name: "Iron axe", stack:1, x:2, y:7, durability: 500, type: "axe", multiplier:5, id:42},
+diamondAxe:{name: "Diamond axe", stack:1, x:3, y:7, durability: 500, type: "axe", multiplier:6, id:43},
+goldAxe:{name: "Gold axe", stack:1, x:4, y:7, durability: 500, type: "axe", multiplier:6, id:44},
 
-woodShovel:{name: "Wooden shovel", stack:1, x:0, y:5, durability: 50, type: "shovel", multiplier:2},
-stoneShovel:{name: "Stone shovel", stack:1, x:1, y:5, durability: 200, type: "shovel", multiplier:3},
-ironShovel:{name: "Iron shovel", stack:1, x:2, y:5, durability: 500, type: "shovel", multiplier:4},
-diamondShovel:{name: "Diamond shovel", stack:1, x:3, y:5, durability: 1000, type: "shovel", multiplier:5},
-goldShovel:{name: "Gold shovel", stack:1, x:4, y:5, durability: 100, type: "shovel", multiplier:5},
+woodShovel:{name: "Wooden shovel", stack:1, x:0, y:5, durability: 50, type: "shovel", multiplier:2, id:45},
+stoneShovel:{name: "Stone shovel", stack:1, x:1, y:5, durability: 200, type: "shovel", multiplier:3, id:46},
+ironShovel:{name: "Iron shovel", stack:1, x:2, y:5, durability: 500, type: "shovel", multiplier:4, id:47},
+diamondShovel:{name: "Diamond shovel", stack:1, x:3, y:5, durability: 1000, type: "shovel", multiplier:5, id:48},
+goldShovel:{name: "Gold shovel", stack:1, x:4, y:5, durability: 100, type: "shovel", multiplier:5, id:49},
 
-diamond:{name: "Diamond", stack: 64, x:7, y:3, type: "item"},
-coal:{name: "Coal", stack: 64, x:7, y:0, type: "item", smelting: 4000},
-iron:{name: "Iron ingot", stack: 64, x:7, y:1, type: "item"},
-gold:{name: "Gold ingot", stack: 64, x:7, y:2, type: "item"},
-stick:{name: "Stick", stack: 64, x:5, y:3, type: "item", smelting: 50},
+diamond:{name: "Diamond", stack: 64, x:7, y:3, type: "item", id:50},
+coal:{name: "Coal", stack: 64, x:7, y:0, type: "item", smelting: 4000, id:51},
+iron:{name: "Iron ingot", stack: 64, x:7, y:1, type: "item", id:52},
+gold:{name: "Gold ingot", stack: 64, x:7, y:2, type: "item", id:53},
+stick:{name: "Stick", stack: 64, x:5, y:3, type: "item", smelting: 50, id:54},
 }
 
 var materials = [
-{name: "stone", durability: 500, stack: 64, x:13, favType:"pickaxe"},                            					    //0
-{name: "cobblestone", durability: 500, stack: 64, x:7, favType:"pickaxe"},												//1
-{name: "wood", durability: 300, stack: 64, x:11, favType: "axe", smelting: 1000},										//2
-{name: "leaves", durability: 50, stack: 64, x:12, favType:"scissors", smelting: 300},									//3
-{name: "grass", durability: 100, stack: 64, x:10, favType:"scissors", favType2: "shovel"},								//4
-{name: "dirt", durability: 100, stack: 64, x:9, favType:"shovel"},														//5
-{name: "bedrock", durability: Infinity, x:6},																			//6
-{name: "iron ore", durability: 700, stack: 64, x:3, favType:"pickaxe"},													//7
-{name: "coal ore", durability: 600, stack: 64, x:0, favType:"pickaxe"},		 											//8
-{name: "diamond ore", durability: 1000, stack: 64, x:1, favType:"pickaxe"},  											//9
-{name: "gold ore", durability: 800, stack: 64, x:2, favType:"pickaxe"},			 										//10
-{name: "wooden planks", durability: 200, stack: 64, x:5, favType: "axe", smelting: 500},								//11
-{name: "crafting table", durability: 200, stack: 64, x:8, favType: "axe", active:"crafting", smelting: 1000},			//12
-{name: "furnace", durability: 500, stack: 64, x:4, favType: "pickaxe", active:"furnace"},								//13
+{name: "stone", durability: 500, stack: 64, x:13, favType:"pickaxe", id:0},                            					    //0
+{name: "cobblestone", durability: 500, stack: 64, x:7, favType:"pickaxe", id:1},												//1
+{name: "wood", durability: 300, stack: 64, x:11, favType: "axe", smelting: 1000, id:2},										//2
+{name: "leaves", durability: 50, stack: 64, x:12, favType:"scissors", smelting: 300, id:3},									//3
+{name: "grass", durability: 100, stack: 64, x:10, favType:"scissors", favType2: "shovel", id:4},								//4
+{name: "dirt", durability: 100, stack: 64, x:9, favType:"shovel", id:5},														//5
+{name: "bedrock", durability: Infinity, x:6, id:6},																			//6
+{name: "iron ore", durability: 700, stack: 64, x:3, favType:"pickaxe", id:7},													//7
+{name: "coal ore", durability: 600, stack: 64, x:0, favType:"pickaxe", id:8},		 											//8
+{name: "diamond ore", durability: 1000, stack: 64, x:1, favType:"pickaxe", id:9},  											//9
+{name: "gold ore", durability: 800, stack: 64, x:2, favType:"pickaxe", id:10},			 										//10
+{name: "wooden planks", durability: 200, stack: 64, x:5, favType: "axe", smelting: 500, id:11},								//11
+{name: "crafting table", durability: 200, stack: 64, x:8, favType: "axe", active:"crafting", smelting: 1000, id:12},			//12
+{name: "furnace", durability: 500, stack: 64, x:4, favType: "pickaxe", active:"furnace", id:13},								//13
 ]
 
 materials[0].drop=new drop(undefined, 0, "pickaxe", materials[1]);

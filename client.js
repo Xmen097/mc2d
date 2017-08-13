@@ -1,4 +1,3 @@
-//bb
 function connectToServer() {
 	include("https://"+ip+"/socket.io/socket.io.js", function() {
 		remotePlayers=[];
@@ -74,6 +73,10 @@ function connectToServer() {
 			renderMap();
 		}
 
+		function onInventory(data) {
+			console.log(data);
+		}
+
 		function salt(data) {
 		    socket.emit("new player", {x: player.x, y: player.y, name: name, token: sha256(loginToken+data)});
 		}
@@ -101,6 +104,7 @@ function connectToServer() {
     	socket.on("block breaking", onBlockBreaking);
     	socket.on("new map", onNewMap);
     	socket.on("salt", salt);
+    	socket.on("inventory", onInventory);
 	    if(map) {
 	    	startMP();
 	    }
