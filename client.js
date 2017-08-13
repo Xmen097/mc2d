@@ -75,26 +75,28 @@ function connectToServer() {//f
 
 		function onInventory(data) {
 			for(var a of data) {
-				if(a.id < materials.length) {
-					var item=materials[a.id];	
-				} else {
-					for(var b of items) {
-						if(b.id == a.id) {
-							item = b;
-							break;
+				if(data.amount) {
+					if(a.id < materials.length) {
+						var item=materials[a.id];	
+					} else {
+						for(var b of items) {
+							if(b.id == a.id) {
+								item = b;
+								break;
+							}
 						}
 					}
-				}
 
-				if(a.y < 3) {
-					inventory.inventory[a.y][a.x].item=item;
-					inventory.inventory[a.y][a.x].count=data.amount;
-				} else if(a.y == 3) {
-					inventory.hotbar[a.x].item=item;
-					inventory.hotbar[a.x].count=data.amount;
-				} else if(a.y == 4) {
-					inventory.armor[a.x].item=item;
-					inventory.armor[a.x].count=data.amount;
+					if(a.y < 3) {
+						inventory.inventory[a.y][a.x].item=item;
+						inventory.inventory[a.y][a.x].count=data.amount;
+					} else if(a.y == 3) {
+						inventory.hotbar[a.x].item=item;
+						inventory.hotbar[a.x].count=data.amount;
+					} else if(a.y == 4) {
+						inventory.armor[a.x].item=item;
+						inventory.armor[a.x].count=data.amount;
+					}
 				}
 			}
 
