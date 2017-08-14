@@ -284,7 +284,7 @@ function update() {
 		for(var a in remoteDestroingBlock) {
 			remoteDestroingBlock[a].update();
 		}
-	}
+	}//
 	if(destroingTexture != undefined)
 		destroingTexture.update();
 	hotbarUI.update();
