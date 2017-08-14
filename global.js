@@ -64,7 +64,7 @@ function giveItemToBestInventoryPosition(item, count) {
 		if(a.item == item) {
 			a.count += count;
 			a.reRender();
-			return;		
+			return inventory.hotbar.indexOf(a);		
 		}
 	}
 	for (var m of inventory.inventory) {
@@ -72,7 +72,7 @@ function giveItemToBestInventoryPosition(item, count) {
 			if(a.item == item) {
 				a.count += count;
 				a.reRender();
-				return;				
+				return inventory.inventory.indexOf(a);				
 			}
 		}				
 	}
@@ -81,7 +81,7 @@ function giveItemToBestInventoryPosition(item, count) {
 			a.count = count;
 			a.item = item;
 			a.reRender();
-			return;		
+			return inventory.hotbar.indexOf(a);		
 		}
 	}
 	for (var m of inventory.inventory) {
@@ -90,7 +90,7 @@ function giveItemToBestInventoryPosition(item, count) {
 				a.count = count;
 				a.item = item;
 				a.reRender();
-				return;				
+				return inventory.inventory.indexOf(a);				
 			}
 		}				
 	}
@@ -104,9 +104,12 @@ function drop(item1, count1, condition, item2, count2) {
 	this.count2 = count2 || 1;
 	this.drop = function() {
 		if(activeItem.item!= undefined && this.condition != undefined && activeItem.item.type == this.condition && this.item2 != undefined) {
-			giveItemToBestInventoryPosition(this.item2, this.count2)
+			var pos = giveItemToBestInventoryPosition(this.item2, this.count2)
 		} else if(item1 != undefined){
-			giveItemToBestInventoryPosition(this.item1, this.count1)
+			var pos = giveItemToBestInventoryPosition(this.item1, this.count1)
+		}
+		if(playing == 2) {
+			return pos;
 		}
 	}
 }
@@ -278,12 +281,12 @@ function update() {
 		for(var a of remotePlayers) {
 			a.component.update()
 		}
+		for(var a in remoteDestroingBlock) {
+			remoteDestroingBlock[a].update();
+		}
 	}
 	if(destroingTexture != undefined)
 		destroingTexture.update();
-	for(var a in remoteDestroingBlock) {
-		remoteDestroingBlock[a].update();
-	}
 	hotbarUI.update();
 	activeSlot.update();
 	if(playing==2) {

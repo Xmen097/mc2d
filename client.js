@@ -86,17 +86,18 @@ function connectToServer() {//f
 							}
 						}
 					}
-
-					if(a.y < 3) {
-						inventory.inventory[a.y][a.x].item=item;
-						inventory.inventory[a.y][a.x].count=data.amount;
-					} else if(a.y == 3) {
-						inventory.hotbar[a.x].item=item;
-						inventory.hotbar[a.x].count=data.amount;
-					} else if(a.y == 4) {
-						inventory.armor[a.x].item=item;
-						inventory.armor[a.x].count=data.amount;
-					}
+				} else {
+					//item = undefined; //uncomment after testing
+				}
+				if(a.y < 3) {
+					inventory.inventory[a.y][a.x].item=item;
+					inventory.inventory[a.y][a.x].count=data.amount;
+				} else if(a.y == 3) {
+					inventory.hotbar[a.x].item=item;
+					inventory.hotbar[a.x].count=data.amount;
+				} else if(a.y == 4) {
+					inventory.armor[a.x].item=item;
+					inventory.armor[a.x].count=data.amount;
 				}
 			}
 

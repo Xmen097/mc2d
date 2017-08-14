@@ -50,7 +50,7 @@ function breakBlock() {
 										socket.emit("block breaking", {x:startY, y:startX, progress: 9});
 										destroingBlock = setTimeout(function() {
 											destroingTexture = undefined;
-											materials[map[startY][startX]].drop.drop()
+											var pos = materials[map[startY][startX]].drop.drop()
 											if(map[startY][startX] == 13) {
 												for(var g=0; g<furnaceSaves.length; g++) {
 													if(furnaceSaves[g].x == startX && furnaceSaves[g].y == startY) {
@@ -65,7 +65,7 @@ function breakBlock() {
 											}
 											map[startY][startX] = -1;
 											if(playing==2) {
-												socket.emit("map edit", {x:startY, y:startX, block: -1})
+												socket.emit("map edit", {x:startY, y:startX, block: -1, pos: pos, active: })
 												socket.emit("block breaking", {x:0, y:0, progress: -1});
 											}
 											renderMap();
