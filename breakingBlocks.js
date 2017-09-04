@@ -65,7 +65,7 @@ function breakBlock() {
 											}
 											map[startY][startX] = -1;
 											if(playing==2) {
-												socket.emit("map edit", {x:startY, y:startX, block: -1, pos: pos, active: })
+												socket.emit("map edit", {x:startY, y:startX, block: -1, pos: pos, active: inventory.hotbar.indexOf(activeItem)})//p
 												socket.emit("block breaking", {x:0, y:0, progress: -1});
 											}
 											renderMap();
