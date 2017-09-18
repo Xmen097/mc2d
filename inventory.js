@@ -75,8 +75,8 @@ function checkForInventoryOpen() {
 		setTimeout(function() {inventoryTimeout=false}, timeoutTime)
 	}
 }
-window.addEventListener('wheel', function(){
-	console.log("Mouse wheel " + Event.wheelDelta)
+window.addEventListener('wheel', function(event){
+	console.log("Mouse wheel " + event)
 	if(playing!=0) {
 	    var whellDirection = Event.wheelDelta < 0 ? 'down' : 'up';
 	    if(whellDirection == "up" && activeSlot.slot != 1) {
