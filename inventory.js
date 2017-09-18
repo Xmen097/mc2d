@@ -76,9 +76,8 @@ function checkForInventoryOpen() {
 	}
 }
 window.addEventListener('wheel', function(event){
-	console.log("Mouse wheel " + event)
 	if(playing!=0) {
-	    var whellDirection = Event.wheelDelta < 0 ? 'down' : 'up';
+	    var whellDirection = event.deltaY < 0 ? 'down' : 'up';
 	    if(whellDirection == "up" && activeSlot.slot != 1) {
 	    	wheelSelectMe = activeSlot.slot-1;
 	    	checkForHotbarItemSelect();
