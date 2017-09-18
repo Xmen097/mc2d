@@ -2,7 +2,7 @@ var destroingBlock;
 var destroingTexture;
 var breakMultiplier;
 
-function breakBlock(event) { //gite sorry jako todle taky potrebuju commitnout!
+function breakBlock(event) { 
 	var startX = Math.floor((event.pageX - document.getElementById('canvas').offsetLeft + camera.x)/canvas.tileSize);
 	var startY = Math.floor((event.pageY - document.getElementById('canvas').offsetTop + camera.y*-1)/canvas.tileSize);
 	if(map[startY][startX] == -1 || materials[map[startY][startX]].durability == Infinity)

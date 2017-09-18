@@ -226,6 +226,8 @@ function stopGame() {
 
 function setupGame() {
 	menuOn=0;
+	craftingUI=undefined;
+	furnaceUI=undefined;
 	camera.y=50;
 	activeSlot = new component(63*canvas.width/820, 63*canvas.height/820, "textures/ui/selected.png", camera.x + (canvas.width - 63*canvas.width/820)/2, camera.y*-1 + (canvas.height - 63*canvas.height/820)/1.1,"image");
     activeSlot.slot=5;
