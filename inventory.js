@@ -75,9 +75,10 @@ function checkForInventoryOpen() {
 		setTimeout(function() {inventoryTimeout=false}, timeoutTime)
 	}
 }
-window.addEventListener('mousewheel', function(e){
+window.addEventListener('mousewheel', function(event){
+	console.log("Mouse wheel " + event.wheelDelta)
 	if(playing!=0) {
-	    var whellDirection = e.wheelDelta < 0 ? 'down' : 'up';
+	    var whellDirection = event.wheelDelta < 0 ? 'down' : 'up';
 	    if(whellDirection == "up" && activeSlot.slot != 1) {
 	    	wheelSelectMe = activeSlot.slot-1;
 	    	checkForHotbarItemSelect();
