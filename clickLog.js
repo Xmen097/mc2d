@@ -289,7 +289,7 @@ onmousedown = function(event) {
 	}
 }
 
-onmouseup = function(event) {
+onmouseup = function(event) {//vole
 	if(destroingTexture != undefined) {
 		for(var a of destroingBlock) {
 			clearTimeout(a);	
