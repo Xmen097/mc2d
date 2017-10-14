@@ -291,7 +291,9 @@ onmousedown = function(event) {
 
 onmouseup = function(event) {
 	if(destroingTexture != undefined) {
-		clearTimeout(destroingBlock);
+		for(var a of destroingBlock) {
+			clearTimeout(a);	
+		}
 		destroingTexture = undefined;
 		if(playing==2)
 			socket.emit("block breaking", {x:0, y:0, progress: -1});
