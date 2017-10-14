@@ -74,9 +74,8 @@ function connectToServer() {//f
 		}
 
 		function onInventory(data) {
-			console.log(data);
 			for(var a of data) {
-				if(data.amount) {
+				if(a.amount) {
 					if(a.id < materials.length) {
 						var item=materials[a.id];	
 					} else {
@@ -88,17 +87,17 @@ function connectToServer() {//f
 						}
 					}
 				} else {
-					//item = undefined; //uncomment after testing
+					item = undefined;
 				}
 				if(a.y < 3) {
 					inventory.inventory[a.y][a.x].item=item;
-					inventory.inventory[a.y][a.x].count=data.amount;
+					inventory.inventory[a.y][a.x].count=a.amount;
 				} else if(a.y == 3) {
 					inventory.hotbar[a.x].item=item;
-					inventory.hotbar[a.x].count=data.amount;
+					inventory.hotbar[a.x].count=a.amount;
 				} else if(a.y == 4) {
 					inventory.armor[a.x].item=item;
-					inventory.armor[a.x].count=data.amount;
+					inventory.armor[a.x].count=a.amount;
 				}
 			}
 
