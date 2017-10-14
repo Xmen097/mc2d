@@ -74,7 +74,7 @@ function connectToServer() {//f
 		}
 
 		function onInventory(data) {
-			console.log(data);//console
+			console.log(data);
 			for(var a of data) {
 				if(data.amount) {
 					if(a.id < materials.length) {
