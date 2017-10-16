@@ -168,19 +168,19 @@ var items = {
 
 var materials = [
 	{name: "stone", durability: 500, stack: 64, x:13, favType:"pickaxe", id:0},                            					    //0
-	{name: "cobblestone", durability: 500, stack: 64, x:7, favType:"pickaxe", id:1},												//1
+	{name: "cobblestone", durability: 500, stack: 64, x:7, favType:"pickaxe", id:1},											//1
 	{name: "wood", durability: 300, stack: 64, x:11, favType: "axe", smelting: 1000, id:2},										//2
 	{name: "leaves", durability: 50, stack: 64, x:12, favType:"scissors", smelting: 300, id:3},									//3
-	{name: "grass", durability: 100, stack: 64, x:10, favType:"scissors", favType2: "shovel", id:4},								//4
-	{name: "dirt", durability: 100, stack: 64, x:9, favType:"shovel", id:5},														//5
+	{name: "grass", durability: 100, stack: 64, x:10, favType:"scissors", favType2: "shovel", id:4},							//4
+	{name: "dirt", durability: 100, stack: 64, x:9, favType:"shovel", id:5},													//5
 	{name: "bedrock", durability: Infinity, x:6, id:6},																			//6
-	{name: "iron ore", durability: 700, stack: 64, x:3, favType:"pickaxe", id:7},													//7
-	{name: "coal ore", durability: 600, stack: 64, x:0, favType:"pickaxe", id:8},		 											//8
+	{name: "iron ore", durability: 700, stack: 64, x:3, favType:"pickaxe", id:7},												//7
+	{name: "coal ore", durability: 600, stack: 64, x:0, favType:"pickaxe", id:8},		 										//8
 	{name: "diamond ore", durability: 1000, stack: 64, x:1, favType:"pickaxe", id:9},  											//9
-	{name: "gold ore", durability: 800, stack: 64, x:2, favType:"pickaxe", id:10},			 										//10
+	{name: "gold ore", durability: 800, stack: 64, x:2, favType:"pickaxe", id:10},			 									//10
 	{name: "wooden planks", durability: 200, stack: 64, x:5, favType: "axe", smelting: 500, id:11},								//11
-	{name: "crafting table", durability: 200, stack: 64, x:8, favType: "axe", active:"crafting", smelting: 1000, id:12},			//12
-	{name: "furnace", durability: 500, stack: 64, x:4, favType: "pickaxe", active:"furnace", id:13},								//13
+	{name: "crafting table", durability: 200, stack: 64, x:8, favType: "axe", active:"crafting", smelting: 1000, id:12},		//12
+	{name: "furnace", durability: 500, stack: 64, x:4, favType: "pickaxe", active:"furnace", id:13},							//13
 ]
 
 materials[0].drop=new drop(undefined, 0, "pickaxe", materials[1]);
