@@ -158,7 +158,7 @@ onmousedown = function(event) {
 					if(materials[a] == activeItem.item) {
 						map[y][x] = a;
 						if(playing==2)
-							socket.emit("map edit", {x:y, y:x, block: a, active: inventory.hotbar.indexOf(activeItem)})
+							socket.emit("map edit", {x:y, y:x, block: a, active: inventory.hotbar.indexOf(activeItem)});//d
 						if(materials[a].active == "furnace") {
 							furnaceSaves[furnaceSaves.length] = {x:x, y:y, smelting:0, fuel:0, inventory:[new inventorySpace(172, 78), new inventorySpace(172, 128), new inventorySpace(280, 103)]};
 						}
