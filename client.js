@@ -27,7 +27,7 @@ function connectToServer() {//f
 
 		function onNewPlayer(data) {
 			console.log("New player has connected to server")
-			remotePlayers.push(new Player(data.x, data.y, data.id, data.name))
+			remotePlayers.push(new Player(parseInt(data.x), parseInt(data.y), parseInt(data.id), String(data.name)))
 		}
 
 		function onRemovePlayer(data) {
@@ -47,24 +47,24 @@ function connectToServer() {//f
 					tempMessagesList[a-1] = messagesList[a]
 				}
 				messagesList=tempMessagesList;
-				messagesList[maxSavedMessages-1]=data.name+": "+data.message
+				messagesList[maxSavedMessages-1]=String(data.name)+": "+String(data.message);
 			}else
-				messagesList.push(data.name+": "+data.message)
+				messagesList.push(String(data.name)+": "+String(data.message));
 		}
 
 		function onMovePlayer(data) {
-			var movePlayer=playerById(data.id)
+			var movePlayer=playerById(parseInt(data.id));
 			if(movePlayer) {
-				movePlayer.x=data.x;
-				movePlayer.component.x=data.x;
-				movePlayer.y=data.y;
-				movePlayer.component.y=data.y;
-				movePlayer.component.texture=data.texture;
+				movePlayer.x=parseInt(data.x);
+				movePlayer.component.x=parseInt(data.x);
+				movePlayer.y=parseInt(data.y);
+				movePlayer.component.y=parseInt(data.y);
+				movePlayer.component.texture=parseInt(data.texture) ? "textures/player/steveRight.png" : "textures/player/steveLeft.png";
 			}
 		}
 
 		function onMapEdit(data) {
-			map[data.x][data.y] = data.block
+			map[parseInt(data.x)][parseInt(data.y)] = parseInt(data.block)
 			renderMap();
 		}
 
@@ -74,7 +74,6 @@ function connectToServer() {//f
 		}
 
 		function onInventory(data) {
-			console.log(data);
 			for(var a of data) {
 				if(a.amount) {
 					if(a.id < materials.length) {
@@ -109,11 +108,11 @@ function connectToServer() {//f
 		}
 
 		function onBlockBreaking(data) {
-			if(data.progress == -1) {
-				delete remoteDestroingBlock[data.id];
+			if(parseInt(data.progress) == -1) {
+				delete remoteDestroingBlock[parseInt(data.id)];
 				console.log("dwd")
 			} else {
-				remoteDestroingBlock[data.id] = new component(canvas.tileSize, canvas.tileSize, "textures/breaking/"+data.progress+".png", data.y*canvas.tileSize, data.x*canvas.tileSize, "image");
+				remoteDestroingBlock[parseInt(data.id)] = new component(canvas.tileSize, canvas.tileSize, "textures/breaking/"+parseInt(data.progress)+".png", parseInt(data.y)*canvas.tileSize, parseInt(data.x)*canvas.tileSize, "image");
 			}
 		}
 		if(parseInt(ip.split(":")[1])) {

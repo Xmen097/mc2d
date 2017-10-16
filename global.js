@@ -413,7 +413,7 @@ function update() {
 	}
 	if(playing==2) {
 		if(prevPos != undefined && prevPos.x != player.x || prevPos != undefined && prevPos.y != player.y) {
-			socket.emit("move player", {x: player.x, y: player.y, texture: player.texture})
+			socket.emit("move player", {x: player.x, y: player.y, texture: player.texture == "textures/player/steveLeft.png" ? 0 : 1})
 		}
 		prevPos={x:player.x, y:player.y}
 	}
