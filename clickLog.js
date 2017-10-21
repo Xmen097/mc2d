@@ -1,7 +1,7 @@
 var holding=new inventorySpace();
 holding.getFrom;
 var clickedItem;
-var findSth;
+var findSth;//kfc
 
 onmousedown = function(event) {
 	var x = event.pageX - document.getElementById('canvas').offsetLeft;
