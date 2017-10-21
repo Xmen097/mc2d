@@ -297,11 +297,11 @@ onmousedown = function(event) {
 				for(var d of inventory.hotbar) {
 						if(clickedItem==d) {
 							end.y=3
-							end.x=inventory.inventory[end.y].indexOf(d);
+							end.x=inventory.hotbar.indexOf(d);
 						}
 						if(holding.getFrom==d) {
 							start.y=3
-							start.x=inventory.inventory[end.y].indexOf(d);
+							start.x=inventory.hotbar.indexOf(d);
 						}
 				}
 				socket.emit("move item", {start:start, end:end, count: holding.count});
