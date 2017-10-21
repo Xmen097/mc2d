@@ -1,7 +1,7 @@
 var holding=new inventorySpace();
 holding.getFrom;
 var clickedItem;
-var findSth;//t
+var findSth;
 
 onmousedown = function(event) {
 	var x = event.pageX - document.getElementById('canvas').offsetLeft;
