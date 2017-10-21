@@ -290,7 +290,7 @@ onmousedown = function(event) {
 						}
 						if(holding.getFrom==c) {
 							start.y=inventory.inventory.indexOf(b)
-							start.x=inventory.inventory[end.y].indexOf(c);
+							start.x=inventory.inventory[start.y].indexOf(c);
 						}
 					}
 				}
