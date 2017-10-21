@@ -1,4 +1,5 @@
 var holding=new inventorySpace();
+holding.getFrom;
 var clickedItem;
 var findSth;
 
@@ -158,7 +159,7 @@ onmousedown = function(event) {
 					if(materials[a] == activeItem.item) {
 						map[y][x] = a;
 						if(playing==2)
-							socket.emit("map edit", {x:y, y:x, block: a, active: inventory.hotbar.indexOf(activeItem)});//ddwdw
+							socket.emit("map edit", {x:y, y:x, block: a, active: inventory.hotbar.indexOf(activeItem)});
 						if(materials[a].active == "furnace") {
 							furnaceSaves[furnaceSaves.length] = {x:x, y:y, smelting:0, fuel:0, inventory:[new inventorySpace(172, 78), new inventorySpace(172, 128), new inventorySpace(280, 103)]};
 						}
@@ -225,6 +226,7 @@ onmousedown = function(event) {
 			if(event.button == 0) {
 				holding.count += clickedItem.count;
 				holding.item = clickedItem.item;
+				holding.getFrom = clickedItem;
 				if(clickedItem == crafting[4]) {
 					for(var a=0;a<4;a++) {
 						if(crafting[a].count > 0)
@@ -251,7 +253,8 @@ onmousedown = function(event) {
 			} else if (event.button == 2 && clickedItem != crafting[4]) {
 				holding.count = Math.ceil(clickedItem.count/2);						
 				clickedItem.count = (clickedItem.count - Math.ceil(clickedItem.count/2));
-				holding.item = clickedItem.item;
+				holding.item = clickedItem.item;  
+				holding.getFrom = clickedItem;
 				if(clickedItem.count == 0)
 					clickedItem.item = undefined;
 					checkCraftingResult()
@@ -265,8 +268,45 @@ onmousedown = function(event) {
 			holding.reRender();
 
 //pokladani
-		} else if(clickedItem.item == holding.item || clickedItem.item == undefined && clickedItem != crafting[4] && clickedItem != craftingTable[99] && clickedItem != furnace[2] && clickedItem != inventory.armor[0] && clickedItem != inventory.armor[1] && clickedItem != inventory.armor[2] && clickedItem != inventory.armor[3] || clickedItem == inventory.armor[0] && holding.item.type == "helmet"  || clickedItem == inventory.armor[1] && holding.item.type == "chestplate"  || clickedItem == inventory.armor[2] && holding.item.type == "trousers" || clickedItem == inventory.armor[3] && holding.item.type == "shoes"){ // release clicked item
-			if(event.button == 0 && clickedItem != crafting[4]) {
+		} else if(clickedItem.item == holding.item && clickedItem != crafting[4]  && clickedItem != furnace[2] || clickedItem.item == undefined && clickedItem != crafting[4] && clickedItem != craftingTable[99] && clickedItem != furnace[2] && clickedItem != inventory.armor[0] && clickedItem != inventory.armor[1] && clickedItem != inventory.armor[2] && clickedItem != inventory.armor[3] || clickedItem == inventory.armor[0] && holding.item.type == "helmet"  || clickedItem == inventory.armor[1] && holding.item.type == "chestplate"  || clickedItem == inventory.armor[2] && holding.item.type == "trousers" || clickedItem == inventory.armor[3] && holding.item.type == "shoes"){ // release clicked item
+			if(playing==2) {
+				var start={x:0, y:0};
+				var end={x:0, y:0};
+				for(var a of inventory.armor) {
+					if(clickedItem==a) {
+						end.y=4
+						end.x=inventory.armor.indexOf(a);
+					}
+					if(holding.getFrom==a) {
+						start.y=4
+						start.x=inventory.armor.indexOf(a);
+					}
+				}
+				for(var b of inventory.inventory) {
+					for(var c of b) {
+						if(clickedItem==c) {
+							end.y=inventory.inventory.indexOf(b)
+							end.x=inventory.inventory[end.y].indexOf(c);
+						}
+						if(holding.getFrom==c) {
+							start.y=inventory.inventory.indexOf(b)
+							start.x=inventory.inventory[end.y].indexOf(c);
+						}
+					}
+				}
+				for(var d of inventory.hotbar) {
+						if(clickedItem==d) {
+							end.y=3
+							end.x=inventory.inventory[end.y].indexOf(d);
+						}
+						if(holding.getFrom==d) {
+							start.y=3
+							start.x=inventory.inventory[end.y].indexOf(d);
+						}
+				}
+				socket.emit("move item", {start:start, end:end, count: holding.count});
+			}
+			if(event.button == 0) {
 				clickedItem.count += holding.count;
 				clickedItem.item = holding.item;
 				clickedItem.reRender();
@@ -274,7 +314,7 @@ onmousedown = function(event) {
 				holding.count = 0;	
 				holding.reRender();
 				checkCraftingResult()			
-			} else if (event.button == 2 && clickedItem != crafting[4] && clickedItem != furnace[2]) {
+			} else if (event.button == 2) {
 				clickedItem.count += 1;
 				clickedItem.item = holding.item;
 				holding.count -= 1;
