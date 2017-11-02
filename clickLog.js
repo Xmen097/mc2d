@@ -76,7 +76,7 @@ onmousedown = function(event) {
 			ajax.onreadystatechange = function() {
 			if (ajax.readyState == 4) {
 				if (ajax.responseText) {
-					if(ajax.responseText != 'Login server offline!' && ajax.responseText != 'Name or password is too short (<5)' && ajax.responseText != 'Failed to generate token!') {
+					if(ajax.responseText != 'Login server offline' && ajax.responseText != 'Name or password is too short (<5)' && ajax.responseText != 'Failed to generate token' && ajax.responseText != "Names can only contain alphanumeric characters") {
 						loginToken = ajax.responseText;
 						menu.main();
 					} else {
