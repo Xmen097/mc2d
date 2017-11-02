@@ -44,7 +44,7 @@ onmousedown = function(event) {
 		if(x>0.3*canvas.width && y>0.72*canvas.height && x<0.7*canvas.width && y<0.84*canvas.height) {
 			var ajax = new XMLHttpRequest();
 			ajax.onreadystatechange = function() {
-			if (ajax.readyState == 4) {////
+			if (ajax.readyState == 4) {
 				if (ajax.responseText) {
 					if(ajax.responseText != 'Login server offline' && ajax.responseText != 'Invalid name or password' && ajax.responseText != 'Failed to generate token' && ajax.responseText != 'Names can only contain alphanumeric charactars') {
 						loginToken = ajax.responseText;
