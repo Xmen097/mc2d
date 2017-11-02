@@ -12,7 +12,7 @@ if(isset($_POST["name"]) && isset($_POST["pasw"]) && isset($_POST["type"])) {
 		} else {
 			die('Invalid name or password');
 		}
-	} else if($_POST["type"] == "create") {
+	} else if($_POST["type"] == "create") {//
 		if(strlen($_POST['name']) < 5 || strlen($_POST['pasw']) < 5) {
 			die("Name or password is too short (<5)");
 		} else if(preg_replace("/[^A-Za-z0-9 ]/", '', strtolower($_POST['name'])) == $_POST['name']) {
