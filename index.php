@@ -15,7 +15,9 @@ if(isset($_POST["name"]) && isset($_POST["pasw"]) && isset($_POST["type"])) {
 	} else if($_POST["type"] == "create") {
 		if(strlen($_POST['name']) < 5 || strlen($_POST['pasw']) < 5) {
 			die("Name or password is too short (<5)");
-		} else if(preg_replace("/[^A-Za-z0-9]/", '', strtolower($_POST['name'])) == $_POST['name']) {
+		} else if($_POST['name'] == "map") {
+			die("User with that name already exists");
+		}else if(preg_replace("/[^A-Za-z0-9]/", '', strtolower($_POST['name'])) == $_POST['name']) {
 			$dbConnection = pg_connect(getenv("DATABASE_URL")) or die('Login server offline');
 			$query="INSERT INTO users (name, password, id) VALUES ($1, $2, 1)";
 			pg_query_params($query, array($_POST["name"], hash("sha256", "fe453@^#/f*5%$3dw99a9/*//*2sqdw./adw2'".$_POST["pasw"]."#*fhm3/98d483d@4D4d949w4D@%#9*+#@#+56d3")));
