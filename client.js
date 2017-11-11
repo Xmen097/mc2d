@@ -21,8 +21,10 @@ function connectToServer() {
 		    console.log("Connected to server");
 		};
 
-		function onDisconnect() {
-		    console.log("Disconnected from server");
+		function onDisconnect(data) {
+			menu.selectMP();
+			if(data)
+				alert(data);
 		};
 
 		function onNewPlayer(data) {
