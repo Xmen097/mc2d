@@ -39,8 +39,7 @@
 [06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06],
 [06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06],
 [06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06]
-]*/                
-//Neeewfefre
+]*/         
 var activeItem, menuOn, playing;
 
 function include(filename, onload) {
@@ -233,12 +232,13 @@ function setupGame() {
 	activeItem=new inventorySpace()
 }
 
-function stopGame() {//
+function stopGame() {
 	camera.y=0;
 	activeSlot = undefined;
     hotbarUI = undefined;
     player = undefined;
 	activeItem = undefined;
+	clearInterval(canvas.interval);
 }
 
 function startSP() {
