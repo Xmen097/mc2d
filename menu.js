@@ -1,4 +1,4 @@
-var menus = {//kokot
+var menus = {
 	bg: function()  {
 		context.setTransform(1,0,0,1,0,0);
     	context.translate(0,0);
