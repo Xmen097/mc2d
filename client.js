@@ -22,7 +22,7 @@ function connectToServer() {
 		};
 
 		function onDisconnect(data) {
-			menu.selectMP();//volos
+			menu.selectMP();
 			if(data)
 				alert(data);
 		};
