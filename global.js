@@ -220,10 +220,6 @@ window.onload = function() {
 	setTimeout(menus.login, 10) // workaround for a strange problem
 }
 
-function stopGame() {
-	clearInterval(canvas.interval);
-}
-
 function setupGame() {
 	menuOn=0;
 	craftingUI=undefined;
@@ -237,7 +233,7 @@ function setupGame() {
 	activeItem=new inventorySpace()
 }
 
-function stopGame() {
+function stopGame() {//
 	camera.y=0;
 	activeSlot = undefined;
     hotbarUI = undefined;
