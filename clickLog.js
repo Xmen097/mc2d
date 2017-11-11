@@ -8,9 +8,9 @@ onmousedown = function(event) {
 	var y = event.pageY - document.getElementById('canvas').offsetTop;
 	if(menuOn==1) {
 		if(x>0.28*canvas.width && y>0.28*canvas.height && x<0.73*canvas.width && y<0.42*canvas.height) {
-			menu.selectSP();
+			menus.selectSP();
 		} else if(x>0.28*canvas.width && y>0.51*canvas.height && x<0.73*canvas.width && y<0.65*canvas.height) {
-			menu.selectMP();
+			menus.selectMP();
 		} else if(x>0.28*canvas.width && y>0.74*canvas.height && x<0.73*canvas.width && y<0.88*canvas.height) {
 			console.log("Set")
 		}
@@ -19,20 +19,20 @@ onmousedown = function(event) {
 		if(x>0.1*canvas.width && y>0.76*canvas.height && x<0.495*canvas.width && y<0.88*canvas.height) {
 			//play SP game
 		} else if(x>0.505*canvas.width && y>0.76*canvas.height && x<0.9*canvas.width && y<0.88*canvas.height) {
-			menu.createSP();
+			menus.createSP();
 		} 
 	} else if(menuOn==3){
 		for(var a=0;a<savedMPs.length;a++) {
 			if(x>0.125*canvas.width && y>0.275*canvas.height+a*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+a*0.125*canvas.height) { 
 				MPSelected=a;
-				menu.selectMP();
+				menus.selectMP();
 			}
 		}
 		if(x>0.1*canvas.width && y>0.76*canvas.height && x<0.495*canvas.width && y<0.88*canvas.height) {
 			ip=savedMPs[MPSelected].ip;
 			connectToServer();
 		} else if(x>0.505*canvas.width && y>0.76*canvas.height && x<0.9*canvas.width && y<0.88*canvas.height) {
-			menu.createMP();
+			menus.createMP();
 		} 
 	} else if(menuOn == 4) {
 
@@ -48,7 +48,7 @@ onmousedown = function(event) {
 				if (ajax.responseText) {
 					if(ajax.responseText != "Login server offline" && ajax.responseText != "Invalid name or password" && ajax.responseText != "Failed to generate token") {
 						loginToken = ajax.responseText;
-						menu.main();
+						menus.main();
 					} else {
 						alert(ajax.responseText);
 					}
@@ -61,13 +61,13 @@ onmousedown = function(event) {
 			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			ajax.send("name="+name+"&pasw="+pasw+"&type=login");	//sending plane-text password, later should be one-way encrypted (sha-256)
 		} else if(x>0.3*canvas.width && y>0.88*canvas.height && x<0.7*canvas.width && y<0.96*canvas.height) {
-			menu.signIn();
+			menus.signIn();
 		} else if(x>0.175*canvas.width && y>0.35*canvas.height && x<0.825*canvas.width && y<0.45*canvas.height) {
 			menuOn=6.1;
-			menu.login()
+			menus.login()
 		} else if(x>0.175*canvas.width && y>0.57*canvas.height && x<0.825*canvas.width && y<0.67*canvas.height) {
 			menuOn=6.2;
-			menu.login()
+			menus.login()
 		}
 	} else if(Math.floor(menuOn) == 7) {
 		if(x>0.3*canvas.width && y>0.72*canvas.height && x<0.7*canvas.width && y<0.84*canvas.height) {
@@ -77,7 +77,7 @@ onmousedown = function(event) {
 				if (ajax.responseText) {
 					if(ajax.responseText != 'Login server offline' && ajax.responseText != 'Name or password is too short (<5)' && ajax.responseText != 'Failed to generate token' && ajax.responseText != "Names can only contain alphanumeric characters" && ajax.responseText != "User with that name already exists") {
 						loginToken = ajax.responseText;
-						menu.main();
+						menus.main();
 					} else {
 						alert(ajax.responseText);
 					}
@@ -90,13 +90,13 @@ onmousedown = function(event) {
 			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			ajax.send("name="+name+"&pasw="+pasw+"&type=create");
 		} else if(x>0.3*canvas.width && y>0.88*canvas.height && x<0.7*canvas.width && y<0.96*canvas.height) {
-			menu.login();
+			menus.login();
 		} else if(x>0.175*canvas.width && y>0.35*canvas.height && x<0.825*canvas.width && y<0.45*canvas.height) {
 			menuOn=7.1;
-			menu.signIn()
+			menus.signIn()
 		} else if(x>0.175*canvas.width && y>0.57*canvas.height && x<0.825*canvas.width && y<0.67*canvas.height) {
 			menuOn=7.2;
-			menu.signIn()
+			menus.signIn()
 		}
 	} else if(craftingUI==undefined && furnaceUI==undefined && !inventoryOn && x <= canvas.width && y <= canvas.height && x >= 0 && y >= 0) {
 		if(event.button == 0){

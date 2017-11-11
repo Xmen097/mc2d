@@ -216,8 +216,8 @@ window.onload = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 	}
 	document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
-	menu.login();
-	setTimeout(menu.login, 10) // workaround for a strange problem
+	menus.login();
+	setTimeout(menus.login, 10) // workaround for a strange problem
 }
 
 function stopGame() {

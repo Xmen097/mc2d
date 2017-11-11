@@ -1,4 +1,4 @@
-var menu = {
+var menus = {
 	bg: function()  {
 		context.setTransform(1,0,0,1,0,0);
     	context.translate(0,0);
@@ -15,7 +15,7 @@ var menu = {
 	},
 	main: function() {	
 		menuOn=1;
-		menu.bg();									
+		menus.bg();									
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.fillText("Minecraft 2D!",canvas.width/2-75,60)
@@ -31,7 +31,7 @@ var menu = {
 
 	selectSP: function() {
 		menuOn=2;
-		menu.bg();
+		menus.bg();
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.fillText("Play SinglePlayer!",0.29*canvas.width,0.17*canvas.height)
@@ -53,7 +53,7 @@ var menu = {
 		if(typeof MPSelected == "undefined")
 			MPSelected=0	
 		savedMPs=[{name: "Official server", ip:"mc2d-officialserver.herokuapp.com"},{name: "Test server(will be removed soon)", ip:"mc2d-testserver.herokuapp.com"}]
-		menu.bg();
+		menus.bg();
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.fillText("Play MultiPlayer!",canvas.width/2-100,60)
@@ -82,7 +82,7 @@ var menu = {
 	},
 	createSP: function() {
 		menuOn=4;
-		menu.bg();
+		menus.bg();
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.fillText("Play MultiPlayer!",canvas.width/2-100,60)
@@ -100,7 +100,7 @@ var menu = {
 	},
 	createMP: function() {
 		menuOn=5;
-		menu.bg();
+		menus.bg();
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.fillText("Connect to server!",canvas.width/2-110,60)
@@ -120,7 +120,7 @@ var menu = {
 			loginToken="";
 			pasw="";
 		}
-		menu.bg();
+		menus.bg();
 		context.fillStyle="white";
 		context.textAlign="center";
 		context.font=Math.round(0.07*canvas.height)+"px Verdana";
@@ -155,7 +155,7 @@ var menu = {
 			loginToken="";
 			pasw="";
 		}
-		menu.bg();
+		menus.bg();
 		context.fillStyle="white";
 		context.textAlign="center";
 		context.font=Math.round(0.07*canvas.height)+"px Verdana";

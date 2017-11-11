@@ -22,7 +22,7 @@ function connectToServer() {
 		};
 
 		function onDisconnect(data) {
-			menu.selectMP();
+			menus.selectMP();
 			if(data)
 				alert(data);
 		};
