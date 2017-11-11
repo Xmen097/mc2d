@@ -23,7 +23,7 @@ function connectToServer() {
 
 		function onDisconnect(data) {
 			menus.selectMP();
-			if(data && data=="booted")
+			if(data && data != "booted")
 				alert(data);
 		};
 
