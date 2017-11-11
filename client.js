@@ -18,7 +18,7 @@ function connectToServer() {
 		}
 
 		function onConnected() {
-		    console.log("Connected to server");//f
+		    console.log("Connected to server");
 		};
 
 		function onDisconnect(data) {
