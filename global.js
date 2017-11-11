@@ -237,6 +237,14 @@ function setupGame() {
 	activeItem=new inventorySpace()
 }
 
+function stopGame() {
+	camera.y=0;
+	activeSlot = undefined;
+    hotbarUI = undefined;
+    player = undefined;
+	activeItem = undefined;
+}
+
 function startSP() {
 	setupGame();
 	playing=1;

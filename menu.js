@@ -1,5 +1,6 @@
 var menus = {
 	bg: function()  {
+		stopGame();
 		context.setTransform(1,0,0,1,0,0);
     	context.translate(0,0);
 		canvas.clear();
