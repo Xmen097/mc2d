@@ -42,21 +42,68 @@
 ]*/         
 var activeItem, menuOn, playing;
 
-function include(filename, onload) {
-	var head = document.getElementsByTagName('head')[0];
-	var script = document.createElement('script');
-	script.src = filename;
-	script.type = 'text/javascript';
-	script.onload = script.onreadystatechange = function() {
-		if (script.readyState) {
-			if (script.readyState === 'complete' || script.readyState === 'loaded') {
-				script.onreadystatechange = null;onload();}
-			} else {
-				onload();
-			}
-		};
-	head.appendChild(script);
+
+//code for loading sprites from: http://jlongster.com/Making-Sprite-based-Games-with-Canvas
+var resourceCache = {};
+var loading = [];
+var readyCallbacks = [];
+
+// Load an image url or an array of image urls
+function load(urlOrArr) {
+    if(urlOrArr instanceof Array) {
+        urlOrArr.forEach(function(url) {
+            _load(url);
+        });
+    }
+    else {
+        _load(urlOrArr);
+    }
 }
+
+function _load(url) {
+    if(resourceCache[url]) {
+        return resourceCache[url];
+    }
+    else {
+        var img = new Image();
+        img.onload = function() {
+            resourceCache[url] = img;
+
+            if(isReady()) {
+                readyCallbacks.forEach(function(func) { func(); });
+            }
+        };
+        resourceCache[url] = false;
+        img.src = url;
+    }
+}
+
+function get(url) {
+    return resourceCache[url];
+}
+
+function isReady() {
+    var ready = true;
+    for(var k in resourceCache) {
+        if(resourceCache.hasOwnProperty(k) &&
+           !resourceCache[k]) {
+            ready = false;
+        }
+    }
+    return ready;
+}
+
+function onReady(func) {
+    readyCallbacks.push(func);
+}
+
+window.resources = { 
+    load: load,
+    get: get,
+    onReady: onReady,
+    isReady: isReady
+};
+//end
 
 function giveItemToBestInventoryPosition(item, count) {
 	for(var a of inventory.hotbar) {

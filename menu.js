@@ -43,17 +43,19 @@ var menus = {
 		context.fillStyle="lightgrey";
 		context.fillRect(0.1*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.505*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
+		context.fillRect(0.1*canvas.height, 0.1*canvas.width, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
 		context.fillStyle="black";
 		context.font=Math.round(0.045*canvas.height)+"px Verdana";
-		context.fillText("Play selected",0.18*canvas.width,0.84*canvas.height)
-		context.fillText("Create new",0.60*canvas.width,0.84*canvas.height)
+		context.fillText("Play selected",0.18*canvas.width,0.84*canvas.height);
+		context.fillText("Create new",0.60*canvas.width,0.84*canvas.height);
+		(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/backArrow.png", 0.1*canvas.width, 0.1*canvas.height, "image")).update();
 		},
 	selectMP: function() {
 		menuOn=3;
 		ip="";
 		if(typeof MPSelected == "undefined")
 			MPSelected=0	
-		savedMPs=[{name: "Official server", ip:"mc2d-officialserver.herokuapp.com"},{name: "Test server(will be removed soon)", ip:"mc2d-testserver.herokuapp.com"}]
+		savedMPs=[{name: "Official server", ip:"mc2d-officialserver.herokuapp.com"},{name: "Test server", ip:"mc2d-testserver.herokuapp.com"}]
 		menus.bg();
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
