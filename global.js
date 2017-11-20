@@ -261,7 +261,7 @@ window.onload = function() {
 	canvas.clear = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 	}
-	resources.load([
+	resources.load([//ko
 	    'textures/backArrow.png',
 	    'textures/itemSheet.png',
 	    'textures/breaking/0.png',
