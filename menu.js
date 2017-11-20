@@ -43,12 +43,12 @@ var menus = {
 		context.fillStyle="lightgrey";
 		context.fillRect(0.1*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.505*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
-		context.fillRect(0.1*canvas.height, 0.1*canvas.width, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
+		context.fillRect(0.85*canvas.width, 0.1*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
 		context.fillStyle="black";
 		context.font=Math.round(0.045*canvas.height)+"px Verdana";
 		context.fillText("Play selected",0.18*canvas.width,0.84*canvas.height);
 		context.fillText("Create new",0.60*canvas.width,0.84*canvas.height);
-		(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/backArrow.png", 0.1*canvas.width, 0.1*canvas.height, "image")).update();
+		(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/backArrow.png", 0.85*canvas.width, 0.1*canvas.height, "image")).update();
 		},
 	selectMP: function() {
 		menuOn=3;
@@ -78,10 +78,12 @@ var menus = {
 		context.fillStyle="lightgrey";
 		context.fillRect(0.1*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.505*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
+		context.fillRect(0.85*canvas.width, 0.1*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
 		context.fillStyle="black";
 		context.font=Math.round(0.045*canvas.height)+"px Verdana";
 		context.fillText("Connect to selected",0.12*canvas.width,0.84*canvas.height)
-		context.fillText("Connect to new",0.565*canvas.width,0.84*canvas.height)
+		context.fillText("Connect to new",0.565*canvas.width,0.84*canvas.height);
+		(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/backArrow.png", 0.85*canvas.width, 0.1*canvas.height, "image")).update();
 	},
 	createSP: function() {
 		menuOn=4;
@@ -96,10 +98,12 @@ var menus = {
 		context.fillStyle="lightgrey";
 		context.fillRect(0.1*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.505*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
+		context.fillRect(0.85*canvas.width, 0.1*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
 		context.fillStyle="black";
 		context.font=Math.round(0.045*350)+"px Verdana";
 		context.fillText("Connect to selected",canvas.width/2-75-0.21*canvas.width,0.84*canvas.height)
-		context.fillText("Connect to new",70+0.41*canvas.width,0.84*canvas.height)
+		context.fillText("Connect to new",70+0.41*canvas.width,0.84*canvas.height);
+		(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/backArrow.png", 0.85*canvas.width, 0.1*canvas.height, "image")).update();
 	},
 	createMP: function() {
 		menuOn=5;
@@ -111,10 +115,12 @@ var menus = {
 		context.fillStyle="lightgrey";
 		context.fillRect(0.2*canvas.width, 0.3*canvas.height, 0.65*canvas.width, 0.1*canvas.height)
 		context.fillRect(0.3*canvas.width, 0.76*canvas.height, 0.4*canvas.width, 0.12*canvas.height)
+		context.fillRect(0.85*canvas.width, 0.1*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
 		context.fillStyle="black";
 		context.font=Math.round(0.045*350)+"px Verdana";
 		context.fillText("Connect",0.43*canvas.width,0.84*canvas.height)
-		context.fillText(ip+"|",0.22*canvas.width,0.37*canvas.height)
+		context.fillText(ip+"|",0.22*canvas.width,0.37*canvas.height);
+		(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/backArrow.png", 0.85*canvas.width, 0.1*canvas.height, "image")).update();
 	},
 	login: function() {
 		if(Math.floor(menuOn)!=6){

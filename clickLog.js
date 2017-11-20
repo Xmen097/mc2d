@@ -17,9 +17,11 @@ onmousedown = function(event) {
 
 	}else if(menuOn==2) {
 		if(x>0.1*canvas.width && y>0.76*canvas.height && x<0.495*canvas.width && y<0.88*canvas.height) {
-			//play SP game
+			startSP();
 		} else if(x>0.505*canvas.width && y>0.76*canvas.height && x<0.9*canvas.width && y<0.88*canvas.height) {
-			menus.createSP();
+			//menus.createSP();
+		} else if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
+			menus.main()
 		} 
 	} else if(menuOn==3){
 		for(var a=0;a<savedMPs.length;a++) {
@@ -33,13 +35,19 @@ onmousedown = function(event) {
 			connectToServer();
 		} else if(x>0.505*canvas.width && y>0.76*canvas.height && x<0.9*canvas.width && y<0.88*canvas.height) {
 			menus.createMP();
-		} 
+		} else if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
+			menus.main()
+		}  
 	} else if(menuOn == 4) {
-
+		if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
+			menus.selectSP()
+		} 
 	} else if(menuOn == 5) {
 		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
 			connectToServer();	
-		}
+		} else if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
+			menus.selectMP()
+		} 
 	} else if(Math.floor(menuOn) == 6) {
 		if(x>0.3*canvas.width && y>0.72*canvas.height && x<0.7*canvas.width && y<0.84*canvas.height) {
 			var ajax = new XMLHttpRequest();

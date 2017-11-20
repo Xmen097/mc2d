@@ -261,7 +261,7 @@ window.onload = function() {
 	canvas.clear = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 	}
-	resources.load([//ko
+	resources.load([
 	    'textures/backArrow.png',
 	    'textures/itemSheet.png',
 	    'textures/breaking/0.png',
@@ -289,7 +289,7 @@ window.onload = function() {
 	]);
 	resources.onReady(function() {
 		document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
-		menus.login();
+		menus.selectSP();
 	});
 }
 
