@@ -289,7 +289,7 @@ window.onload = function() {
 	]);
 	resources.onReady(function() {
 		document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
-		menus.selectSP();
+		menus.main();
 	});
 }
 
