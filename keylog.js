@@ -54,7 +54,7 @@ onkeydown = function(event) {
 	} else if(playing==2 && event.key=="t" && !chatOn || playing==2 && event.key=="T" && !chatOn) {
 		chatOn=true;
 	} else if(playing==2 && event.key=="Escape" && !chatOn) {
-
+		menus.selectMP();
 	}else if(playing==2 && chatOn) {
 		if(event.key=="Backspace") {
 			chatMessage = chatMessage.slice(0, chatMessage.length-1)
