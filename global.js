@@ -261,9 +261,36 @@ window.onload = function() {
 	canvas.clear = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 	}
-	document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
-	menus.login();
-	setTimeout(menus.login, 10) // workaround for a strange problem
+	resources.load([
+	    'textures/backArrow.png',
+	    'textures/itemSheet.png',
+	    'textures/breaking/0.png',
+	    'textures/breaking/1.png',
+	    'textures/breaking/2.png',
+	    'textures/breaking/3.png',
+	    'textures/breaking/4.png',
+	    'textures/breaking/5.png',
+	    'textures/breaking/6.png',
+	    'textures/breaking/7.png',
+	    'textures/breaking/8.png',
+	    'textures/breaking/9.png',
+	    'textures/player/steveFront.png',
+	    'textures/player/steveLeft.png',
+	    'textures/player/steveRight.png',
+	    'textures/ui/crafting.png',
+	    'textures/ui/furnace.png',
+	    'textures/ui/furnaceArrow.png',
+	    'textures/ui/furnaceFire.png',
+	    'textures/ui/hotbar.png',
+	    'textures/ui/inventory.png',
+	    'textures/ui/inventory.png',
+	    'textures/backArrow.png',
+	    'textures/blockSheet.png'
+	]);
+	resources.onReady(function() {
+		document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
+		menus.login();
+	});
 }
 
 function setupGame() {
