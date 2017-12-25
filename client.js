@@ -73,6 +73,7 @@ function connectToServer() {
 		function onNewMap(data) {
 			map=data;
 			renderMap();
+	    	startMP();
 		}
 
 		function onInventory(data) {
@@ -133,8 +134,5 @@ function connectToServer() {
     	socket.on("new map", onNewMap);
     	socket.on("salt", salt);
     	socket.on("inventory", onInventory);
-	    if(map) {
-	    	startMP();
-	    }
 	});	
 }

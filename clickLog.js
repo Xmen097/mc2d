@@ -32,6 +32,8 @@ onmousedown = function(event) {
 		}
 		if(x>0.1*canvas.width && y>0.76*canvas.height && x<0.495*canvas.width && y<0.88*canvas.height) {
 			ip=savedMPs[MPSelected].ip;
+			menus.bg();
+			menuOn=0;
 			connectToServer();
 		} else if(x>0.505*canvas.width && y>0.76*canvas.height && x<0.9*canvas.width && y<0.88*canvas.height) {
 			menus.createMP();
