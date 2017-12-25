@@ -107,7 +107,7 @@ function connectToServer() {
 		}
 
 		function salt(data) {
-		    socket.emit("new player", {x: player.x, y: player.y, name: name, token: sha256(loginToken+data)});
+		    socket.emit("new player", {name: name, token: sha256(loginToken+data)});
 		}
 
 		function onBlockBreaking(data) {
