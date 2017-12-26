@@ -2,6 +2,7 @@ var holding=new inventorySpace();
 holding.getFrom;
 var clickedItem;
 var findSth;
+var invBlockOffset=5;
 
 onmousedown = function(event) {
 	var x = event.pageX - document.getElementById('canvas').offsetLeft;
@@ -184,7 +185,7 @@ onmousedown = function(event) {
 	} else if(inventoryOn || furnaceUI != undefined || craftingUI != undefined) {
 		for(var a of inventory.inventory) { // search what item was clicked
 			for(var b of a) {
-				if(b.x <= x && x <= b.x+itemSize && b.y <= y && y <= b.y+itemSize) {
+				if(b.x-invBlockOffset <= x && x <= b.x+itemSize+invBlockOffset && b.y-invBlockOffset <= y && y <= b.y+itemSize+invBlockOffset) {
 					clickedItem = b;
 					findSth=true;
 					break;
@@ -192,7 +193,7 @@ onmousedown = function(event) {
 			}
 		}
 		for(var b of inventory.hotbar) {
-			if(b.x <= x && x <= b.x+itemSize && b.y <= y && y <= b.y+itemSize) {
+			if(b.x-invBlockOffset <= x && x <= b.x+itemSize+invBlockOffset && b.y-invBlockOffset <= y && y <= b.y+itemSize+invBlockOffset) {
 				clickedItem = b;
 				findSth=true;
 				break;
@@ -200,14 +201,14 @@ onmousedown = function(event) {
 		}
 		if(inventoryOn) {
 			for(var b of crafting) {
-				if(b.x <= x && x <= b.x+itemSize && b.y <= y && y <= b.y+itemSize) {
+				if(b.x-invBlockOffset <= x && x <= b.x+itemSize+invBlockOffset && b.y-invBlockOffset <= y && y <= b.y+itemSize+invBlockOffset) {
 					clickedItem = b;
 					findSth=true;
 					break;
 				}
 			}
 			for(var b of inventory.armor) {
-				if(b.x <= x && x <= b.x+itemSize && b.y <= y && y <= b.y+itemSize) {
+				if(b.x-invBlockOffset <= x && x <= b.x+itemSize+invBlockOffset && b.y-invBlockOffset <= y && y <= b.y+itemSize+invBlockOffset) {
 					clickedItem = b;
 					findSth=true;
 					break;
@@ -215,7 +216,7 @@ onmousedown = function(event) {
 			}
 		} else if(furnaceUI != undefined) {
 			for(var b of furnace) {
-				if(b.x <= x && x <= b.x+itemSize && b.y <= y && y <= b.y+itemSize) {
+				if(b.x-invBlockOffset <= x && x <= b.x+itemSize+invBlockOffset && b.y-invBlockOffset <= y && y <= b.y+itemSize+invBlockOffset) {
 					clickedItem = b;
 					findSth=true;
 					break;
@@ -223,7 +224,7 @@ onmousedown = function(event) {
 			}
 		} else if(craftingUI != undefined) {
 			for(var b of craftingTable) {
-				if(b!=undefined && b.x <= x && x <= b.x+itemSize && b.y <= y && y <= b.y+itemSize) {
+				if(b!=undefined && b.x-invBlockOffset <= x && x <= b.x+itemSize+invBlockOffset && b.y-invBlockOffset <= y && y <= b.y+itemSize+invBlockOffset) {
 					clickedItem = b;
 					findSth=true;
 					break;
