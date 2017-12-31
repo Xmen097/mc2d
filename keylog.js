@@ -54,10 +54,10 @@ onkeydown = function(event) {
 	} else if(playing==2 && event.key=="t" && !chatOn || playing==2 && event.key=="T" && !chatOn) {
 		chatOn=true;
 	} else if(playing==2 && event.key=="Escape" && !chatOn) {
-		menus.selectMP();
+		$("head").removeChild($("#socketIO"));
 		remotePlayers=undefined;
 		socket=undefined;
-		$("head").removeChild($("#socketIO"));
+		menus.selectMP();
 		console.log("Disconnected");
 	}else if(playing==2 && chatOn) {
 		if(event.key=="Backspace") {
