@@ -55,6 +55,9 @@ onkeydown = function(event) {
 		chatOn=true;
 	} else if(playing==2 && event.key=="Escape" && !chatOn) {
 		menus.selectMP();
+		remotePlayers=undefined;
+		socket=undefined;
+		$("head").removeChild($("#socketIO"));
 	}else if(playing==2 && chatOn) {
 		if(event.key=="Backspace") {
 			chatMessage = chatMessage.slice(0, chatMessage.length-1)
