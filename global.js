@@ -43,14 +43,14 @@
 var activeItem, menuOn, playing;
 
 
-//code for loading sprites from: http://jlongster.com/Making-Sprite-based-Games-with-Canvas
-var resourceCache = {};
-var loading = [];
-var readyCallbacks = [];
-
-function include(filename, onload) {
+//code for including js files from: http://zcourts.com/2011/10/06/dynamically-requireinclude-a-javascript-file-into-a-page-and-be-notified-when-its-loaded/
+function include(filename, onload, id) {
     var head = document.getElementsByTagName('head')[0];
     var script = document.createElement('script');
+    if(id) {
+    	script.id = id;
+    }
+    script
     script.src = filename;
     script.type = 'text/javascript';
     script.onload = script.onreadystatechange = function() {
@@ -63,6 +63,12 @@ function include(filename, onload) {
         };
     head.appendChild(script);
 }
+
+
+//code for loading sprites from: http://jlongster.com/Making-Sprite-based-Games-with-Canvas
+var resourceCache = {};
+var loading = [];
+var readyCallbacks = [];
 
 // Load an image url or an array of image urls
 function load(urlOrArr) {

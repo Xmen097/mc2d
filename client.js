@@ -25,6 +25,9 @@ function connectToServer() {
 			menus.selectMP();
 			if(data && data != "booted")
 				alert(data);
+			remotePlayers=undefined;
+			socket=undefined;
+			$("head").removeChild($("#socketIO"));
 		};
 
 		function onNewPlayer(data) {
@@ -134,5 +137,5 @@ function connectToServer() {
     	socket.on("new map", onNewMap);
     	socket.on("salt", salt);
     	socket.on("inventory", onInventory);
-	});	
+	}, "socketIO");	
 }
