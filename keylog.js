@@ -58,6 +58,7 @@ onkeydown = function(event) {
 		remotePlayers=undefined;
 		socket=undefined;
 		$("head").removeChild($("#socketIO"));
+		console.log("Disconnected");
 	}else if(playing==2 && chatOn) {
 		if(event.key=="Backspace") {
 			chatMessage = chatMessage.slice(0, chatMessage.length-1)
