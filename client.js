@@ -27,7 +27,8 @@ function connectToServer() {
 				alert(data);
 			remotePlayers=undefined;
 			socket=undefined;
-			$("head").removeChild($("#socketIO"));
+			var elementToDelete = document.getElementById("socketIO");
+			elementToDelete.parentNode.removeChild(elementToDelete);
 		};
 
 		function onNewPlayer(data) {
