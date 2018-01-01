@@ -131,7 +131,6 @@ function giveItemToBestInventoryPosition(item, count) {
 	for(var a of inventory.hotbar) {
 		if(a.item == item) {
 			a.count += count;
-			a.reRender();
 			return inventory.hotbar.indexOf(a);		
 		}
 	}
@@ -139,7 +138,6 @@ function giveItemToBestInventoryPosition(item, count) {
 		for(var a of m) {
 			if(a.item == item) {
 				a.count += count;
-				a.reRender();
 				return inventory.inventory.indexOf(a);				
 			}
 		}				
@@ -148,7 +146,6 @@ function giveItemToBestInventoryPosition(item, count) {
 		if(a.item == undefined) {
 			a.count = count;
 			a.item = item;
-			a.reRender();
 			return inventory.hotbar.indexOf(a);		
 		}
 	}
@@ -157,7 +154,6 @@ function giveItemToBestInventoryPosition(item, count) {
 			if(a.item == undefined) {
 				a.count = count;
 				a.item = item;
-				a.reRender();
 				return inventory.inventory.indexOf(a);				
 			}
 		}				
@@ -405,17 +401,9 @@ function update() {
 		}
 	}
 	
-	for(var a=0; a<hotbar.length; a++) {
-		if(inventory.hotbar[a].item != undefined && inventory.hotbar[a].count != hotbar[a].count || inventory.hotbar[a].item != undefined && inventory.hotbar[a].item != hotbar[a].item) {
-			hotbar[a].count = inventory.hotbar[a].count;
-			hotbar[a].itemType = inventory.hotbar[a].itemType;
-			hotbar[a].item = inventory.hotbar[a].item;
-		}
+	for(var a=0; a<inventory.hotbar.length; a++) {
 		if(inventory.hotbar[a].item != undefined) {
-			hotbar[a].reRender();
-			hotbar[a].render.update();
-			if(hotbar[a].count > 1)
-				hotbar[a].text();
+			inventory.hotbar[a].reRender(0, 45);
 		}
 	}   
 	checkForMove();
@@ -481,29 +469,17 @@ function update() {
 	} else if(typeof inventoryUI != "undefined") {
 		inventoryUI.update();
 		for(var a of inventory.armor) {
-			if(a.render != undefined) {
-				a.render.update();
-				a.text();
-			}
+			a.reRender();
 		}
 		for(var a of inventory.hotbar) {
-			if(a.render != undefined) {
-				a.render.update();
-				a.text();
-			}
+			a.reRender();
 		}
 		for(var a of crafting) {
-			if(a.render != undefined) {
-				a.render.update();
-				a.text();
-			}
+			a.reRender();
 		}
 		for (var m of inventory.inventory) {
 			for(var a of m) {
-				if(a.render != undefined){
-					a.render.update();
-					a.text();
-				}
+				a.reRender();
 			}				
 		}
 		if(holding.render != undefined){

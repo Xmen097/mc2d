@@ -279,7 +279,7 @@ onmousedown = function(event) {
 			holding.reRender();
 
 //pokladani
-		} else if(clickedItem.item == holding.item && clickedItem != crafting[4]  && clickedItem != furnace[2] || clickedItem.item == undefined && clickedItem != crafting[4] && clickedItem != craftingTable[99] && clickedItem != furnace[2] && clickedItem != inventory.armor[0] && clickedItem != inventory.armor[1] && clickedItem != inventory.armor[2] && clickedItem != inventory.armor[3] || clickedItem == inventory.armor[0] && holding.item.type == "helmet"  || clickedItem == inventory.armor[1] && holding.item.type == "chestplate"  || clickedItem == inventory.armor[2] && holding.item.type == "trousers" || clickedItem == inventory.armor[3] && holding.item.type == "shoes"){ // release clicked item
+		} else if(clickedItem.item == holding.item && holding.count > 0 && clickedItem != crafting[4]  && clickedItem != furnace[2] || clickedItem.item == undefined && clickedItem != crafting[4] && clickedItem != craftingTable[99] && clickedItem != furnace[2] && clickedItem != inventory.armor[0] && clickedItem != inventory.armor[1] && clickedItem != inventory.armor[2] && clickedItem != inventory.armor[3] && holding.count > 0  || clickedItem == inventory.armor[0] && holding.item.type == "helmet" && holding.count > 0 || clickedItem == inventory.armor[1] && holding.item.type == "chestplate"  && holding.count > 0   || clickedItem == inventory.armor[2] && holding.item.type == "trousers" && holding.count > 0   || clickedItem == inventory.armor[3] && holding.item.type == "shoes" && holding.count > 0  ){ // release clicked item
 			if(playing==2) {
 				var start={x:0, y:0};
 				var end={x:0, y:0};

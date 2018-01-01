@@ -10,16 +10,20 @@ function inventorySpace(x, y, item, count) {
 	this.x = x || 0;
 	this.y = y || 0;
 	this.count = count || 0;
-	this.reRender = function() {
+	this.reRender = function(editX, editY) {
+		editX = editX || 0;
+		editY = editY || 0;
 		if(this.item != undefined){
-			this.render = new component(itemSize, itemSize, this.item, this.x+camera.x, this.y+camera.y*-1, this.item.type || "material");	
+			this.render = new component(itemSize, itemSize, this.item, this.x+camera.x+editX, this.y+camera.y*-1+editY, this.item.type || "material");	
+			this.render.update()
 			this.text = function() {
 				context.fillStyle="white";
 				context.font="10px Verdana";
 				if(this.count > 1){
-					context.fillText(this.count,this.x+camera.x+itemSize/5,this.y+itemSize+camera.y*-1)
+					context.fillText(this.count,this.x+camera.x+itemSize/5+editX,this.y+itemSize+camera.y*-1+editY)
 				}
 			}
+			this.text();
 		}else {
 			this.render=undefined;
 		}
@@ -35,7 +39,7 @@ var inventory = {
 	hotbar: [new inventorySpace(84, 253), new inventorySpace(117, 253), new inventorySpace(150, 253), new inventorySpace(182, 253), new inventorySpace(215, 253), new inventorySpace(247, 253, items.ironShovel, 1), new inventorySpace(280, 253, items.ironAxe, 1), new inventorySpace(312, 253, items.diamondPickaxe, 1), new inventorySpace(345, 253, items.scissors, 1)]			
 }
 
-var hotbar= [new inventorySpace(84, 298), new inventorySpace(117, 298), new inventorySpace(150, 298), new inventorySpace(182, 298), new inventorySpace(215, 298), new inventorySpace(247, 298), new inventorySpace(280, 298), new inventorySpace(312, 298), new inventorySpace(345, 298)]
+//var hotbar= [new inventorySpace(84, 298), new inventorySpace(117, 298), new inventorySpace(150, 298), new inventorySpace(182, 298), new inventorySpace(215, 298), new inventorySpace(247, 298), new inventorySpace(280, 298), new inventorySpace(312, 298), new inventorySpace(345, 298)]
 
 function checkForInventoryOpen() {
 	if(pressedKeys[keys.i] && !inventoryOn && !inventoryTimeout) {
