@@ -30,7 +30,7 @@ function inventorySpace(x, y, item, count) {
 	}
 } 
 
-var inventory = {
+var inventoryPreset = {
 	armor: [new inventorySpace(84, 62, items.leatherHelmet, 1), new inventorySpace(84, 88, items.chainChestplate, 1), new inventorySpace(84, 113, items.ironTrousers, 1), new inventorySpace(84, 139, items.goldenShoes, 1)],
 	inventory: [[new inventorySpace(84, 171), new inventorySpace(117, 171), new inventorySpace(150, 171), new inventorySpace(182, 171), new inventorySpace(215, 171), new inventorySpace(247, 171), new inventorySpace(280, 171), new inventorySpace(312, 171), new inventorySpace(345, 171)],
 				[new inventorySpace(84, 196), new inventorySpace(117, 196), new inventorySpace(150, 196), new inventorySpace(182, 196), new inventorySpace(215, 196), new inventorySpace(247, 196), new inventorySpace(280, 196), new inventorySpace(312, 196), new inventorySpace(345, 196)],
@@ -38,6 +38,7 @@ var inventory = {
 				],
 	hotbar: [new inventorySpace(84, 253), new inventorySpace(117, 253), new inventorySpace(150, 253), new inventorySpace(182, 253), new inventorySpace(215, 253), new inventorySpace(247, 253, items.ironShovel, 1), new inventorySpace(280, 253, items.ironAxe, 1), new inventorySpace(312, 253, items.diamondPickaxe, 1), new inventorySpace(345, 253, items.scissors, 1)]			
 }
+inventory = inventoryPreset;
 
 //var hotbar= [new inventorySpace(84, 298), new inventorySpace(117, 298), new inventorySpace(150, 298), new inventorySpace(182, 298), new inventorySpace(215, 298), new inventorySpace(247, 298), new inventorySpace(280, 298), new inventorySpace(312, 298), new inventorySpace(345, 298)]
 

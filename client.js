@@ -1,4 +1,7 @@
 function connectToServer() {
+	socket=undefined;
+	var elementToDelete = document.getElementById("socketIO");
+	elementToDelete.parentNode.removeChild(elementToDelete);
 	include("https://"+ip+"/socket.io/socket.io.js", function() {
 		remotePlayers=[];
 
@@ -27,7 +30,6 @@ function connectToServer() {
 				alert(data);
 			remotePlayers=undefined;
 			socket=undefined;
-			messagesList=undefined;
 			var elementToDelete = document.getElementById("socketIO");
 			elementToDelete.parentNode.removeChild(elementToDelete);
 		};
@@ -46,6 +48,7 @@ function connectToServer() {
 			};
 
 		}
+
 		function onNewMessage(data) {
 			if(messagesList.length==maxSavedMessages) {
 				var tempMessagesList=[];

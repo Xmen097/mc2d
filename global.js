@@ -312,6 +312,7 @@ window.onload = function() {
 }
 
 function setupGame() {
+	clearInterval(canvas.interval);
 	menuOn=0;
 	craftingUI=undefined;
 	furnaceUI=undefined;
@@ -339,6 +340,7 @@ function startSP() {
 	menu=0;
 	mapGenerator.generate();
 	renderMap();
+	lastTime = Date.now();
 	canvas.interval = setInterval(update, 30);
 }
 
@@ -353,6 +355,7 @@ function startMP() {
 	chatOn=false;
 	chatMessage=""
 	messagesList=[]
+	lastTime = Date.now();
 	canvas.interval = setInterval(update, 30);
 }
 
@@ -361,6 +364,7 @@ window.blur(function(){ // delete all pressed keys, if can't check for release
 });
 
 function update() {
+	deltaTime = Date.now() - lastTime;
 	context.setTransform(1,0,0,1,0,0);
 	canvas.clear();
     context.translate( -1*camera.x, camera.y );
@@ -375,6 +379,10 @@ function update() {
 	if(playing==2) {
 		for(var a of remotePlayers) {
 			a.component.update()
+			context.fillStyle="white";
+			context.font="10px Verdana";
+			context.textAlign = "center";
+			context.fillText(a.name, a.x+canvas.tileSize/2, a.y)
 		}
 		for(var a in remoteDestroingBlock) {
 			remoteDestroingBlock[a].update();
@@ -493,4 +501,5 @@ function update() {
 		}
 		prevPos={x:player.x, y:player.y}
 	}
+	lastTime = Date.now();
 }
