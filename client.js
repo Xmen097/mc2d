@@ -1,7 +1,8 @@
 function connectToServer() {
 	socket=undefined;
 	var elementToDelete = document.getElementById("socketIO");
-	elementToDelete.parentNode.removeChild(elementToDelete);
+	if(elementToDelete)
+		elementToDelete.parentNode.removeChild(elementToDelete);
 	include("https://"+ip+"/socket.io/socket.io.js", function() {
 		remotePlayers=[];
 
