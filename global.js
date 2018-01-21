@@ -382,7 +382,7 @@ function update() {
 			context.fillStyle="white";
 			context.font="10px Verdana";
 			context.textAlign = "center";
-			context.fillText(a.name, a.x+canvas.tileSize/2, a.y+canvas.tileSize/10)
+			context.fillText(a.name, a.x+canvas.tileSize/2, a.y-canvas.tileSize/10)
 		}
 		for(var a in remoteDestroingBlock) {
 			remoteDestroingBlock[a].update();
