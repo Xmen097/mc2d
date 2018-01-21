@@ -19,6 +19,7 @@ function inventorySpace(x, y, item, count) {
 			this.text = function() {
 				context.fillStyle="white";
 				context.font="10px Verdana";
+				context.textAlign = "right";
 				if(this.count > 1){
 					context.fillText(this.count,this.x+camera.x+itemSize/5+editX,this.y+itemSize+camera.y*-1+editY)
 				}

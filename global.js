@@ -382,7 +382,7 @@ function update() {
 			context.fillStyle="white";
 			context.font="10px Verdana";
 			context.textAlign = "center";
-			context.fillText(a.name, a.x+canvas.tileSize/2, a.y)
+			context.fillText(a.name, a.x+canvas.tileSize/2, a.y+canvas.tileSize/10)
 		}
 		for(var a in remoteDestroingBlock) {
 			remoteDestroingBlock[a].update();
@@ -395,6 +395,7 @@ function update() {
 	if(playing==2) {
 		context.fillStyle="white";
 		context.font="10px Verdana";
+		context.textAlign = "left";
 		if(messagesList.length>maxDisplayMessages && !chatOn) {
 			var a=messagesList.length-maxDisplayMessages;
 		} else if(messagesList.length>maxSavedMessages && chatOn) {
