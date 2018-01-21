@@ -361,6 +361,7 @@ function startMP() {
 
 window.blur(function(){ // delete all pressed keys, if can't check for release
 	pressedKeys=[];
+	console.log("Focus lost")
 });
 
 function update() {
