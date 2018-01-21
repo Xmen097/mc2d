@@ -359,10 +359,10 @@ function startMP() {
 	canvas.interval = setInterval(update, 30);
 }
 
-window.blur(function(){ // delete all pressed keys, if can't check for release
+if(!document.hasFocus()) // delete all pressed keys, if can't check for release
 	pressedKeys=[];
 	console.log("Focus lost")
-});
+};
 
 function update() {
 	deltaTime = Date.now() - lastTime;
