@@ -362,7 +362,6 @@ function startMP() {
 function update() {
 	if(!document.hasFocus()){ // delete all pressed keys, if can't check for release
 		pressedKeys=[];
-		console.log("Focus lost")
 	};
 	deltaTime = Date.now() - lastTime;
 	context.setTransform(1,0,0,1,0,0);

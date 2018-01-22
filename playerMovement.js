@@ -1,18 +1,18 @@
 var timeout=false;
 var atGround=false;
-var speed = 0.16;
-var gravity = 0.41;
+var speed = 5; //Changing speed/movement counting algoritm will break collision detection!!!
+var gravity = 0.25;
 var jump=false;
 
 function checkForMove() {
     if(pressedKeys[keys.a] && player.x > 0 || pressedKeys[keys.left] && player.x > 0) {
     	if(map[Math.ceil((player.y + player.height)/canvas.tileSize)-1][Math.round(player.x/canvas.tileSize)-1] == -1 && map[Math.ceil((player.y + player.height)/canvas.tileSize)-2][Math.round(player.x/canvas.tileSize)-1] == -1 || map[Math.ceil((player.y + player.height)/canvas.tileSize)-1][Math.round(player.x/canvas.tileSize)-1] == undefined || Math.round((Math.round(player.x/canvas.tileSize)-player.x/canvas.tileSize)*10)/10 != 0.4) {
     		if(camera.x >0 && player.x <= map[0].length*canvas.tileSize - (canvas.width+canvas.tileSize)/2 ) {	
-    			camera.x -= Math.round(speed*deltaTime);
-                hotbarUI.x -= Math.round(speed*deltaTime);	
-                activeSlot.x -= Math.round(speed*deltaTime);
+    			camera.x -= speed;
+                hotbarUI.x -= speed;	
+                activeSlot.x -= speed;
     		}
-    		player.x -= Math.round(speed*deltaTime);
+    		player.x -= speed;
 			renderMap();
        		player.texture = "textures/player/steveLeft.png";
 			inventoryUI = undefined;
@@ -29,11 +29,11 @@ function checkForMove() {
     } if(pressedKeys[keys.d] && player.x < map[0].length*canvas.tileSize - canvas.tileSize || pressedKeys[keys.right] && player.x < map[0].length*canvas.tileSize - canvas.tileSize) {
     	if(map[Math.ceil((player.y + player.height)/canvas.tileSize)-1][Math.round(player.x/canvas.tileSize)+1] == -1 && map[Math.ceil((player.y + player.height)/canvas.tileSize)-2][Math.round(player.x/canvas.tileSize)+1] == -1 || Math.round((Math.round(player.x/canvas.tileSize)-player.x/canvas.tileSize)*10)/10 != -0.4) {
     		if(camera.x < map[0].length*canvas.tileSize-canvas.width && player.x >= (canvas.width - canvas.tileSize)/2) {
-    			camera.x += Math.round(speed*deltaTime);
-                hotbarUI.x += Math.round(speed*deltaTime);
-                activeSlot.x += Math.round(speed*deltaTime);
+    			camera.x += speed;
+                hotbarUI.x += speed;
+                activeSlot.x += speed;
     		}
-			player.x += Math.round(speed*deltaTime);
+			player.x += speed;
 			renderMap();
         	player.texture = "textures/player/steveRight.png";
 			inventoryUI = undefined;
@@ -63,10 +63,10 @@ function checkForMove() {
     		for(a=0;a<10;a++) {
     		setTimeout(function() {
     			if(map[Math.ceil((player.y + player.height)/canvas.tileSize)-3][Math.round(player.x/canvas.tileSize)] == -1) {
-    				camera.y += 2*Math.round(speed*deltaTime);
-                    hotbarUI.y -= 2*Math.round(speed*deltaTime);
-                    activeSlot.y -= 2*Math.round(speed*deltaTime);
-    				player.y -= 2*Math.round(speed*deltaTime);
+    				camera.y += 2*speed;
+                    hotbarUI.y -= 2*speed;
+                    activeSlot.y -= 2*speed;
+    				player.y -= 2*speed;
 				renderMap();
     			}else
     			return;

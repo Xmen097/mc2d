@@ -49,12 +49,14 @@ function component(width, height, texture, x, y, itemType, percent) {
             hotbarUI.y = Math.round(move + hotbarUI.y);
             activeSlot.y = Math.round(move + activeSlot.y);
             camera.y = Math.round(camera.y - move);
+            console.log("A")
         } else {
-            console.log("B")
-            player.y +=Math.round(gravity*deltaTime);
-            hotbarUI.y +=Math.round(gravity*deltaTime);
-            activeSlot.y +=Math.round(gravity*deltaTime);
-            camera.y -=Math.round(gravity*deltaTime);
+            dropDistance = Math.ceil(deltaTime/50)*gravity*50;
+            console.log(dropDistance);
+            player.y += dropDistance;
+            hotbarUI.y += dropDistance;
+            activeSlot.y += dropDistance;
+            camera.y -= dropDistance;
         }
         inventoryUI = undefined;
         furnaceUI = undefined;
