@@ -271,6 +271,7 @@ var camera = {
 
 window.onload = function() {
 	playing=0
+	alert("Welcome to mc2d. You are debil(in Czech matěj).")
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
 	canvas.tileSize = 50;
