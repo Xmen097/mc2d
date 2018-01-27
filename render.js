@@ -43,19 +43,22 @@ function component(width, height, texture, x, y, itemType, percent) {
 			atGround=true;
 			return;
 		}
-        var canJump=true;
-        var fallHeight=Math.floor((Math.ceil(deltaTime/50)*gravity*50 + this.height)/canvas.tileSize);
-        for(var a=0;a<=fallHeight;a++) {
-            
+        var canFall=true;
+        var fallHeight=Math.floor((this.y + Math.ceil(deltaTime/50)*gravity*50 + this.height)/canvas.tileSize)
+        for(var a=Math.floor((this.y + this.height)/canvas.tileSize);a<=fallHeight;a++) {
+            if(map[a][Math.round(this.x/canvas.tileSize)] != -1) {
+                canFall=false;            
+                var move= (Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize)*canvas.tileSize + (fallHeight-a)*tileSize;
+                player.y = Math.round(move + player.y);
+                hotbarUI.y = Math.round(move + hotbarUI.y);
+                activeSlot.y = Math.round(move + activeSlot.y);
+                camera.y = Math.round(camera.y - move);
+            }
         }
         if(map[Math.floor((this.y + Math.ceil(deltaTime/50)*gravity*50 + this.height)/canvas.tileSize)][Math.round(this.x/canvas.tileSize)] != -1){
-            var move= (Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize)*canvas.tileSize
-            player.y = Math.round(move + player.y);
-            hotbarUI.y = Math.round(move + hotbarUI.y);
-            activeSlot.y = Math.round(move + activeSlot.y);
-            camera.y = Math.round(camera.y - move);
+
             console.log("A")
-        } else {
+        } if(canFall) {
             dropDistance = Math.ceil(deltaTime/50)*gravity*50;
             console.log(dropDistance);
             player.y += dropDistance;
