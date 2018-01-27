@@ -53,6 +53,8 @@ function component(width, height, texture, x, y, itemType, percent) {
                 hotbarUI.y = Math.round(move + hotbarUI.y);
                 activeSlot.y = Math.round(move + activeSlot.y);
                 camera.y = Math.round(camera.y - move);
+                console.log((a-Math.floor((this.y + this.height)/canvas.tileSize))+" , "+(Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize));
+                console.log(a);
                 break;
             }
         }
