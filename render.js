@@ -43,6 +43,11 @@ function component(width, height, texture, x, y, itemType, percent) {
 			atGround=true;
 			return;
 		}
+        var canJump=true;
+        var fallHeight=Math.floor((Math.ceil(deltaTime/50)*gravity*50 + this.height)/canvas.tileSize);
+        for(var a=0;a<=fallHeight;a++) {
+            
+        }
         if(map[Math.floor((this.y + Math.ceil(deltaTime/50)*gravity*50 + this.height)/canvas.tileSize)][Math.round(this.x/canvas.tileSize)] != -1){
             var move= (Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize)*canvas.tileSize
             player.y = Math.round(move + player.y);
