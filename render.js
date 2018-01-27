@@ -54,6 +54,7 @@ function component(width, height, texture, x, y, itemType, percent) {
                 activeSlot.y = Math.round(move + activeSlot.y);
                 camera.y = Math.round(camera.y - move);
                 console.log((fallHeight-a));
+                break;
             }
         }
         if(canFall) {
