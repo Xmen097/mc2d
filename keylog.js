@@ -54,7 +54,6 @@ onkeydown = function(event) {
 	} else if(playing==2 && event.key=="t" && !chatOn || playing==2 && event.key=="T" && !chatOn) {
 		chatOn=true;
 	} else if(playing==2 && event.key=="Escape" && !chatOn) {
-		inventory = inventoryPreset;
 		menus.selectMP();
 		var elementToDelete = document.getElementById("socketIO");
 		elementToDelete.parentNode.removeChild(elementToDelete);
@@ -62,7 +61,6 @@ onkeydown = function(event) {
 		socket=undefined;
 		console.log("Disconnected");
 	} else if(playing==1 && event.key=="Escape") {
-		inventory = inventoryPreset;
 		menus.selectSP();
 	} else if(playing==2 && chatOn) {
 		if(event.key=="Backspace") {

@@ -41,8 +41,6 @@ var inventoryPreset = {
 }
 inventory = inventoryPreset;
 
-//var hotbar= [new inventorySpace(84, 298), new inventorySpace(117, 298), new inventorySpace(150, 298), new inventorySpace(182, 298), new inventorySpace(215, 298), new inventorySpace(247, 298), new inventorySpace(280, 298), new inventorySpace(312, 298), new inventorySpace(345, 298)]
-
 function checkForInventoryOpen() {
 	if(pressedKeys[keys.i] && !inventoryOn && !inventoryTimeout) {
 		inventoryUI = new component(359*canvas.width/500, 337*canvas.height/500, "textures/ui/inventory.png", camera.x + (canvas.width - 359*canvas.width/500)/2, camera.y*-1 + (canvas.height - 359*canvas.height/500)/2,"image");
