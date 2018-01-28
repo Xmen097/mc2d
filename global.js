@@ -63,14 +63,20 @@ function include(filename, onload, id) {
         };
     head.appendChild(script);
 }
+//code for copying arrays without backward reference from: https://stackoverflow.com/questions/34963768/changing-one-variable-changes-all-others-defined-the-same-way
+function copy(arr){
+    var new_arr = arr.slice(0);
+    for(var i = new_arr.length; i--;)
+        if(new_arr[i] instanceof Array)
+            new_arr[i] = copy(new_arr[i]);
+    return new_arr;
+}
 
 
 //code for loading sprites from: http://jlongster.com/Making-Sprite-based-Games-with-Canvas
 var resourceCache = {};
 var loading = [];
 var readyCallbacks = [];
-
-// Load an image url or an array of image urls
 function load(urlOrArr) {
     if(urlOrArr instanceof Array) {
         urlOrArr.forEach(function(url) {
@@ -125,6 +131,7 @@ window.resources = {
     onReady: onReady,
     isReady: isReady
 };
+
 //end
 
 function giveItemToBestInventoryPosition(item, count) {
@@ -340,7 +347,7 @@ function stopGame() {
 function startSP() {
 	setupGame();
 	playing=1;
-	inventory = inventoryPreset;
+	inventory = copy(inventoryPreset);
 	menu=0;
 	mapGenerator.generate();
 	renderMap();
@@ -352,7 +359,7 @@ function startMP() {
 	setupGame()
 	prevPos={x:player.x, y:player.y};
 	playing=2;
-	inventory = inventoryPreset;
+	inventory = copy(inventoryPreset);
 	menu=0;
 	remoteDestroingBlock={};
 	maxDisplayMessages=7

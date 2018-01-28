@@ -39,7 +39,7 @@ var inventoryPreset = {
 				],
 	hotbar: [new inventorySpace(84, 253), new inventorySpace(117, 253), new inventorySpace(150, 253), new inventorySpace(182, 253), new inventorySpace(215, 253), new inventorySpace(247, 253, items.ironShovel, 1), new inventorySpace(280, 253, items.ironAxe, 1), new inventorySpace(312, 253, items.diamondPickaxe, 1), new inventorySpace(345, 253, items.scissors, 1)]			
 }
-inventory = inventoryPreset;
+inventory = copy(inventoryPreset);
 
 function checkForInventoryOpen() {
 	if(pressedKeys[keys.i] && !inventoryOn && !inventoryTimeout) {
@@ -50,7 +50,7 @@ function checkForInventoryOpen() {
             if(a.active)
                 furnaceSaves[furnaceSaves.indexOf(a)].active=false;
         }
-		furnace = furnaceInventoryPrefab;
+		furnace = copy(furnaceInventoryPrefab);
 		for(var a of inventory.armor) {
 			if(a.item != undefined)
 				a.reRender();

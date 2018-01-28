@@ -22,7 +22,7 @@ function checkForMove() {
                 if(a.active)
                     furnaceSaves[furnaceSaves.indexOf(a)].active=false;
             }
-            furnace = furnaceInventoryPrefab;
+            furnace = copy(furnaceInventoryPrefab);
 			inventoryOn=false;
     	}
 
@@ -43,7 +43,7 @@ function checkForMove() {
                 if(a.active)
                     furnaceSaves[furnaceSaves.indexOf(a)].active=false;
             }
-            furnace = furnaceInventoryPrefab;
+            furnace = copy(furnaceInventoryPrefab);
 			inventoryOn=false;
     	}
     } if(pressedKeys[keys.w] && atGround || pressedKeys[keys.up] && atGround) {

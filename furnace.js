@@ -2,7 +2,7 @@ var furnaceSaves = [];
 var furnaceInventoryPrefab=[new inventorySpace(172, 78), 
 			 new inventorySpace(172, 128),
 			 new inventorySpace(280, 103)];
-var furnace = furnaceInventoryPrefab;
+var furnace = copy(furnaceInventoryPrefab);
 
 var furnaceRecipes=[[materials[2], items.coal], [materials[1], materials[0]], [materials[7], items.iron], [materials[10], items.gold]]
 
