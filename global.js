@@ -279,6 +279,11 @@ window.onload = function() {
 	canvas.clear = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 	}
+
+	context.fillStyle="white";
+	context.font="22px Verdana";
+	context.textAlign = "center";
+	context.fillText("Loading",canvas.width/2,canvas.height/2)
 	resources.load([
 	    'textures/backArrow.png',
 	    'textures/itemSheet.png',
