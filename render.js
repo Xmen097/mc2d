@@ -45,15 +45,16 @@ function component(width, height, texture, x, y, itemType, percent) {
 		}
         var canFall=true;
         var fallHeight=Math.floor((this.y + Math.ceil(deltaTime/50)*gravity*50 + this.height)/canvas.tileSize)
-        for(var a=Math.floor((this.y + this.height)/canvas.tileSize);a<=fallHeight;a++) {
+        var startHeight=Math.floor((this.y + this.height)/canvas.tileSize);
+        for(var a=startHeight;a<=fallHeight;a++) {
             if(map[a][Math.round(this.x/canvas.tileSize)] != -1) {
                 canFall=false;            
-                var move= (Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize)*canvas.tileSize + (a-Math.floor((this.y + this.height)/canvas.tileSize))*canvas.tileSize;
+                var move= (Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize)*canvas.tileSize + (a-startHeight)*canvas.tileSize;
                 player.y = Math.round(move + player.y);
                 hotbarUI.y = Math.round(move + hotbarUI.y);
                 activeSlot.y = Math.round(move + activeSlot.y);
                 camera.y = Math.round(camera.y - move);
-                console.log((a-Math.floor((this.y + this.height)/canvas.tileSize))+" , "+(Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize));
+                console.log((a-startHeight)+" , "+(Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize));
                 console.log(a);
                 break;
             }

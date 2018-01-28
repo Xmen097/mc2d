@@ -301,8 +301,6 @@ window.onload = function() {
 	    'textures/ui/furnaceFire.png',
 	    'textures/ui/hotbar.png',
 	    'textures/ui/inventory.png',
-	    'textures/ui/inventory.png',
-	    'textures/backArrow.png',
 	    'textures/blockSheet.png'
 	]);
 	resources.onReady(function() {
