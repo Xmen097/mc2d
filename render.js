@@ -49,19 +49,17 @@ function component(width, height, texture, x, y, itemType, percent) {
         for(var a=startHeight;a<=fallHeight;a++) {
             if(map[a][Math.round(this.x/canvas.tileSize)] != -1) {
                 canFall=false;            
-                var move= (Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize)*canvas.tileSize + (a-startHeight)*canvas.tileSize;
+                var move= (Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize)*canvas.tileSize + (a-startHeight-1)*canvas.tileSize;
                 player.y = Math.round(move + player.y);
                 hotbarUI.y = Math.round(move + hotbarUI.y);
                 activeSlot.y = Math.round(move + activeSlot.y);
                 camera.y = Math.round(camera.y - move);
-                console.log((a-startHeight)+" , "+(fallHeight-startHeight));
-                console.log(a);
+                console.log((a-startHeight-1)+" , "+(Math.ceil((this.y + this.height)/canvas.tileSize) - (this.y + this.height)/canvas.tileSize)*canvas.tileSize);
                 break;
             }
         }
         if(canFall) {
             dropDistance = Math.ceil(deltaTime/50)*gravity*50;
-            console.log(dropDistance);
             player.y += dropDistance;
             hotbarUI.y += dropDistance;
             activeSlot.y += dropDistance;
