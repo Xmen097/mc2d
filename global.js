@@ -352,6 +352,7 @@ function startMP() {
 	setupGame()
 	prevPos={x:player.x, y:player.y};
 	playing=2;
+	inventory = inventoryPreset;
 	menu=0;
 	remoteDestroingBlock={};
 	maxDisplayMessages=7
