@@ -340,6 +340,7 @@ function stopGame() {
 function startSP() {
 	setupGame();
 	playing=1;
+	inventory = inventoryPreset;
 	menu=0;
 	mapGenerator.generate();
 	renderMap();
