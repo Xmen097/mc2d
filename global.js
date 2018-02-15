@@ -63,15 +63,6 @@ function include(filename, onload, id) {
         };
     head.appendChild(script);
 }
-//code for copying arrays without backward reference from: https://stackoverflow.com/questions/34963768/changing-one-variable-changes-all-others-defined-the-same-way
-function copy(arr){
-    var new_arr = arr.slice(0);
-    for(var i = new_arr.length; i--;)
-        if(new_arr[i] instanceof Array)
-            new_arr[i] = copy(new_arr[i]);
-    return new_arr;
-}
-
 
 //code for loading sprites from: http://jlongster.com/Making-Sprite-based-Games-with-Canvas
 var resourceCache = {};
@@ -133,6 +124,24 @@ window.resources = {
 };
 
 //end
+
+function copy(arr){
+	if(arr.counstuctor == Object) {
+		newArr = new Object();
+		for(var a in arr) {
+			newArr[a] = copy(arr[a]);
+		}
+		return newArr;
+	} else if(arr.counstuctor == Array) {
+	    var newArr = arr.slice(0);
+	    for(var i = 0; i<newArr.length; i++)
+	            newArr[i] = copy(arr[i]);
+	    return newArr;
+	} else {
+		return arr;
+	}
+}
+
 
 function giveItemToBestInventoryPosition(item, count) {
 	for(var a of inventory.hotbar) {
