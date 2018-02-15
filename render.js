@@ -72,7 +72,7 @@ function component(width, height, texture, x, y, itemType, percent) {
             if(a.active)
                 furnaceSaves[furnaceSaves.indexOf(a)].active=false;
         }
-        furnace = copy(furnaceInventoryPrefab);
+        furnace = copyArr(furnaceInventoryPrefab);
         inventoryOn=false
 		renderMap();
 	}

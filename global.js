@@ -125,17 +125,17 @@ window.resources = {
 
 //end
 
-function copy(arr){
-	if(arr.counstuctor == Object) {
+function copyArr(arr){
+	if(arr.constructor == Object) {
 		newArr = new Object();
 		for(var a in arr) {
-			newArr[a] = copy(arr[a]);
+			newArr[a] = copyArr(arr[a]);
 		}
 		return newArr;
-	} else if(arr.counstuctor == Array) {
+	} else if(arr.constructor == Array) {
 	    var newArr = arr.slice(0);
 	    for(var i = 0; i<newArr.length; i++)
-	            newArr[i] = copy(arr[i]);
+	            newArr[i] = copyArr(arr[i]);
 	    return newArr;
 	} else {
 		return arr;
@@ -356,7 +356,7 @@ function stopGame() {
 function startSP() {
 	setupGame();
 	playing=1;
-	inventory = copy(inventoryPreset);
+	inventory = copyArr(inventoryPreset);
 	menu=0;
 	mapGenerator.generate();
 	renderMap();
@@ -368,7 +368,7 @@ function startMP() {
 	setupGame()
 	prevPos={x:player.x, y:player.y};
 	playing=2;
-	inventory = copy(inventoryPreset);
+	inventory = copyArr(inventoryPreset);
 	menu=0;
 	remoteDestroingBlock={};
 	maxDisplayMessages=7

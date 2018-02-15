@@ -32,7 +32,8 @@ function connectToServer() {
 			remotePlayers=undefined;
 			socket=undefined;
 			var elementToDelete = document.getElementById("socketIO");
-			elementToDelete.parentNode.removeChild(elementToDelete);
+			if(elementToDelete)
+				elementToDelete.parentNode.removeChild(elementToDelete);
 		};
 
 		function onNewPlayer(data) {
