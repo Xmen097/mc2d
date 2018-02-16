@@ -40,7 +40,7 @@
 [06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06],
 [06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06,06]
 ]*/         
-var activeItem, menuOn, playing;
+var activeItem, menuOn, playing=0;
 
 
 //code for including js files from: http://zcourts.com/2011/10/06/dynamically-requireinclude-a-javascript-file-into-a-page-and-be-notified-when-its-loaded/
@@ -286,7 +286,6 @@ var camera = {
 
 
 window.onload = function() {
-	playing=0;
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
 	canvas.tileSize = 50;
@@ -350,6 +349,7 @@ function stopGame() {
     hotbarUI = undefined;
     player = undefined;
 	activeItem = undefined;
+	playing = 0;
 	clearInterval(canvas.interval);
 }
 

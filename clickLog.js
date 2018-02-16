@@ -109,7 +109,7 @@ onmousedown = function(event) {
 			menuOn=7.2;
 			menus.signIn()
 		}
-	} else if(craftingUI==undefined && furnaceUI==undefined && !inventoryOn && x <= canvas.width && y <= canvas.height && x >= 0 && y >= 0) {
+	} else if(playing != 0 && craftingUI==undefined && furnaceUI==undefined && !inventoryOn && x <= canvas.width && y <= canvas.height && x >= 0 && y >= 0) {
 		if(event.button == 0){
 			breakBlock(event);
 		}else if(event.button == 2){
@@ -182,7 +182,7 @@ onmousedown = function(event) {
 				}
 			}
 		}
-	} else if(inventoryOn || furnaceUI != undefined || craftingUI != undefined) {
+	} else if(playing != 0 && inventoryOn != undefined || playing != 0 && furnaceUI != undefined || playing != 0 && craftingUI != undefined) {
 		for(var a of inventory.inventory) { // search what item was clicked
 			for(var b of a) {
 				if(b.x-invBlockOffset <= x && x <= b.x+itemSize+invBlockOffset && b.y-invBlockOffset <= y && y <= b.y+itemSize+invBlockOffset) {
