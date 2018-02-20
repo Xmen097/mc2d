@@ -21,7 +21,7 @@ if(isset($_POST["name"]) && isset($_POST["pasw"]) && isset($_POST["type"])) {
 			die("Name is too long");
 		} else if(preg_replace("/[^A-Za-z0-9]/", '', strtolower($_POST['name'])) == $_POST['name']) {
 			$dbConnection = pg_connect(getenv("DATABASE_URL")) or die('Login server offline');
-			if(pg_query_params("SELECT name FROM users WHERE name=$1", $_POST['name'])) {
+			if(pg_query_params("SELECT name FROM users WHERE name='$1'", $_POST['name'])) {
 				die("User with that name already exists");
 			}
 			$query="INSERT INTO users (name, password, id) VALUES ($1, $2, 1)";
