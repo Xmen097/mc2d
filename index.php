@@ -15,9 +15,7 @@ if(isset($_POST["name"]) && isset($_POST["pasw"]) && isset($_POST["type"])) {
 	} else if($_POST["type"] == "create") {
 		if(strlen($_POST['name']) < 5 || strlen($_POST['pasw']) < 5) {
 			die("Name or password is too short (<5)");
-		} else if($_POST['name'] == "map") {
-			die("User with that name already exists");
-		} else if(strlen($_POST['name']) > 10) {
+		}  else if(strlen($_POST['name']) > 10) {
 			die("Name is too long");
 		} else if(preg_replace("/[^A-Za-z0-9]/", '', strtolower($_POST['name'])) == $_POST['name']) {
 			$dbConnection = pg_connect(getenv("DATABASE_URL")) or die('Login server offline');
