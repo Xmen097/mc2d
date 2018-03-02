@@ -1,4 +1,4 @@
-/*var map = [  //That's the default map ttdd
+/*var map = [  //That's the default map
 [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
 [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
 [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,03,03,-1,-1,-1,-1],
@@ -132,13 +132,13 @@ function copyArr(arr){
 			newArr[a] = copyArr(arr[a]);
 		}
 		return newArr;
-	} else if(arr.constructor == Array) {
+	} else if(arr.constructor == Number || String) {
+		return arr;
+	} else {
 	    var newArr = arr.slice(0);
 	    for(var i = 0; i<newArr.length; i++)
 	            newArr[i] = copyArr(arr[i]);
 	    return newArr;
-	} else {
-		return arr;
 	}
 }
 
