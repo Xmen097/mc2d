@@ -132,7 +132,7 @@ function copyArr(arr){
 			newArr[a] = copyArr(arr[a]);
 		}
 		return newArr;
-	} else if(arr.constructor == Number || String) {
+	} else if(arr.constructor == Number || arr.constructor == String) {
 		return arr;
 	} else {
 	    var newArr = arr.slice(0);
