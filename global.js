@@ -126,7 +126,6 @@ window.resources = {
 //end
 
 function copyArr(arr){
-	console.log(arr);
 	if(arr == undefined || arr.constructor == String || arr.constructor == Number|| arr.constructor == Boolean) {
 		return arr;
 	} else if(arr.constructor == Array) {
@@ -137,7 +136,7 @@ function copyArr(arr){
 	} else if(arr) {
 		var newArr = arr;
 		for(var a in newArr) {
-			if(newArr[a] != arr)
+			if(a!="item") // anti recursion with item's drop referencing to the same item
 			newArr[a] = copyArr(newArr[a]);
 		}
 		return newArr;
