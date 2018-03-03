@@ -137,6 +137,7 @@ function copyArr(arr){
 	} else if(arr) {
 		var newArr = arr;
 		for(var a in newArr) {
+			if(newArr[a] != arr)
 			newArr[a] = copyArr(newArr[a]);
 		}
 		return newArr;
