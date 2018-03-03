@@ -126,6 +126,7 @@ window.resources = {
 //end
 
 function copyArr(arr){
+	console.log(arr);
 	if(arr == undefined || arr.constructor == String || arr.constructor == Number|| arr.constructor == Boolean) {
 		return arr;
 	} else if(arr.constructor == Array) {
