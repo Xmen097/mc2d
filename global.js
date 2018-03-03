@@ -135,9 +135,12 @@ function copyArr(arr){
 	    return newArr;
 	} else if(arr) {
 		var newArr = arr;
-		for(var a in newArr) {
-			if(a!="item") // anti recursion with item's drop referencing to the same item
-			newArr[a] = copyArr(newArr[a]);
+		for(var a in arr) {
+			if(a!="item") {
+				newArr[a] = copyArr(arr[a]);
+			} else {
+				newArr[a] = arr[a];
+			}
 		}
 		return newArr;
 	}
