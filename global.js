@@ -126,14 +126,14 @@ window.resources = {
 //end
 
 function copyArr(arr){
-	if(arr.constructor == String || arr.constructor == Number) {
+	if(arr == undefined || arr.constructor == String || arr.constructor == Number) {
 		return arr;
 	} else if(arr.constructor == Array) {
 	    var newArr = arr.slice(0);
 	    for(var i = 0; i<newArr.length; i++)
 	            newArr[i] = copyArr(arr[i]);
 	    return newArr;
-	} else {
+	} else if(arr) {
 		newArr = new Object();
 		for(var a in arr) {
 			newArr[a] = copyArr(arr[a]);
