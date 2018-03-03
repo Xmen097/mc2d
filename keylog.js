@@ -55,6 +55,7 @@ onkeydown = function(event) {
 		chatOn=true;
 	} else if(playing==2 && event.key=="Escape" && !chatOn) {
 		menus.selectMP();
+		socket.emit("disconnect");
 		var elementToDelete = document.getElementById("socketIO");
 		elementToDelete.parentNode.removeChild(elementToDelete);
 		remotePlayers=undefined;
