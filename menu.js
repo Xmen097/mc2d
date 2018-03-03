@@ -34,6 +34,7 @@ var menus = {
 	selectSP: function() {
 		menuOn=2;
 		menus.bg();
+		context.textAlign="start"
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.fillText("Play SinglePlayer!",0.29*canvas.width,0.17*canvas.height)
