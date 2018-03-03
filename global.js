@@ -337,10 +337,12 @@ window.onload = function() {
 			if (ajax.readyState == 4) {
 				if(ajax.responseText) {
 					loginToken = localStorage["token"];
+					name = localStorage["name"];
 					menus.main();
 				} else 
 					menus.login();
-			}
+			}else
+				menus.login();
 			}
 			ajax.open("POST", "index.php", true);
 			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
