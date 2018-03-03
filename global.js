@@ -344,7 +344,8 @@ window.onload = function() {
 			}
 			ajax.open("POST", "index.php", true);
 			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			ajax.send("name="+localStorage["name"]+"&token="+localStorage["token"]+"&salt");
+			var random = sha256(Math.random());
+			ajax.send("name="+localStorage["name"]+"&token="+sha256(localStorage["token"]+random)+"&salt="+random);
 		} else
 			menus.login();
 	});
