@@ -17,18 +17,18 @@ var menus = {
 	main: function() {	
 		menuOn=1;
 		menus.bg();			
-		context.textAlign="left";						
+		context.textAlign="center";						
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
-		context.fillText("Minecraft 2D!",canvas.width/2-75,60)
+		context.fillText("Minecraft 2D!",canvas.width/2,60)
 		context.fillStyle="lightgrey";
 		context.fillRect(0.28*canvas.width, 0.28*canvas.height, 0.45*canvas.width, 0.14*canvas.height)
 		context.fillRect(0.28*canvas.width, 0.51*canvas.height, 0.45*canvas.width, 0.14*canvas.height)
 		context.fillRect(0.28*canvas.width, 0.74*canvas.height, 0.45*canvas.width, 0.14*canvas.height)
 		context.fillStyle="black";
-		context.fillText("Single player",0.345*canvas.width,0.38*canvas.height)
-		context.fillText("Multi player",0.36*canvas.width,0.61*canvas.height)
-		context.fillText("Settings",0.4*canvas.width,0.84*canvas.height)
+		context.fillText("Single player",0.5*canvas.width,0.38*canvas.height)
+		context.fillText("Multi player",0.5*canvas.width,0.61*canvas.height)
+		context.fillText("Settings",0.5*canvas.width,0.84*canvas.height)
 		},
 
 	selectSP: function() {
