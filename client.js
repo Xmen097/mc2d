@@ -29,11 +29,9 @@ function connectToServer() {
 			menus.selectMP();
 			if(data && data != "booted")
 				alert(data);
+			socket.disconnect();
 			remotePlayers=undefined;
 			socket=undefined;
-			var elementToDelete = document.getElementById("socketIO");
-			if(elementToDelete)
-				elementToDelete.parentNode.removeChild(elementToDelete);
 		};
 
 		function onNewPlayer(data) {
