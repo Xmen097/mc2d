@@ -335,7 +335,7 @@ window.onload = function() {
 			var ajax = new XMLHttpRequest();
 			ajax.onreadystatechange = function() {
 			if (ajax.readyState == 4) {
-				if(ajax.responseText == true) {
+				if(ajax.responseText) {
 					loginToken = localStorage["token"];
 					menus.main();
 				} else 
