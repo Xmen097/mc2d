@@ -133,8 +133,8 @@ function copyArr(arr){
 	    for(var i = 0; i<newArr.length; i++)
 	            newArr[i] = copyArr(arr[i]);
 	    return newArr;
-	} else if(arr) {
-		var newArr = arr;
+	} else if(arr.constructor != Function) {
+		var newArr = new arr.constructor();
 		for(var a in arr) {
 			if(a!="item") {
 				newArr[a] = copyArr(arr[a]);
@@ -143,6 +143,8 @@ function copyArr(arr){
 			}
 		}
 		return newArr;
+	} else {
+		return arr;
 	}
 }
 
