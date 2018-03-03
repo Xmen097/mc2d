@@ -59,6 +59,8 @@ onmousedown = function(event) {
 				if (ajax.responseText) {
 					if(ajax.responseText != "Login server offline" && ajax.responseText != "Invalid name or password" && ajax.responseText != "Failed to generate token" && ajax.responseText != "Name is too long" && ajax.responseText != "User with that name already exists") {
 						loginToken = ajax.responseText;
+						localStorage["name"]=name;
+						localStorage["token"]=loginToken;
 						menus.main();
 					} else {
 						alert(ajax.responseText);
@@ -70,7 +72,7 @@ onmousedown = function(event) {
 			}
 			ajax.open("POST", "index.php", true);
 			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			ajax.send("name="+name+"&pasw="+pasw+"&type=login");	//sending plane-text password, later should be one-way encrypted (sha-256)
+			ajax.send("name="+name+"&pasw="+pasw+"&type=login");
 		} else if(x>0.3*canvas.width && y>0.88*canvas.height && x<0.7*canvas.width && y<0.96*canvas.height) {
 			menus.signIn();
 		} else if(x>0.175*canvas.width && y>0.35*canvas.height && x<0.825*canvas.width && y<0.45*canvas.height) {

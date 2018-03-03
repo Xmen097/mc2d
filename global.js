@@ -331,7 +331,22 @@ window.onload = function() {
 	]);
 	resources.onReady(function() {
 		document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
-		menus.login();
+		if(localStorage["token"] && localStorage["name"]) {
+			var ajax = new XMLHttpRequest();
+			ajax.onreadystatechange = function() {
+			if (ajax.readyState == 4) {
+				if(ajax.responseText == true) {
+					loginToken = localStorage["token"];
+					menus.main();
+				} else 
+					menus.login();
+			}
+			}
+			ajax.open("POST", "index.php", true);
+			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			ajax.send("name="+localStorage["name"]+"&token="+localStorage["token"]+"&salt");
+		} else
+			menus.login();
 	});
 }
 

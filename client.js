@@ -84,7 +84,6 @@ function connectToServer() {
 		}
 
 		function onInventory(data) {
-			console.log(data);
 			for(var a of data) {
 				if(a.amount) {
 					if(a.id < materials.length) {
@@ -115,13 +114,13 @@ function connectToServer() {
 		}
 
 		function salt(data) {
-		    socket.emit("new player", {name: name, token: sha256(loginToken+data)});
+			if(data)
+		    	socket.emit("new player", {name: name, token: sha256(loginToken+data)});
 		}
 
 		function onBlockBreaking(data) {
 			if(parseInt(data.progress) == -1) {
 				delete remoteDestroingBlock[parseInt(data.id)];
-				console.log("dwd")
 			} else {
 				remoteDestroingBlock[parseInt(data.id)] = new component(canvas.tileSize, canvas.tileSize, "textures/breaking/"+parseInt(data.progress)+".png", parseInt(data.y)*canvas.tileSize, parseInt(data.x)*canvas.tileSize, "image");
 			}
