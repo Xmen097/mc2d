@@ -60,7 +60,7 @@ onmousedown = function(event) {
 					worlds=[]
 				}
 				mapGenerator.generate();
-				worlds.push(new world(worldName, inventory, {x: 200, y: 200}, map))
+				worlds.push(new world(worldName, inventory, {x: 200, y: 200}, map, [], craftingTable))
 				localStorage["worlds"] = JSON.stringify(worlds);
 				menus.selectSP()
 			}
