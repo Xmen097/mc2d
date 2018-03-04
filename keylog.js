@@ -7,6 +7,7 @@ var keys = {
 	a: 65,
 	s: 83,
 	d: 68,
+	e: 69,
 	i: 73,
 	_1: 49,
 	_2: 50,
@@ -31,7 +32,14 @@ onkeydown = function(event) {
 			ip+=event.key
 		}
 		menus.createMP();
-	} else if(menuOn == 6.1 || menuOn == 7.1) {
+	} else if(menuOn==4) {
+		if(event.key=="Backspace") {
+			worldName = worldName.slice(0, worldName.length-1)
+		}else if(event.key.length==1 && worldName.length < 20) {
+			worldName+=event.key
+		}
+		menus.createSP();
+	}else if(menuOn == 6.1 || menuOn == 7.1) {
 		if(event.key=="Backspace") {
 			name = name.slice(0, name.length-1)
 		}else if(event.key.length==1 && name.length < 40) {
@@ -60,6 +68,7 @@ onkeydown = function(event) {
 		socket=undefined;
 		console.log("Disconnected");
 	} else if(playing==1 && event.key=="Escape") {
+		saveWorld();
 		menus.selectSP();
 	} else if(playing==2 && chatOn) {
 		if(event.key=="Backspace") {

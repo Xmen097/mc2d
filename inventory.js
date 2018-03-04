@@ -32,17 +32,17 @@ function inventorySpace(x, y, item, count) {
 } 
 
 var inventoryPreset = {
-	armor: [new inventorySpace(84, 62, items.leatherHelmet, 1), new inventorySpace(84, 88, items.chainChestplate, 1), new inventorySpace(84, 113, items.ironTrousers, 1), new inventorySpace(84, 139, items.goldenShoes, 1)],
+	armor: [new inventorySpace(84, 62, items[14], 1), new inventorySpace(84, 88, items[20], 1), new inventorySpace(84, 113, items[26], 1), new inventorySpace(84, 139, items[32], 1)],
 	inventory: [[new inventorySpace(84, 171), new inventorySpace(117, 171), new inventorySpace(150, 171), new inventorySpace(182, 171), new inventorySpace(215, 171), new inventorySpace(247, 171), new inventorySpace(280, 171), new inventorySpace(312, 171), new inventorySpace(345, 171)],
 				[new inventorySpace(84, 196), new inventorySpace(117, 196), new inventorySpace(150, 196), new inventorySpace(182, 196), new inventorySpace(215, 196), new inventorySpace(247, 196), new inventorySpace(280, 196), new inventorySpace(312, 196), new inventorySpace(345, 196)],
 				[new inventorySpace(84, 221), new inventorySpace(117, 221), new inventorySpace(150, 221), new inventorySpace(182, 221), new inventorySpace(215, 221), new inventorySpace(247, 221), new inventorySpace(280, 221), new inventorySpace(312, 221), new inventorySpace(345, 221)]
 				],
-	hotbar: [new inventorySpace(84, 253), new inventorySpace(117, 253), new inventorySpace(150, 253), new inventorySpace(182, 253), new inventorySpace(215, 253), new inventorySpace(247, 253, items.ironShovel, 1), new inventorySpace(280, 253, items.ironAxe, 1), new inventorySpace(312, 253, items.diamondPickaxe, 1), new inventorySpace(345, 253, items.scissors, 1)]			
+	hotbar: [new inventorySpace(84, 253), new inventorySpace(117, 253), new inventorySpace(150, 253), new inventorySpace(182, 253), new inventorySpace(215, 253), new inventorySpace(247, 253, items[47], 1), new inventorySpace(280, 253, items[41], 1), new inventorySpace(312, 253, items[38], 1), new inventorySpace(345, 253, items[34], 1)]			
 }
 inventory = copyArr(inventoryPreset);
 
 function checkForInventoryOpen() {
-	if(pressedKeys[keys.i] && !inventoryOn && !inventoryTimeout) {
+	if(pressedKeys[keys.i] && !inventoryOn && !inventoryTimeout || pressedKeys[keys.e] && !inventoryOn && !inventoryTimeout) {
 		inventoryUI = new component(359*canvas.width/500, 337*canvas.height/500, "textures/ui/inventory.png", camera.x + (canvas.width - 359*canvas.width/500)/2, camera.y*-1 + (canvas.height - 359*canvas.height/500)/2,"image");
 		furnaceUI = undefined;
 		craftingUI = undefined;
@@ -72,7 +72,7 @@ function checkForInventoryOpen() {
 		inventoryTimeout=true;
 		inventoryOn=true;
 		setTimeout(function() {inventoryTimeout=false;}, timeoutTime);
-	}else if(pressedKeys[keys.i] && inventoryOn && !inventoryTimeout) {
+	}else if(pressedKeys[keys.i] && inventoryOn && !inventoryTimeout || pressedKeys[keys.e] && inventoryOn && !inventoryTimeout) {
 		inventoryUI = undefined;
 		inventoryTimeout=true;
 		inventoryOn=false;
@@ -89,6 +89,23 @@ window.addEventListener('wheel', function(event){
 	    	wheelSelectMe = activeSlot.slot+1;
 	    	checkForHotbarItemSelect();
 	    }
+	} else if(menuOn==2) {
+	    var whellDirection = event.deltaY < 0 ? 'up' : 'down';
+		if(whellDirection == "up" && viewPoint > 0) {
+			viewPoint--;
+			menus.selectSP();
+		} else if(whellDirection == "down" && viewPoint < savedSPs.length-4) {
+			viewPoint++;
+			menus.selectSP();
+		}
+	} else if(menuOn=3) {
+		if(whellDirection == "up" && viewPoint > 0) {
+			viewPoint--;
+			menus.selectMP();
+		} else if(whellDirection == "down" && viewPoint < savedMPs.length-4) {
+			viewPoint++;
+			menus.selectMP();
+		}
 	}
 });
 function checkForHotbarItemSelect() {

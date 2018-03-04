@@ -5,17 +5,17 @@ var breakMultiplier;
 function breakBlock(event) { 
 	var startX = Math.floor((event.pageX - document.getElementById('canvas').offsetLeft + camera.x)/canvas.tileSize);
 	var startY = Math.floor((event.pageY - document.getElementById('canvas').offsetTop + camera.y*-1)/canvas.tileSize);
-	if(map[startY][startX] == -1 || materials[map[startY][startX]].durability == Infinity)
+	if(map[startY][startX] == -1 || items[map[startY][startX]].durability == Infinity)
 		return;
 	if(breakMultiplier==Infinity) {
-		materials[map[startY][startX]].drop.drop()
+		items[map[startY][startX]].drop.drop()
 		map[startY][startX] = -1;
 		renderMap();		
 		return;
 	}
-	if(activeItem.item != undefined && activeItem.item.type == materials[map[startY][startX]].favType){
+	if(activeItem.item != undefined && activeItem.item.type == items[map[startY][startX]].favType){
 		breakMultiplier=activeItem.item.multiplier;
-	}else if(activeItem.item != undefined && activeItem.item.type == materials[map[startY][startX]].favType2 &&  materials[map[startY][startX]].favType2 != undefined) {
+	}else if(activeItem.item != undefined && activeItem.item.type == items[map[startY][startX]].favType2 &&  items[map[startY][startX]].favType2 != undefined) {
 		breakMultiplier=activeItem.item.multiplier;
 	}else
 		breakMultiplier= 1;
@@ -24,11 +24,11 @@ function breakBlock(event) {
 			destroingTexture = new component(canvas.tileSize, canvas.tileSize, "textures/breaking/"+i+".png", startX*canvas.tileSize, startY*canvas.tileSize, "image");
 			if(playing==2)
 				socket.emit("block breaking", {x:startY, y:startX, progress: i});
-		}, i*(materials[map[startY][startX]].durability/breakMultiplier))
+		}, i*(items[map[startY][startX]].durability/breakMultiplier))
 	}
 	destroingBlock[10] = setTimeout(function() {
 		destroingTexture = undefined;
-		var pos = materials[map[startY][startX]].drop.drop()
+		var pos = items[map[startY][startX]].drop.drop()
 		if(map[startY][startX] == 13) {
 			for(var g=0; g<furnaceSaves.length; g++) {
 				if(furnaceSaves[g].x == startX && furnaceSaves[g].y == startY) {
@@ -47,5 +47,5 @@ function breakBlock(event) {
 			socket.emit("block breaking", {x:0, y:0, progress: -1});
 		}
 		renderMap();
-	}, 10*(materials[map[startY][startX]].durability)/breakMultiplier)
+	}, 10*(items[map[startY][startX]].durability)/breakMultiplier)
 }

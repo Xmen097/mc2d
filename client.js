@@ -86,16 +86,7 @@ function connectToServer() {
 		function onInventory(data) {
 			for(var a of data) {
 				if(a.amount) {
-					if(a.id < materials.length) {
-						var item=materials[a.id];	
-					} else {
-						for(var b of items) {
-							if(b.id == a.id) {
-								item = b;
-								break;
-							}
-						}
-					}
+					var item=items[a.id];	
 				} else {
 					item = undefined;
 				}

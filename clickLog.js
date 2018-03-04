@@ -17,10 +17,16 @@ onmousedown = function(event) {
 		}
 
 	}else if(menuOn==2) {
+		for(var a=0;a<savedSPs.length;a++) {
+			if(x>0.125*canvas.width && y>0.275*canvas.height+a*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+a*0.125*canvas.height) { 
+				SPSelected=a;
+				menus.selectSP();
+			}
+		}
 		if(x>0.1*canvas.width && y>0.76*canvas.height && x<0.495*canvas.width && y<0.88*canvas.height) {
 			startSP();
 		} else if(x>0.505*canvas.width && y>0.76*canvas.height && x<0.9*canvas.width && y<0.88*canvas.height) {
-			//menus.createSP();
+			menus.createSP();
 		} else if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
 			menus.main()
 		} 
@@ -42,8 +48,24 @@ onmousedown = function(event) {
 			menus.main()
 		}  
 	} else if(menuOn == 4) {
-		if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
-			menus.selectSP()
+		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
+			if(worldName) {
+				savedSPs.push(worldName);
+				localStorage["worldList"] = JSON.stringify(savedSPs);
+				try {
+					worlds=JSON.parse(localStorage["worlds"]);
+					if(worlds.constructor != Array)
+						throw new DOMException;
+				}catch(e) {
+					worlds=[]
+				}
+				mapGenerator.generate();
+				worlds.push(new world(worldName, inventory, {x: 200, y: 200}, map))
+				localStorage["worlds"] = JSON.stringify(worlds);
+				menus.selectSP()
+			}
+		} else if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
+			menus.selectsp()
 		} 
 	} else if(menuOn == 5) {
 		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
@@ -117,8 +139,8 @@ onmousedown = function(event) {
 		}else if(event.button == 2){
 			var x=Math.floor((event.pageX - document.getElementById('canvas').offsetLeft + camera.x)/canvas.tileSize);
 			var y=Math.floor((event.pageY - document.getElementById('canvas').offsetTop + camera.y*-1)/canvas.tileSize);
-			if(map[y][x] != -1 && materials[map[y][x]].active != undefined) {
-				if(materials[map[y][x]].active == "furnace") {
+			if(map[y][x] != -1 && items[map[y][x]].active != undefined) {
+				if(items[map[y][x]].active == "furnace") {
 					inventoryUI=undefined;
 					for(var a of furnaceSaves) {
 						if(a.x == x && a.y == y)
@@ -144,7 +166,7 @@ onmousedown = function(event) {
 					for(var a of furnace) {
 						a.reRender();
 					}	
-				}else if(materials[map[y][x]].active == "crafting") {
+				}else if(items[map[y][x]].active == "crafting") {
 					craftingUI = new component(359*canvas.width/500, 337*canvas.height/500, "textures/ui/crafting.png", camera.x + (canvas.width - 359*canvas.width/500)/2, camera.y*-1 + (canvas.height - 359*canvas.height/500)/2,"image");
 					for (var m of inventory.inventory) {
 						for(var a of m) {
@@ -168,12 +190,12 @@ onmousedown = function(event) {
 						if(y == (Math.ceil(p.y/canvas.tileSize)) && x == Math.round(p.x/canvas.tileSize) || y == Math.ceil(p.y/canvas.tileSize)+1 && x == Math.round(p.x/canvas.tileSize)){return;}		
 					}
 				}
-				for(var a=0;a<materials.length;a++) {
-					if(materials[a] == activeItem.item) {
+				for(var a=0;a<items.length;a++) {
+					if(items[a] == activeItem.item) {
 						map[y][x] = a;
 						if(playing==2)
 							socket.emit("map edit", {x:y, y:x, block: a, active: inventory.hotbar.indexOf(activeItem)});
-						if(materials[a].active == "furnace") {
+						if(items[a].active == "furnace") {
 							furnaceSaves[furnaceSaves.length] = {x:x, y:y, smelting:0, fuel:0, inventory:[new inventorySpace(172, 78), new inventorySpace(172, 128), new inventorySpace(280, 103)]};
 						}
 						inventory.hotbar[activeSlot.slot-1].count-=1;

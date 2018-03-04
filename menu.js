@@ -16,6 +16,7 @@ var menus = {
 	},
 	main: function() {	
 		menuOn=1;
+		viewPoint=0;
 		menus.bg();			
 		context.textAlign="center";						
 		context.fillStyle="white";
@@ -33,13 +34,34 @@ var menus = {
 
 	selectSP: function() {
 		menuOn=2;
+		worldName="";
+		if(typeof SPSelected == "undefined" || SPSelected < viewPoint || SPSelected > viewPoint+4)
+			SPSelected=viewPoint
+		try {
+			savedSPs=JSON.parse(localStorage["worldList"]);
+			if(savedSPs.constructor != Array)
+				throw new DOMException;
+		}catch(e) {
+			savedSPs=[]
+		}
 		menus.bg();
-		context.textAlign="start"
+		context.textAlign="center"
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
-		context.fillText("Play SinglePlayer!",0.29*canvas.width,0.17*canvas.height)
+		context.fillText("Play SinglePlayer!",0.5*canvas.width,0.17*canvas.height)
 		context.fillStyle="lightgrey";
 		context.fillRect(0.1*canvas.width, 0.25*canvas.height, 0.8*canvas.width, 0.5*canvas.height)
+		for(var a=viewPoint;a<Math.min(5+viewPoint, savedSPs.length);a++) {
+			if(SPSelected == a) {
+				context.fillStyle="black";
+			}else 
+				context.fillStyle="grey";
+			context.fillRect(0.125*canvas.width, 0.275*canvas.height+(a-viewPoint)*0.125*canvas.height, 0.75*canvas.width, 0.1*canvas.height)
+			context.fillStyle="white";
+			context.font=Math.round(0.045*canvas.height)+"px Verdana";
+			context.fillText(savedSPs[a], 0.5*canvas.width, 1.5*Math.round(0.045*canvas.height)+0.275*canvas.height+(a-viewPoint)*0.125*canvas.height)
+		}
+		context.textAlign="start"
 		context.fillStyle="grey";
 		context.fillRect(0.1*canvas.width, 0.75*canvas.height, 0.8*canvas.width, 0.13*canvas.height)
 		context.fillStyle="lightgrey";
@@ -60,20 +82,20 @@ var menus = {
 		savedMPs=[{name: "Official server", ip:"mc2d-officialserver.herokuapp.com"},{name: "Test server", ip:"mc2d-testserver.herokuapp.com"}]
 		menus.bg();
 		context.fillStyle="white";
+		context.textAlign="center"
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
-		context.fillText("Play MultiPlayer!",canvas.width/2-100,60)
+		context.fillText("Play MultiPlayer!",canvas.width/2,60)
 		context.fillStyle="lightgrey";
 		context.fillRect(0.1*canvas.width, 0.25*canvas.height, 0.8*canvas.width, 0.5*canvas.height)
-		context.textAlign="center"
-		for(var a=0;a<savedMPs.length;a++) {
+		for(var a=viewPoint;a<Math.min(5+viewPoint, savedMPs.length);a++) {
 			if(MPSelected == a) {
 				context.fillStyle="black";
 			}else 
 				context.fillStyle="grey";
-			context.fillRect(0.125*canvas.width, 0.275*canvas.height+a*0.125*canvas.height, 0.75*canvas.width, 0.1*canvas.height)
+			context.fillRect(0.125*canvas.width, 0.275*canvas.height+(a-viewPoint)*0.125*canvas.height, 0.75*canvas.width, 0.1*canvas.height)
 			context.fillStyle="white";
 			context.font=Math.round(0.045*canvas.height)+"px Verdana";
-			context.fillText(savedMPs[a].name, 0.5*canvas.width, 1.5*Math.round(0.045*canvas.height)+0.275*canvas.height+a*0.125*canvas.height)
+			context.fillText(savedMPs[a].name, 0.5*canvas.width, 1.5*Math.round(0.045*canvas.height)+0.275*canvas.height+(a-viewPoint)*0.125*canvas.height)
 		}
 		context.textAlign="start"
 		context.fillRect(0.1*canvas.width, 0.75*canvas.height, 0.8*canvas.width, 0.13*canvas.height)
@@ -92,19 +114,18 @@ var menus = {
 		menus.bg();
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
-		context.fillText("Play MultiPlayer!",canvas.width/2-100,60)
+		context.textAlign="center"
+		context.fillText("Create new world!",canvas.width/2,60)
+		context.textAlign="start"
+		context.fillText("Name:",canvas.width*0.03,canvas.height*0.375)
 		context.fillStyle="lightgrey";
-		context.fillRect(0.1*canvas.width, 0.25*canvas.height, 0.8*canvas.width, 0.5*canvas.height)
-		context.fillStyle="grey";
-		context.fillRect(0.1*canvas.width, 0.75*canvas.height, 0.8*canvas.width, 0.13*canvas.height)
-		context.fillStyle="lightgrey";
-		context.fillRect(0.1*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
-		context.fillRect(0.505*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
+		context.fillRect(0.2*canvas.width, 0.3*canvas.height, 0.65*canvas.width, 0.1*canvas.height)
+		context.fillRect(0.3*canvas.width, 0.76*canvas.height, 0.4*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.85*canvas.width, 0.1*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
 		context.fillStyle="black";
 		context.font=Math.round(0.045*350)+"px Verdana";
-		context.fillText("Connect to selected",canvas.width/2-75-0.21*canvas.width,0.84*canvas.height)
-		context.fillText("Connect to new",70+0.41*canvas.width,0.84*canvas.height);
+		context.fillText("Create",0.43*canvas.width,0.84*canvas.height)
+		context.fillText(worldName+"|",0.22*canvas.width,0.37*canvas.height);
 		(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/backArrow.png", 0.85*canvas.width, 0.1*canvas.height, "image")).update();
 	},
 	createMP: function() {
@@ -112,7 +133,9 @@ var menus = {
 		menus.bg();
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
-		context.fillText("Connect to server!",canvas.width/2-110,60)
+		context.textAlign="center"
+		context.fillText("Connect to server!",canvas.width/2,60)
+		context.textAlign="start"
 		context.fillText("IP:",canvas.width*0.125,canvas.height*0.375)
 		context.fillStyle="lightgrey";
 		context.fillRect(0.2*canvas.width, 0.3*canvas.height, 0.65*canvas.width, 0.1*canvas.height)

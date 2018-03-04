@@ -86,7 +86,7 @@ function renderMap() {
 			{
 				if(renderedTile[a] == undefined)
 					renderedTile[a] = [];
-				renderedTile[a][b] = new component(canvas.tileSize, canvas.tileSize, materials[map[a][b]], b*canvas.tileSize, a*canvas.tileSize, "material");		
+				renderedTile[a][b] = new component(canvas.tileSize, canvas.tileSize, items[map[a][b]], b*canvas.tileSize, a*canvas.tileSize, "material");		
 			}
 		}
 	}

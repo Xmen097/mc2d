@@ -4,9 +4,9 @@ var furnaceInventoryPrefab=[new inventorySpace(172, 78),
 			 new inventorySpace(280, 103)];
 var furnace = copyArr(furnaceInventoryPrefab);
 
-var furnaceRecipes=[[materials[2], items.coal], [materials[1], materials[0]], [materials[7], items.iron], [materials[10], items.gold]]
+var furnaceRecipes=[[items[2], items[51]], [items[1], items[0]], [items[7], items[52]], [items[10], items[53]]]
 
-var smeltingTime=999;
+var smeltingTime=998;
 
 var furnaceSmeltingProgress;
 var furnaceFuelProgress;
