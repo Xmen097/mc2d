@@ -76,8 +76,7 @@ var crafting=[new inventorySpace(236, 75),
 
 var craftingTable =[new inventorySpace(122, 78),new inventorySpace(154, 78),new inventorySpace(187, 78),
 					new inventorySpace(122, 103),new inventorySpace(154, 103),new inventorySpace(187, 103),
-					new inventorySpace(122, 128),new inventorySpace(154, 128),new inventorySpace(187, 128), NaN, NaN, NaN, NaN, NaN, NaN]
-craftingTable[99] = new inventorySpace(291, 103);
+					new inventorySpace(122, 128),new inventorySpace(154, 128),new inventorySpace(187, 128), new inventorySpace(291, 103)]
 
 function countItemsInRecipe(recipe) {
 	var count = 0;
@@ -128,19 +127,19 @@ function checkCraftingResult() {
 					break;
 			}		
 			if(a.length == 3 && itemCount==1 && item.item==a[0]) {
-				craftingTable[99].item = a[1];
-				craftingTable[99].count = a[2];
-				craftingTable[99].reRender();
+				craftingTable[9].item = a[1];
+				craftingTable[9].count = a[2];
+				craftingTable[9].reRender();
 				return;
 			} else if(a.length == 5 && itemCount==countItemsInRecipe(a) && item.item==a[0] &&craftingTable[craftingTable.indexOf(item)+1].item == a[1] && craftingTable[craftingTable.indexOf(item)+3].item == a[2]) {
-				craftingTable[99].item = a[3];
-				craftingTable[99].count = a[4];
-				craftingTable[99].reRender();
+				craftingTable[9].item = a[3];
+				craftingTable[9].count = a[4];
+				craftingTable[9].reRender();
 				return;
 			} else if(a.length == 6 && itemCount==countItemsInRecipe(a) && item.item==a[0] &&  craftingTable[craftingTable.indexOf(item)+1].item == a[1] && craftingTable[craftingTable.indexOf(item)+3].item == a[2] && craftingTable[craftingTable.indexOf(item)+4].item == a[3]) {
-				craftingTable[99].item = a[4];
-				craftingTable[99].count = a[5];
-				craftingTable[99].reRender();
+				craftingTable[9].item = a[4];
+				craftingTable[9].count = a[5];
+				craftingTable[9].reRender();
 				return;
 			}
 		}
@@ -157,9 +156,9 @@ function checkCraftingResult() {
 				break;
 		}	
 		if(itemCount==countItemsInRecipe(a) && item.item==a[0] && craftingTable[craftingTable.indexOf(item)+1].item == a[1] && craftingTable[craftingTable.indexOf(item)+2].item == a[2] && craftingTable[craftingTable.indexOf(item)+4].item == a[4] && craftingTable[craftingTable.indexOf(item)+5].item == a[5] && craftingTable[craftingTable.indexOf(item)+6].item == a[6] && craftingTable[craftingTable.indexOf(item)+7].item == a[7] && craftingTable[craftingTable.indexOf(item)+7].item == a[7] && craftingTable[craftingTable.indexOf(item)+8].item == a[8]) {
-			craftingTable[99].item = a[9];
-			craftingTable[99].count = a[10];
-			craftingTable[99].reRender();
+			craftingTable[9].item = a[9];
+			craftingTable[9].count = a[10];
+			craftingTable[9].reRender();
 			return;
 		}
 	}
@@ -168,8 +167,8 @@ function checkCraftingResult() {
 		crafting[4].count = 0;
 		crafting[4].reRender();
 	} else if(craftingUI != undefined) {
-		craftingTable[99].item = undefined;
-		craftingTable[99].count = 0;
-		craftingTable[99].reRender();
+		craftingTable[9].item = undefined;
+		craftingTable[9].count = 0;
+		craftingTable[9].reRender();
 	}
 }

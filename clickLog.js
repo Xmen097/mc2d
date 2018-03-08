@@ -257,7 +257,8 @@ onmousedown = function(event) {
 		}
 		if(findSth) {findSth=false;} else return;
 //sebrani
-		if(holding.item == undefined && clickedItem.item != undefined || holding.item == clickedItem.item && clickedItem==crafting[4] || holding.item == clickedItem.item && clickedItem==furnace[2] || holding.item == clickedItem.item && clickedItem==craftingTable[99]){ // pick-up clicked item
+		if(holding.item == undefined && clickedItem.item != undefined || holding.item == clickedItem.item && clickedItem==crafting[4] || holding.item == clickedItem.item && clickedItem==furnace[2] || holding.item == clickedItem.item && clickedItem==craftingTable[9
+		]){ // pick-up clicked item
 			if(event.button == 0) {
 				holding.count += clickedItem.count;
 				holding.item = clickedItem.item;
@@ -271,7 +272,7 @@ onmousedown = function(event) {
 						crafting[a].reRender()
 					}
 				}
-				if(clickedItem == craftingTable[99]) {
+				if(clickedItem == craftingTable[9]) {
 					for(var a=0;a<9;a++) {
 						if(craftingTable[a].count > 0)
 							craftingTable[a].count -= 1;
@@ -303,7 +304,7 @@ onmousedown = function(event) {
 			holding.reRender();
 
 //pokladani
-		} else if(clickedItem.item == holding.item && holding.count > 0 && clickedItem != crafting[4]  && clickedItem != furnace[2] || clickedItem.item == undefined && clickedItem != crafting[4] && clickedItem != craftingTable[99] && clickedItem != furnace[2] && clickedItem != inventory.armor[0] && clickedItem != inventory.armor[1] && clickedItem != inventory.armor[2] && clickedItem != inventory.armor[3] && holding.count > 0  || clickedItem == inventory.armor[0] && holding.item.type == "helmet" && holding.count > 0 || clickedItem == inventory.armor[1] && holding.item.type == "chestplate"  && holding.count > 0   || clickedItem == inventory.armor[2] && holding.item.type == "trousers" && holding.count > 0   || clickedItem == inventory.armor[3] && holding.item.type == "shoes" && holding.count > 0  ){ // release clicked item
+		} else if(clickedItem.item == holding.item && holding.count > 0 && clickedItem != crafting[4]  && clickedItem != furnace[2] || clickedItem.item == undefined && clickedItem != crafting[4] && clickedItem != craftingTable[9] && clickedItem != furnace[2] && clickedItem != inventory.armor[0] && clickedItem != inventory.armor[1] && clickedItem != inventory.armor[2] && clickedItem != inventory.armor[3] && holding.count > 0  || clickedItem == inventory.armor[0] && holding.item.type == "helmet" && holding.count > 0 || clickedItem == inventory.armor[1] && holding.item.type == "chestplate"  && holding.count > 0   || clickedItem == inventory.armor[2] && holding.item.type == "trousers" && holding.count > 0   || clickedItem == inventory.armor[3] && holding.item.type == "shoes" && holding.count > 0  ){ // release clicked item
 			if(playing==2) {
 				var start={x:0, y:0};
 				var end={x:0, y:0};
