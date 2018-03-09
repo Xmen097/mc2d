@@ -68,13 +68,12 @@ var bigRecipes=[[items[1],items[1],items[1],
 				 undefined,items[54],undefined,
 				 items[44], 1]]
 
-var crafting=[new inventorySpace(236, 75),
+var craftingPreset=[new inventorySpace(236, 75),
 		  new inventorySpace(268, 75), 
 		  new inventorySpace(236, 100), 
 		  new inventorySpace(268, 100),
 		  new inventorySpace(338, 90)]; // crafting result field
-
-var craftingTable =[new inventorySpace(122, 78),new inventorySpace(154, 78),new inventorySpace(187, 78),
+var craftingTablePreset =[new inventorySpace(122, 78),new inventorySpace(154, 78),new inventorySpace(187, 78),
 					new inventorySpace(122, 103),new inventorySpace(154, 103),new inventorySpace(187, 103),
 					new inventorySpace(122, 128),new inventorySpace(154, 128),new inventorySpace(187, 128), new inventorySpace(291, 103)]
 
@@ -88,12 +87,21 @@ function countItemsInRecipe(recipe) {
 }
 
 function checkCraftingResult() {
+	if(inventoryOn){
+		crafting[4].item = undefined;
+		crafting[4].count = 0;
+		crafting[4].reRender();
+	} else if(craftingUI != undefined) {
+		craftingTable[9].item = undefined;
+		craftingTable[9].count = 0;
+		craftingTable[9].reRender();
+	}
 	for(var a of smallRecipes) {
 		if(inventoryOn){
 			var itemCount=0;
 			var item;
 			for(var m of crafting) {
-				if(m.item != undefined && crafting.indexOf(m) != 4) {
+				if(m.item != undefined) {
 					if(item == undefined)
 						item=m;
 					itemCount++;
@@ -104,12 +112,12 @@ function checkCraftingResult() {
 				crafting[4].count = a[2];
 				crafting[4].reRender();
 				return;
-			} else if(a.length == 5 && itemCount==countItemsInRecipe(a) && item.item==a[0]  && crafting[crafting.indexOf(item)+1].item == a[1] && crafting[crafting.indexOf(item)+2].item == a[2]) {
+			} else if(a.length == 5 && itemCount==countItemsInRecipe(a) && item.item==a[0] && crafting[crafting.indexOf(item)+1] && crafting[crafting.indexOf(item)+1].item == a[1] && crafting[crafting.indexOf(item)+2] && crafting[crafting.indexOf(item)+2].item == a[2]) {
 				crafting[4].item = a[3];
 				crafting[4].count = a[4];
 				crafting[4].reRender();
 				return;
-			} else if(a.length == 6 && itemCount==countItemsInRecipe(a) && item.item==a[0] && crafting[crafting.indexOf(item)+1].item == a[1] && crafting[crafting.indexOf(item)+2].item == a[2] && crafting[crafting.indexOf(item)+3].item == a[3]) {
+			} else if(a.length == 6 && itemCount==countItemsInRecipe(a) && item.item==a[0] && crafting[crafting.indexOf(item)+1] && crafting[crafting.indexOf(item)+1].item == a[1] && crafting[crafting.indexOf(item)+2] && crafting[crafting.indexOf(item)+2].item == a[2] && crafting[crafting.indexOf(item)+3] && crafting[crafting.indexOf(item)+3].item == a[3]) {
 				crafting[4].item = a[4];
 				crafting[4].count = a[5];
 				crafting[4].reRender();
@@ -131,12 +139,12 @@ function checkCraftingResult() {
 				craftingTable[9].count = a[2];
 				craftingTable[9].reRender();
 				return;
-			} else if(a.length == 5 && itemCount==countItemsInRecipe(a) && item.item==a[0] &&craftingTable[craftingTable.indexOf(item)+1].item == a[1] && craftingTable[craftingTable.indexOf(item)+3].item == a[2]) {
+			} else if(a.length == 5 && itemCount==countItemsInRecipe(a) && item.item==a[0] && craftingTable[craftingTable.indexOf(item)+1] && craftingTable[craftingTable.indexOf(item)+1].item == a[1] && craftingTable[craftingTable.indexOf(item)+3] && craftingTable[craftingTable.indexOf(item)+3].item == a[2]) {
 				craftingTable[9].item = a[3];
 				craftingTable[9].count = a[4];
 				craftingTable[9].reRender();
 				return;
-			} else if(a.length == 6 && itemCount==countItemsInRecipe(a) && item.item==a[0] &&  craftingTable[craftingTable.indexOf(item)+1].item == a[1] && craftingTable[craftingTable.indexOf(item)+3].item == a[2] && craftingTable[craftingTable.indexOf(item)+4].item == a[3]) {
+			} else if(a.length == 6 && itemCount==countItemsInRecipe(a) && item.item==a[0] && craftingTable[craftingTable.indexOf(item)+1] && craftingTable[craftingTable.indexOf(item)+1].item == a[1] && craftingTable[craftingTable.indexOf(item)+3] && craftingTable[craftingTable.indexOf(item)+3].item == a[2] && craftingTable[craftingTable.indexOf(item)+4] && craftingTable[craftingTable.indexOf(item)+4].item == a[3]) {
 				craftingTable[9].item = a[4];
 				craftingTable[9].count = a[5];
 				craftingTable[9].reRender();
@@ -155,20 +163,11 @@ function checkCraftingResult() {
 			}else if(m == undefined)
 				break;
 		}	
-		if(itemCount==countItemsInRecipe(a) && item.item==a[0] && craftingTable[craftingTable.indexOf(item)+1].item == a[1] && craftingTable[craftingTable.indexOf(item)+2].item == a[2] && craftingTable[craftingTable.indexOf(item)+4].item == a[4] && craftingTable[craftingTable.indexOf(item)+5].item == a[5] && craftingTable[craftingTable.indexOf(item)+6].item == a[6] && craftingTable[craftingTable.indexOf(item)+7].item == a[7] && craftingTable[craftingTable.indexOf(item)+7].item == a[7] && craftingTable[craftingTable.indexOf(item)+8].item == a[8]) {
+		if(itemCount==countItemsInRecipe(a) && item.item==a[0] && (a[1] ? craftingTable[craftingTable.indexOf(item)+1] && craftingTable[craftingTable.indexOf(item)+1].item == a[1] : true) && (a[2] ? craftingTable[craftingTable.indexOf(item)+2] && craftingTable[craftingTable.indexOf(item)+2].item == a[2] : true) && (a[3] ? craftingTable[craftingTable.indexOf(item)+3] && craftingTable[craftingTable.indexOf(item)+3].item == a[3] : true) && (a[4] ? craftingTable[craftingTable.indexOf(item)+4] && craftingTable[craftingTable.indexOf(item)+4].item == a[4] : true) && (a[5] ? craftingTable[craftingTable.indexOf(item)+5] && craftingTable[craftingTable.indexOf(item)+5].item == a[5] : true) && (a[6] ? craftingTable[craftingTable.indexOf(item)+6] && craftingTable[craftingTable.indexOf(item)+6].item == a[6] : true) && (a[7] ? craftingTable[craftingTable.indexOf(item)+7] && craftingTable[craftingTable.indexOf(item)+7].item == a[7] : true) && (a[8] ? craftingTable[craftingTable.indexOf(item)+8] && craftingTable[craftingTable.indexOf(item)+8].item == a[8] : true)) {
 			craftingTable[9].item = a[9];
 			craftingTable[9].count = a[10];
 			craftingTable[9].reRender();
 			return;
 		}
-	}
-	if(inventoryOn){
-		crafting[4].item = undefined;
-		crafting[4].count = 0;
-		crafting[4].reRender();
-	} else if(craftingUI != undefined) {
-		craftingTable[9].item = undefined;
-		craftingTable[9].count = 0;
-		craftingTable[9].reRender();
 	}
 }
