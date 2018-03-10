@@ -84,24 +84,25 @@ function connectToServer() {
 		}
 
 		function onInventory(data) {
-			for(var a of data) {
-				if(a.amount) {
-					var item=items[a.id];	
-				} else {
-					item = undefined;
-				}
-				if(a.y < 3) {
-					inventory.inventory[a.y][a.x].item=item;
-					inventory.inventory[a.y][a.x].count=a.amount;
-				} else if(a.y == 3) {
-					inventory.hotbar[a.x].item=item;
-					inventory.hotbar[a.x].count=a.amount;
-				} else if(a.y == 4) {
-					inventory.armor[a.x].item=item;
-					inventory.armor[a.x].count=a.amount;
-				}
+			var parsedInv = JSON.parse(data.inventory);
+			var parsedCrafting = JSON.parse(data.crafting)
+			for(var b=0;b<inventory.inventory[a].length;b++) {
+				inventory.inventory[a][b].count = parsedInv.inventory[a][b].count|0;
+				inventory.inventory[a][b].item = parsedInv.inventory[a][b].item ? items[parsedInv.parsedInv[a][b].item.id] : undefined;
 			}
-
+			}
+			for(var b=0;b<inventory.hotbar.length;b++) {
+				inventory.hotbar[b].count = parsedInv.hotbar[b].count|0;
+				inventory.hotbar[b].item = parsedInv.hotbar[b].item ? items[parsedInv.hotbar[b].item.id] : undefined;
+			}
+			for(var b=0;b<inventory.armor.length;b++) {
+				inventory.armor[b].count = parsedInv.armor[b].count|0;
+				inventory.armor[b].item = parsedInv.armor[b].item ? items[parsedInv.armor[b].item.id] : undefined;
+			}
+			for(var a=0;a<crafting.length;a++) {
+				crafting[a].count = crafting[a].count|0;
+				crafting[a].item = crafting[a].item ? items[crafting[a].item.id] : undefined;
+			}
 		}
 
 		function salt(data) {
