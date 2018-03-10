@@ -85,11 +85,10 @@ function connectToServer() {
 
 		function onInventory(data) {
 			var parsedInv = JSON.parse(data.inventory);
-			var parsedCrafting = JSON.parse(data.crafting)
+			var parsedCrafting = JSON.parse(data.crafting);
 			for(var b=0;b<inventory.inventory[a].length;b++) {
 				inventory.inventory[a][b].count = parsedInv.inventory[a][b].count|0;
 				inventory.inventory[a][b].item = parsedInv.inventory[a][b].item ? items[parsedInv.parsedInv[a][b].item.id] : undefined;
-			}
 			}
 			for(var b=0;b<inventory.hotbar.length;b++) {
 				inventory.hotbar[b].count = parsedInv.hotbar[b].count|0;
@@ -100,8 +99,8 @@ function connectToServer() {
 				inventory.armor[b].item = parsedInv.armor[b].item ? items[parsedInv.armor[b].item.id] : undefined;
 			}
 			for(var a=0;a<crafting.length;a++) {
-				crafting[a].count = crafting[a].count|0;
-				crafting[a].item = crafting[a].item ? items[crafting[a].item.id] : undefined;
+				crafting[a].count = parsedCrafting[a].count|0;
+				crafting[a].item = parsedCrafting[a].item ? items[parsedCrafting[a].item.id] : undefined;
 			}
 		}
 
