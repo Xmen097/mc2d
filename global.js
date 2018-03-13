@@ -308,12 +308,13 @@ window.onload = function() {
 	    'textures/blockSheet.png'
 	]);
 	resources.onReady(function() {
+		menus.main();
 		document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
 		if(localStorage["token"] && localStorage["name"]) {
 			var ajax = new XMLHttpRequest();
 			ajax.onreadystatechange = function() {
 			if (ajax.readyState == 4) {
-				if(ajax.responseText) {
+				if(ajax.responseText == "true") {
 					loginToken = localStorage["token"];
 					name = localStorage["name"];
 					menus.main();
@@ -356,10 +357,6 @@ function setupGame() {
     hotbarUI = new component(546*canvas.width/820, 64*canvas.height/820, "textures/ui/hotbar.png", camera.x + (canvas.width - 546*canvas.width/820)/2, camera.y*-1 + (canvas.height - 64*canvas.height/820)/1.1,"image");
     player = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/steveRight.png", (canvas.width+canvas.tileSize)/2-canvas.tileSize, 50, "image");
 	activeItem=new inventorySpace()
-	inventory = copyArr(inventoryPreset);
-	crafting = copyArr(craftingPreset);
-	craftingTable = copyArr(craftingTablePreset);
-    furnace = copyArr(furnaceInventoryPrefab);
 }
 
 function stopGame() {
@@ -376,6 +373,10 @@ function stopGame() {
 
 function startSP() {
 	setupGame();
+	inventory = copyArr(inventoryPreset);
+	crafting = copyArr(craftingPreset);
+	craftingTable = copyArr(craftingTablePreset);
+    furnace = copyArr(furnaceInventoryPrefab);
 	playing=1;
 	var world = JSON.parse(localStorage["worlds"])[SPSelected];
 	menu=0;
