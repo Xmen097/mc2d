@@ -308,7 +308,6 @@ window.onload = function() {
 	    'textures/blockSheet.png'
 	]);
 	resources.onReady(function() {
-		menus.main();
 		document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
 		if(localStorage["token"] && localStorage["name"]) {
 			var ajax = new XMLHttpRequest();
