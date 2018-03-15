@@ -84,15 +84,14 @@ function connectToServer() {
 		}
 
 		function onInventory(data) {
-			console.log(data);
 			inventory = copyArr(inventoryPreset);
 			crafting = copyArr(craftingPreset);
-			parsedInv = JSON.parse(data.inventory);
-			parsedCrafting = JSON.parse(data.crafting);
+			var parsedInv = JSON.parse(data.inventory);
+			var parsedCrafting = JSON.parse(data.crafting);
 			for(var a=0;a<inventory.inventory.length;a++) {
 				for(var b=0;b<inventory.inventory[a].length;b++) {
 					inventory.inventory[a][b].count = parsedInv.inventory[a][b].count|0;
-					inventory.inventory[a][b].item = parsedInv.inventory[a][b].item ? items[parsedInv.parsedInv[a][b].item] : undefined;
+					inventory.inventory[a][b].item = parsedInv.inventory[a][b].item ? items[parsedInv.inventory[a][b].item] : undefined;
 				}
 			}
 			for(var b=0;b<inventory.hotbar.length;b++) {
