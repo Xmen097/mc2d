@@ -84,10 +84,11 @@ function connectToServer() {
 		}
 
 		function onInventory(data) {
+			console.log(data);
 			inventory = copyArr(inventoryPreset);
 			crafting = copyArr(craftingPreset);
-			var parsedInv = JSON.parse(data.inventory);
-			var parsedCrafting = JSON.parse(data.crafting);
+			parsedInv = JSON.parse(data.inventory);
+			parsedCrafting = JSON.parse(data.crafting);
 			for(var a=0;a<inventory.inventory.length;a++) {
 				for(var b=0;b<inventory.inventory[a].length;b++) {
 					inventory.inventory[a][b].count = parsedInv.inventory[a][b].count|0;

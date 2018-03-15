@@ -340,7 +340,6 @@ onmousedown = function(event) {
 							start.x=inventory.hotbar.indexOf(d);
 						}
 				}
-				socket.emit("move item", {start:start, end:end, count: holding.count});
 			}
 			if(event.button == 0) {
 				clickedItem.count += holding.count;
@@ -349,7 +348,8 @@ onmousedown = function(event) {
 				holding.item = undefined;
 				holding.count = 0;	
 				holding.reRender();
-				checkCraftingResult()			
+				checkCraftingResult()	
+				socket.emit("move item", {start:start, end:end, count: holding.count});		
 			} else if (event.button == 2) {
 				clickedItem.count += 1;
 				clickedItem.item = holding.item;
@@ -359,6 +359,7 @@ onmousedown = function(event) {
 				if(holding.count == 0)
 					holding.item = undefined;
 				holding.reRender();
+				socket.emit("move item", {start:start, end:end, count: 1});
 			}
 		}
 
