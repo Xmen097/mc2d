@@ -91,20 +91,20 @@ function connectToServer() {
 			for(var a=0;a<inventory.inventory.length;a++) {
 				for(var b=0;b<inventory.inventory[a].length;b++) {
 					inventory.inventory[a][b].count = parsedInv.inventory[a][b].count|0;
-					inventory.inventory[a][b].item = parsedInv.inventory[a][b].item ? items[parsedInv.parsedInv[a][b].item.id] : undefined;
+					inventory.inventory[a][b].item = parsedInv.inventory[a][b].item ? items[parsedInv.parsedInv[a][b].item] : undefined;
 				}
 			}
 			for(var b=0;b<inventory.hotbar.length;b++) {
 				inventory.hotbar[b].count = parsedInv.hotbar[b].count|0;
-				inventory.hotbar[b].item = parsedInv.hotbar[b].item ? items[parsedInv.hotbar[b].item.id] : undefined;
+				inventory.hotbar[b].item = parsedInv.hotbar[b].item ? items[parsedInv.hotbar[b].item] : undefined;
 			}
 			for(var b=0;b<inventory.armor.length;b++) {
 				inventory.armor[b].count = parsedInv.armor[b].count|0;
-				inventory.armor[b].item = parsedInv.armor[b].item ? items[parsedInv.armor[b].item.id] : undefined;
+				inventory.armor[b].item = parsedInv.armor[b].item ? items[parsedInv.armor[b].item] : undefined;
 			}
 			for(var a=0;a<crafting.length;a++) {
 				crafting[a].count = parsedCrafting[a].count|0;
-				crafting[a].item = parsedCrafting[a].item ? items[parsedCrafting[a].item.id] : undefined;
+				crafting[a].item = parsedCrafting[a].item ? items[parsedCrafting[a].item] : undefined;
 			}
 		}
 
