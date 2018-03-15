@@ -84,6 +84,7 @@ function connectToServer() {
 		}
 
 		function onInventory(data) {
+			console.log(data);
 			inventory = copyArr(inventoryPreset);
 			crafting = copyArr(craftingPreset);
 			var parsedInv = JSON.parse(data.inventory);
