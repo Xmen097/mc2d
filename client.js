@@ -89,7 +89,7 @@ function connectToServer() {
 			craftingTable = copyArr(craftingTablePreset)
 			var parsedInv = JSON.parse(data.inventory);
 			var parsedCrafting = JSON.parse(data.crafting);
-			var parsedCraftingTable = JSON.parse(data.craftingTable);
+			var parsedCraftingTable = JSON.parse(data.craftingtable);
 			for(var a=0;a<inventory.inventory.length;a++) {
 				for(var b=0;b<inventory.inventory[a].length;b++) {
 					inventory.inventory[a][b].count = parsedInv.inventory[a][b].count|0;
