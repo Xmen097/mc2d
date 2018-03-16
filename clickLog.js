@@ -340,6 +340,16 @@ onmousedown = function(event) {
 							start.x=inventory.hotbar.indexOf(d);
 						}
 				}
+				for(var e of crafting) {
+						if(clickedItem==e) {
+							end.y=5
+							end.x=crafting.indexOf(d);
+						}
+						if(holding.getFrom==e) {
+							start.y=5
+							start.x=crafting.indexOf(d);
+						}
+				}
 			}
 			if(event.button == 0) {
 				clickedItem.count += holding.count;
