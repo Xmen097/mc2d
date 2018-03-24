@@ -87,43 +87,17 @@ function countItemsInRecipe(recipe) {
 }
 
 function checkCraftingResult() {
-	if(inventoryOn){
-		crafting[4].item = undefined;
-		crafting[4].count = 0;
-		crafting[4].reRender();
-	} else if(typeof craftingUI != "undefined") {
+	if(typeof craftingUI != "undefined") {
 		craftingTable[9].item = undefined;
 		craftingTable[9].count = 0;
 		craftingTable[9].reRender();
+	} else {
+		crafting[4].item = undefined;
+		crafting[4].count = 0;
+		crafting[4].reRender();
 	}
 	for(var a of smallRecipes) {
-		if(inventoryOn){
-			var itemCount=0;
-			var item;
-			for(var m of crafting) {
-				if(m.item != undefined) {
-					if(item == undefined)
-						item=m;
-					itemCount++;
-				}
-			}		
-			if(a.length == 3 && itemCount==1 && item.item==a[0]) {
-				crafting[4].item = a[1];
-				crafting[4].count = a[2];
-				crafting[4].reRender();
-				return;
-			} else if(a.length == 5 && itemCount==countItemsInRecipe(a) && item.item==a[0] && crafting[crafting.indexOf(item)+1] && crafting[crafting.indexOf(item)+1].item == a[1] && crafting[crafting.indexOf(item)+2] && crafting[crafting.indexOf(item)+2].item == a[2]) {
-				crafting[4].item = a[3];
-				crafting[4].count = a[4];
-				crafting[4].reRender();
-				return;
-			} else if(a.length == 6 && itemCount==countItemsInRecipe(a) && item.item==a[0] && crafting[crafting.indexOf(item)+1] && crafting[crafting.indexOf(item)+1].item == a[1] && crafting[crafting.indexOf(item)+2] && crafting[crafting.indexOf(item)+2].item == a[2] && crafting[crafting.indexOf(item)+3] && crafting[crafting.indexOf(item)+3].item == a[3]) {
-				crafting[4].item = a[4];
-				crafting[4].count = a[5];
-				crafting[4].reRender();
-				return;
-			}	
-		} else if(typeof craftingUI != "undefined") {
+		if(typeof craftingUI != "undefined") {
 			var itemCount=0;
 			var item;
 			for(var m of craftingTable) {
@@ -150,7 +124,33 @@ function checkCraftingResult() {
 				craftingTable[9].reRender();
 				return;
 			}
-		}
+		} else {
+			var itemCount=0;
+			var item;
+			for(var m of crafting) {
+				if(m.item != undefined) {
+					if(item == undefined)
+						item=m;
+					itemCount++;
+				}
+			}		
+			if(a.length == 3 && itemCount==1 && item.item==a[0]) {
+				crafting[4].item = a[1];
+				crafting[4].count = a[2];
+				crafting[4].reRender();
+				return;
+			} else if(a.length == 5 && itemCount==countItemsInRecipe(a) && item.item==a[0] && crafting[crafting.indexOf(item)+1] && crafting[crafting.indexOf(item)+1].item == a[1] && crafting[crafting.indexOf(item)+2] && crafting[crafting.indexOf(item)+2].item == a[2]) {
+				crafting[4].item = a[3];
+				crafting[4].count = a[4];
+				crafting[4].reRender();
+				return;
+			} else if(a.length == 6 && itemCount==countItemsInRecipe(a) && item.item==a[0] && crafting[crafting.indexOf(item)+1] && crafting[crafting.indexOf(item)+1].item == a[1] && crafting[crafting.indexOf(item)+2] && crafting[crafting.indexOf(item)+2].item == a[2] && crafting[crafting.indexOf(item)+3] && crafting[crafting.indexOf(item)+3].item == a[3]) {
+				crafting[4].item = a[4];
+				crafting[4].count = a[5];
+				crafting[4].reRender();
+				return;
+			}	
+		} 
 	}
 	for(var a of bigRecipes) {
 		var itemCount=0;
