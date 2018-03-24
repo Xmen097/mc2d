@@ -112,6 +112,7 @@ function connectToServer() {
 				craftingTable[a].count = parsedCraftingTable[a].count|0;
 				craftingTable[a].item = parsedCraftingTable[a].item ? items[parsedCraftingTable[a].item] : undefined;
 			}
+			checkCraftingResult();
 		}
 
 		function salt(data) {
