@@ -343,11 +343,11 @@ onmousedown = function(event) {
 				for(var e of crafting) {
 						if(clickedItem==e) {
 							end.y=5
-							end.x=crafting.indexOf(d);
+							end.x=crafting.indexOf(e);
 						}
 						if(holding.getFrom==e) {
 							start.y=5
-							start.x=crafting.indexOf(d);
+							start.x=crafting.indexOf(e);
 						}
 				}
 			}
