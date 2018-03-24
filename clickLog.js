@@ -13,7 +13,12 @@ onmousedown = function(event) {
 		} else if(x>0.28*canvas.width && y>0.51*canvas.height && x<0.73*canvas.width && y<0.65*canvas.height) {
 			menus.selectMP();
 		} else if(x>0.28*canvas.width && y>0.74*canvas.height && x<0.73*canvas.width && y<0.88*canvas.height) {
-			console.log("Set")
+			localStorage.name=undefined;
+			localStorage.token=undefined;
+			name=undefined;
+			loginToken=undefined;
+			pasw=undefined;
+			menus.login();
 		}
 
 	}else if(menuOn==2) {

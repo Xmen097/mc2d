@@ -29,7 +29,7 @@ var menus = {
 		context.fillStyle="black";
 		context.fillText("Single player",0.5*canvas.width,0.38*canvas.height)
 		context.fillText("Multi player",0.5*canvas.width,0.61*canvas.height)
-		context.fillText("Settings",0.5*canvas.width,0.84*canvas.height)
+		context.fillText("Log out",0.5*canvas.width,0.84*canvas.height)
 		},
 
 	selectSP: function() {
