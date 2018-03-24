@@ -352,14 +352,14 @@ onmousedown = function(event) {
 				}
 			}
 			if(event.button == 0) {
+				socket.emit("move item", {start:start, end:end, count: holding.count});	
 				clickedItem.count += holding.count;
 				clickedItem.item = holding.item;
 				clickedItem.reRender();
 				holding.item = undefined;
 				holding.count = 0;	
 				holding.reRender();
-				checkCraftingResult()	
-				socket.emit("move item", {start:start, end:end, count: holding.count});		
+				checkCraftingResult()		
 			} else if (event.button == 2) {
 				clickedItem.count += 1;
 				clickedItem.item = holding.item;
