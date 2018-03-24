@@ -113,7 +113,6 @@ function connectToServer() {
 				craftingTable[a].item = parsedCraftingTable[a].item ? items[parsedCraftingTable[a].item] : undefined;
 			}
 		}
-		checkCraftingResult();
 
 		function salt(data) {
 			if(data)

@@ -91,7 +91,7 @@ function checkCraftingResult() {
 		crafting[4].item = undefined;
 		crafting[4].count = 0;
 		crafting[4].reRender();
-	} else if(craftingUI != undefined) {
+	} else if(typeof craftingUI != "undefined") {
 		craftingTable[9].item = undefined;
 		craftingTable[9].count = 0;
 		craftingTable[9].reRender();
@@ -123,7 +123,7 @@ function checkCraftingResult() {
 				crafting[4].reRender();
 				return;
 			}	
-		} else if(craftingUI != undefined) {
+		} else if(typeof craftingUI != "undefined") {
 			var itemCount=0;
 			var item;
 			for(var m of craftingTable) {
