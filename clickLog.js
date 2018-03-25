@@ -243,6 +243,13 @@ onmousedown = function(event) {
 					break;
 				}
 			}
+			//kill slot
+			if(crafting[4].x-invBlockOffset <= x && x <= crafting[4].x+itemSize+invBlockOffset && (crafting[4].y+41)-invBlockOffset <= y && y <= (crafting[4].y+41)+itemSize+invBlockOffset) {
+				if(holding.item && holding.count > 0) {					
+					clickedItem = "kill";
+					findSth=true;
+				}
+			}
 		} else if(furnaceUI != undefined) {
 			for(var b of furnace) {
 				if(b.x-invBlockOffset <= x && x <= b.x+itemSize+invBlockOffset && b.y-invBlockOffset <= y && y <= b.y+itemSize+invBlockOffset) {
@@ -309,7 +316,7 @@ onmousedown = function(event) {
 			holding.reRender();
 
 //pokladani
-		} else if(clickedItem.item == holding.item && holding.count > 0 && clickedItem != crafting[4]  && clickedItem != furnace[2] || clickedItem.item == undefined && clickedItem != crafting[4] && clickedItem != craftingTable[9] && clickedItem != furnace[2] && clickedItem != inventory.armor[0] && clickedItem != inventory.armor[1] && clickedItem != inventory.armor[2] && clickedItem != inventory.armor[3] && holding.count > 0  || clickedItem == inventory.armor[0] && holding.item && holding.item.type == "helmet" && holding.count > 0 || clickedItem == inventory.armor[1] && holding.item &&holding.item.type == "chestplate"  && holding.count > 0   || clickedItem == inventory.armor[2] && holding.item && holding.item.type == "trousers" && holding.count > 0   || clickedItem == inventory.armor[3] && holding.item && holding.item.type == "shoes" && holding.count > 0  ){ // release clicked item
+		} else if(clickedItem.item == holding.item && holding.count > 0 && clickedItem != crafting[4]  && clickedItem != furnace[2] || clickedItem.item == undefined && clickedItem != crafting[4] && clickedItem != craftingTable[9] && clickedItem != furnace[2] && clickedItem != inventory.armor[0] && clickedItem != inventory.armor[1] && clickedItem != inventory.armor[2] && clickedItem != inventory.armor[3] && holding.count > 0  || clickedItem == inventory.armor[0] && holding.item && holding.item.type == "helmet" && holding.count > 0 || clickedItem == inventory.armor[1] && holding.item &&holding.item.type == "chestplate"  && holding.count > 0   || clickedItem == inventory.armor[2] && holding.item && holding.item.type == "trousers" && holding.count > 0   || clickedItem == inventory.armor[3] && holding.item && holding.item.type == "shoes" && holding.count > 0 || clickedItem=="kill"){ // release clicked item
 			if(playing==2) {
 				var start={x:0, y:0};
 				var end={x:0, y:0};
@@ -365,9 +372,18 @@ onmousedown = function(event) {
 							start.x=craftingTable.indexOf(f);
 						}
 				}
+				if(clickedItem=="kill") {
+					end.y=7
+				}
 			}
 			if(event.button == 0 || crafting.indexOf(holding.getFrom) == 4) {
-				socket.emit("move item", {start:start, end:end, count: holding.count});	
+				if(clickedItem=="kill") {
+					holding.item=undefined;
+					holding.count=0;
+					return;
+				}
+				if(playing==2)
+					socket.emit("move item", {start:start, end:end, count: holding.count});	
 				clickedItem.count += holding.count;
 				clickedItem.item = holding.item;
 				clickedItem.reRender();
@@ -376,6 +392,12 @@ onmousedown = function(event) {
 				holding.reRender();
 				checkCraftingResult()		
 			} else if (event.button == 2) {
+				if(clickedItem=="kill") {
+					holding.count--;
+					if(holding.count == 0)
+						holding.item=undefined;
+					return;
+				}
 				clickedItem.count += 1;
 				clickedItem.item = holding.item;
 				holding.count -= 1;
@@ -384,7 +406,8 @@ onmousedown = function(event) {
 				if(holding.count == 0)
 					holding.item = undefined;
 				holding.reRender();
-				socket.emit("move item", {start:start, end:end, count: 1});
+				if(playing==2)
+					socket.emit("move item", {start:start, end:end, count: 1});
 			}
 		}
 
