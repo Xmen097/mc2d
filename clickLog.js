@@ -377,13 +377,13 @@ onmousedown = function(event) {
 				}
 			}
 			if(event.button == 0 || crafting.indexOf(holding.getFrom) == 4) {
+				if(playing==2)
+					socket.emit("move item", {start:start, end:end, count: holding.count});	
 				if(clickedItem=="kill") {
 					holding.item=undefined;
 					holding.count=0;
 					return;
 				}
-				if(playing==2)
-					socket.emit("move item", {start:start, end:end, count: holding.count});	
 				clickedItem.count += holding.count;
 				clickedItem.item = holding.item;
 				clickedItem.reRender();
@@ -392,6 +392,8 @@ onmousedown = function(event) {
 				holding.reRender();
 				checkCraftingResult()		
 			} else if (event.button == 2) {
+				if(playing==2)
+					socket.emit("move item", {start:start, end:end, count: 1});
 				if(clickedItem=="kill") {
 					holding.count--;
 					if(holding.count == 0)
@@ -406,8 +408,6 @@ onmousedown = function(event) {
 				if(holding.count == 0)
 					holding.item = undefined;
 				holding.reRender();
-				if(playing==2)
-					socket.emit("move item", {start:start, end:end, count: 1});
 			}
 		}
 
