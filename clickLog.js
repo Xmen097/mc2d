@@ -355,6 +355,16 @@ onmousedown = function(event) {
 							start.x=crafting.indexOf(e);
 						}
 				}
+				for(var f of craftingTable) {
+						if(clickedItem==f) {
+							end.y=6
+							end.x=craftingTable.indexOf(f);
+						}
+						if(holding.getFrom==f) {
+							start.y=6
+							start.x=craftingTable.indexOf(f);
+						}
+				}
 			}
 			if(event.button == 0 || crafting.indexOf(holding.getFrom) == 4) {
 				socket.emit("move item", {start:start, end:end, count: holding.count});	
