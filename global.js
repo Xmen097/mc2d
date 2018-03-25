@@ -355,7 +355,7 @@ function setupGame() {
     activeSlot.slotPosition=0;
     hotbarUI = new component(546*canvas.width/820, 64*canvas.height/820, "textures/ui/hotbar.png", camera.x + (canvas.width - 546*canvas.width/820)/2, camera.y*-1 + (canvas.height - 64*canvas.height/820)/1.1,"image");
     player = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/steveRight.png", (canvas.width+canvas.tileSize)/2-canvas.tileSize, 50, "image");
-	activeItem=new inventorySpace()
+	activeItem=inventory.hotbar[activeSlot.slot]
 }
 
 function stopGame() {
