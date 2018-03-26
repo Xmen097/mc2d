@@ -120,6 +120,15 @@ function connectToServer() {
 		    	socket.emit("new player", {name: name, token: sha256(loginToken+data)});
 		}
 
+		function onStorageBlock(data) {
+			var parsedFurnace = JSON.parse(data);
+			for(var a=0;a<mpFurnace.length;a++) {
+				mpFurnace[a].count = parsedFurnace[a].count|0;
+				mpFurnace[a].item = parsedFurnace[a].item ? items[parsedFurnace[a].item] : undefined;
+			}
+			furnace = copyArr(mpFurnace);
+		}
+
 		function onBlockBreaking(data) {
 			if(parseInt(data.progress) == -1) {
 				delete remoteDestroingBlock[parseInt(data.id)];
@@ -143,5 +152,6 @@ function connectToServer() {
     	socket.on("new map", onNewMap);
     	socket.on("salt", salt);
     	socket.on("inventory", onInventory);
+    	socket.on("storage block", onStorageBlock);
 	}, "socketIO");	
 }

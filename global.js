@@ -432,6 +432,7 @@ function startMP() {
 	chatOn=false;
 	chatMessage=""
 	messagesList=[]
+	mpFurnace = copyArr(furnaceInventoryPrefab);
 	lastTime = Date.now();
 	canvas.interval = setInterval(update, 30);
 }

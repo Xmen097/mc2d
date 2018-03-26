@@ -155,10 +155,16 @@ onmousedown = function(event) {
 					furnaceArrowUI = new component(72*canvas.width/820, 45*canvas.height/820, "textures/ui/furnaceArrow.png", camera.x + (canvas.width*0.469), camera.y*-1 + (canvas.height*0.294),"furnaceArrow");
 					furnaceFireUI = new component(40*canvas.width/820, 40*canvas.height/820, "textures/ui/furnaceFire.png", camera.x + (canvas.width*0.378), camera.y*-1 + (canvas.height*0.299),"furnaceFire");
 					furnaceUI = new component(359*canvas.width/500, 337*canvas.height/500, "textures/ui/furnace.png", camera.x + (canvas.width - 359*canvas.width/500)/2, camera.y*-1 + (canvas.height - 359*canvas.height/500)/2,"image");
-					for(var a of furnaceSaves) {
-						if(a.x == x && a.y == y) {
-							furnace=a.inventory;
-						}
+					if(playing == 2) {
+						socket.emit("storage block", {x:x, y:y});
+						mpFurnace.x = x;
+						mpFurnace.y = y;
+					} else {
+						for(var a of furnaceSaves) {
+							if(a.x == x && a.y == y) {
+								furnace=a.inventory;
+							}
+						}	
 					}
 					for (var m of inventory.inventory) {
 						for(var a of m) {
@@ -370,6 +376,18 @@ onmousedown = function(event) {
 						if(holding.getFrom==f) {
 							start.y=6
 							start.x=craftingTable.indexOf(f);
+						}
+				}
+				for(var g of furnace) {
+						if(clickedItem==g) {
+							end.y=g.y+10;
+							end.x=g.x;
+							end.z=craftingTable.indexOf(g);
+						}
+						if(holding.getFrom==g) {
+							start.y=g.y+10;
+							start.x=g.x;
+							start.z=craftingTable.indexOf(g);
 						}
 				}
 				if(clickedItem=="kill") {
