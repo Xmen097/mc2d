@@ -380,13 +380,13 @@ onmousedown = function(event) {
 				}
 				for(var g of furnace) {
 						if(clickedItem==g) {
-							end.y=g.y+10;
-							end.x=g.x;
+							end.y=furnace.y+10;
+							end.x=furnace.x;
 							end.z=craftingTable.indexOf(g);
 						}
 						if(holding.getFrom==g) {
-							start.y=g.y+10;
-							start.x=g.x;
+							start.y=furnace.y+10;
+							start.x=furnace.x;
 							start.z=craftingTable.indexOf(g);
 						}
 				}
