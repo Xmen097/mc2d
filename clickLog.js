@@ -389,7 +389,6 @@ onmousedown = function(event) {
 							start.x=furnace.x;
 							start.z=craftingTable.indexOf(g);
 						}
-						util.log("clickedItem")
 				}
 				if(clickedItem=="kill") {
 					end.y=7
