@@ -380,14 +380,14 @@ onmousedown = function(event) {
 				}
 				for(var g of furnace) {
 						if(clickedItem==g) {
-							end.y=furnace.y+10;
-							end.x=furnace.x;
-							end.z=craftingTable.indexOf(g);
+							end.y=mpFurnace.y+10;
+							end.x=mpFurnace.x;
+							end.z=furnace.indexOf(g);
 						}
 						if(holding.getFrom==g) {
-							start.y=furnace.y+10;
-							start.x=furnace.x;
-							start.z=craftingTable.indexOf(g);
+							start.y=mpFurnace.y+10;
+							start.x=mpFurnace.x;
+							start.z=furnace.indexOf(g);
 						}
 				}
 				if(clickedItem=="kill") {
