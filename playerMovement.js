@@ -1,6 +1,6 @@
 var timeout=false;
 var atGround=false;
-var speed = 5; //Changing speed/movement counting algoritm will break collision detection!!!
+var speed = 10; //Values bigger, than 10 are buggy. 5 is ideal;
 var gravity = 0.25;
 var jump=false;
 

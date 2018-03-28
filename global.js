@@ -214,8 +214,8 @@ var items = [
 	{name: "dirt", durability: 100, stack: 64, x:9, favType:"shovel", drop: new drop(5), id:5},																	//5
 	{name: "bedrock", durability: Infinity, drop: new drop(undefined), id:6},																					//6
 	{name: "iron ore", durability: 700, stack: 64, x:3, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 7), id:7},									//7			
-	{name: "coal ore", durability: 600, stack: 64, x:0, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", "coal"), id:8},		 						//8				
-	{name: "diamond ore", durability: 1000, stack: 64, x:1, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", "diamond"), id:9},  						//9				
+	{name: "coal ore", durability: 600, stack: 64, x:0, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 51), id:8},		 							//8				
+	{name: "diamond ore", durability: 1000, stack: 64, x:1, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 50), id:9},  							//9				
 	{name: "gold ore", durability: 800, stack: 64, x:2, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 10), id:10},			 						//10				
 	{name: "wooden planks", durability: 200, stack: 64, x:5, favType: "axe", smelting: 500, drop: new drop(11), id:11},											//11
 	{name: "crafting table", durability: 200, stack: 64, x:8, favType: "axe", active:"crafting", smelting: 1000, drop: new drop(12), id:12},					//12
