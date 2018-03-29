@@ -5,9 +5,9 @@ var breakMultiplier;
 function breakBlock(event) { 
 	var startX = Math.floor((event.pageX - document.getElementById('canvas').offsetLeft + camera.x)/canvas.tileSize);
 	var startY = Math.floor((event.pageY - document.getElementById('canvas').offsetTop + camera.y*-1)/canvas.tileSize);
-	if(activeItem.item != undefined && activeItem.item.type == items[map[startY][startX]].favType){
+	if(items[map[startY][startX]] && activeItem.item != undefined && activeItem.item.type == items[map[startY][startX]].favType){
 		breakMultiplier=activeItem.item.multiplier;
-	}else if(activeItem.item != undefined && activeItem.item.type == items[map[startY][startX]].favType2 &&  items[map[startY][startX]].favType2 != undefined) {
+	}else if(items[map[startY][startX]] && activeItem.item != undefined && activeItem.item.type == items[map[startY][startX]].favType2 &&  items[map[startY][startX]].favType2 != undefined) {
 		breakMultiplier=activeItem.item.multiplier;
 	}else
 		breakMultiplier= 1;
