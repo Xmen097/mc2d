@@ -5,12 +5,14 @@ var breakMultiplier;
 function breakBlock(event) { 
 	var startX = Math.floor((event.pageX - document.getElementById('canvas').offsetLeft + camera.x)/canvas.tileSize);
 	var startY = Math.floor((event.pageY - document.getElementById('canvas').offsetTop + camera.y*-1)/canvas.tileSize);
-	if(map[startY][startX] == -1 || items[map[startY][startX]].durability == Infinity)
+	if(map[startY][startX] == -1 || items[map[startY][startX]].durability == Infinity && breakMultiplier!=Infinity)
 		return;
 	if(breakMultiplier==Infinity) {
 		items[map[startY][startX]].drop.drop()
 		map[startY][startX] = -1;
-		renderMap();		
+		renderMap();	
+		if(playing==2)
+			socket.emit("map edit", {x:startY, y:startX, block: -1, active: inventory.hotbar.indexOf(activeItem)})	
 		return;
 	}
 	if(activeItem.item != undefined && activeItem.item.type == items[map[startY][startX]].favType){
@@ -44,7 +46,7 @@ function breakBlock(event) {
 		}
 		map[startY][startX] = -1;
 		if(playing==2) {
-			socket.emit("map edit", {x:startY, y:startX, block: -1, active: inventory.hotbar.indexOf(activeItem)})//p
+			socket.emit("map edit", {x:startY, y:startX, block: -1, active: inventory.hotbar.indexOf(activeItem)})
 			socket.emit("block breaking", {x:0, y:0, progress: -1});
 		}
 		renderMap();
