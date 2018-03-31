@@ -121,12 +121,16 @@ function connectToServer() {
 		}
 
 		function onStorageBlock(data) {
-			var parsedFurnace = JSON.parse(data);
+			var parsedFurnace = JSON.parse(data.content);
 			for(var a=0;a<mpFurnace.length;a++) {
 				mpFurnace[a].count = parsedFurnace[a].count|0;
 				mpFurnace[a].item = parsedFurnace[a].item ? items[parsedFurnace[a].item] : undefined;
 			}
+			mpFurnace.x = data.x;
+			mpFurnace.y = data.y;
 			furnace = copyArr(mpFurnace);
+			furnaceArrowUI.percent=100*(data.smeltProgress/smeltingTime)
+			furnaceFireUI.percent = Math.round((data.fuelProgress/data.maxFuel)*10)*10;
 		}
 
 		function onBlockBreaking(data) {
