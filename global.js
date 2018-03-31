@@ -212,7 +212,7 @@ var items = [
 	{name: "leaves", durability: 50, stack: 64, x:12, favType:"scissors", smelting: 300, drop: new drop(undefined, 0, "scissors", 3), id:3},		
 	{name: "grass", durability: 100, stack: 64, x:10, favType:"scissors", favType2: "shovel", drop: new drop(5, 1, "scissors", 4), id:4},
 	{name: "dirt", durability: 100, stack: 64, x:9, favType:"shovel", drop: new drop(5), id:5},
-	{name: "bedrock", durability: Infinity, stack: 64, x:6, drop: new drop(undefined), id:6},
+	{name: "bedrock", durability: Infinity, stack: 64, favType:"pickaxe", sx:6, drop: new drop(undefined), id:6},
 	{name: "iron ore", durability: 700, stack: 64, x:3, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 7), id:7},			
 	{name: "coal ore", durability: 600, stack: 64, x:0, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 51), id:8},				
 	{name: "diamond ore", durability: 1000, stack: 64, x:1, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 50), id:9},				
