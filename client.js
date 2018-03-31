@@ -128,7 +128,7 @@ function connectToServer() {
 			}
 			mpFurnace.x = data.x;
 			mpFurnace.y = data.y;
-			furnace = copyArr(mpFurnace);
+			furnace = mpFurnace
 			furnaceArrowUI.percent=100*(data.smeltProgress/smeltingTime)
 			furnaceFireUI.percent = Math.round((data.fuelProgress/data.maxFuel)*10)*10;
 		}
