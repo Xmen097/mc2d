@@ -121,7 +121,7 @@ function connectToServer() {
 		}
 
 		function onStorageBlock(data) {
-			var parsedFurnace = JSON.parse(data.content);
+			var parsedFurnace = data.content;
 			for(var a=0;a<mpFurnace.length;a++) {
 				mpFurnace[a].count = parsedFurnace[a].count|0;
 				mpFurnace[a].item = parsedFurnace[a].item ? items[parsedFurnace[a].item] : undefined;
