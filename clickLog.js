@@ -146,12 +146,7 @@ onmousedown = function(event) {
 			var y=Math.floor((event.pageY - document.getElementById('canvas').offsetTop + camera.y*-1)/canvas.tileSize);
 			if(map[y][x] != -1 && items[map[y][x]].active != undefined) {
 				if(items[map[y][x]].active == "furnace") {
-					inventoryUI=undefined;
-					for(var a of furnaceSaves) {
-						if(a.x == x && a.y == y)
-							furnaceSaves[furnaceSaves.indexOf(a)].active=true;
-					}
-					inventoryOn = false;
+					inventoryUI=undefined;					inventoryOn = false;
 					furnaceArrowUI = new component(72*canvas.width/820, 45*canvas.height/820, "textures/ui/furnaceArrow.png", camera.x + (canvas.width*0.469), camera.y*-1 + (canvas.height*0.294),"furnaceArrow");
 					furnaceFireUI = new component(40*canvas.width/820, 40*canvas.height/820, "textures/ui/furnaceFire.png", camera.x + (canvas.width*0.378), camera.y*-1 + (canvas.height*0.299),"furnaceFire");
 					furnaceUI = new component(359*canvas.width/500, 337*canvas.height/500, "textures/ui/furnace.png", camera.x + (canvas.width - 359*canvas.width/500)/2, camera.y*-1 + (canvas.height - 359*canvas.height/500)/2,"image");
@@ -162,6 +157,7 @@ onmousedown = function(event) {
 					} else {
 						for(var a of furnaceSaves) {
 							if(a.x == x && a.y == y) {
+								furnaceSaves[furnaceSaves.indexOf(a)].active=true;
 								furnace=a.inventory;
 							}
 						}	
