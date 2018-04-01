@@ -375,14 +375,12 @@ function stopGame() {
 
 function startSP() {
 	try {
-		setupGame();
 		inventory = copyArr(inventoryPreset);
 		crafting = copyArr(craftingPreset);
 		craftingTable = copyArr(craftingTablePreset);
 	    furnace = copyArr(furnaceInventoryPrefab);
 		playing=1;
 		var world = JSON.parse(localStorage["worlds"])[SPSelected];
-		menu=0;
 		map = world.map;
 		inventory = copyArr(inventoryPreset);
 		for(var a=0;a<inventory.inventory.length;a++) {
@@ -419,6 +417,7 @@ function startSP() {
 			crafting[a].count = world.crafting[a].count|0;
 			crafting[a].item = world.crafting[a].item ? items[world.crafting[a].item.id] : undefined;
 		}
+		setupGame();
 		renderMap();
 		autoSave= setInterval(saveWorld, 60000);
 		lastTime = Date.now();
