@@ -387,16 +387,16 @@ function startSP() {
 	for(var a=0;a<inventory.inventory.length;a++) {
 		for(var b=0;b<inventory.inventory[a].length;b++) {
 			inventory.inventory[a][b].count = world.inventory.inventory[a][b].count|0;
-			inventory.inventory[a][b].item = world.inventory.inventory[a][b].item ? items[world.inventory.inventory[a][b].item.id] : undefined;
+			inventory.inventory[a][b].item = typeof world.inventory.inventory[a][b].item == "number" ? items[world.inventory.inventory[a][b].item.id] : undefined;
 		}
 	}
 	for(var b=0;b<inventory.hotbar.length;b++) {
 		inventory.hotbar[b].count = world.inventory.hotbar[b].count|0;
-		inventory.hotbar[b].item = world.inventory.hotbar[b].item ? items[world.inventory.hotbar[b].item.id] : undefined;
+		inventory.hotbar[b].item = typeof world.inventory.hotbar[b].item == "number" ? items[world.inventory.hotbar[b].item.id] : undefined;
 	}
 	for(var b=0;b<inventory.armor.length;b++) {
 		inventory.armor[b].count = world.inventory.armor[b].count|0;
-		inventory.armor[b].item = world.inventory.armor[b].item ? items[world.inventory.armor[b].item.id] : undefined;
+		inventory.armor[b].item = typeof world.inventory.armor[b].item == "number" ? items[world.inventory.armor[b].item.id] : undefined;
 	}
 	player.x = world.position.x;
 	player.y = world.position.y;
@@ -408,15 +408,15 @@ function startSP() {
 	activeSlot.y = player.y+194
 	for(var a=0;a<furnaceSaves.length;a++) {
 		furnaceSaves[a].count = world.furnaces[a].count|0;
-		furnaceSaves[a].item = world.furnaces[a].item ? items[world.furnaces[a].item.id] : undefined;
+		furnaceSaves[a].item = typeof world.furnaces[a].item == "number" ? items[world.furnaces[a].item.id] : undefined;
 	}
 	for(var a=0;a<craftingTable.length;a++) {
 		craftingTable[a].count = world.craftingTable[a].count|0;
-		craftingTable[a].item = world.craftingTable[a].item ? items[world.craftingTable[a].item.id] : undefined;
+		craftingTable[a].item = typeof world.craftingTable[a].item == "number" ? items[world.craftingTable[a].item.id] : undefined;
 	}
 	for(var a=0;a<crafting.length;a++) {
 		crafting[a].count = world.crafting[a].count|0;
-		crafting[a].item = world.crafting[a].item ? items[world.crafting[a].item.id] : undefined;
+		crafting[a].item = typeof world.crafting[a].item == "number" ? items[world.crafting[a].item.id] : undefined;
 	}
 	renderMap();
 	autoSave= setInterval(saveWorld, 60000);

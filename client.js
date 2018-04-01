@@ -98,19 +98,19 @@ function connectToServer() {
 			}
 			for(var b=0;b<inventory.hotbar.length;b++) {
 				inventory.hotbar[b].count = parsedInv.hotbar[b].count|0;
-				inventory.hotbar[b].item = parsedInv.hotbar[b].item ? items[parsedInv.hotbar[b].item] : undefined;
+				inventory.hotbar[b].item = typeof parsedInv.hotbar[b].item == "number" ? items[parsedInv.hotbar[b].item] : undefined;
 			}
 			for(var b=0;b<inventory.armor.length;b++) {
 				inventory.armor[b].count = parsedInv.armor[b].count|0;
-				inventory.armor[b].item = parsedInv.armor[b].item ? items[parsedInv.armor[b].item] : undefined;
+				inventory.armor[b].item = typeof parsedInv.armor[b].item  == "number" ? items[parsedInv.armor[b].item] : undefined;
 			}
 			for(var a=0;a<crafting.length;a++) {
 				crafting[a].count = parsedCrafting[a].count|0;
-				crafting[a].item = parsedCrafting[a].item ? items[parsedCrafting[a].item] : undefined;
+				crafting[a].item = typeof parsedCrafting[a].item  == "number" ? items[parsedCrafting[a].item] : undefined;
 			}
 			for(var a=0;a<craftingTable.length;a++) {
 				craftingTable[a].count = parsedCraftingTable[a].count|0;
-				craftingTable[a].item = parsedCraftingTable[a].item ? items[parsedCraftingTable[a].item] : undefined;
+				craftingTable[a].item = typeof parsedCraftingTable[a].item  == "number" ? items[parsedCraftingTable[a].item] : undefined;
 			}
 			checkCraftingResult();
 		}
