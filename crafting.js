@@ -5,7 +5,7 @@
 var smallRecipes=[[items[2], items[11], 4],
 				 [items[11], items[11], items[11], items[11], items[12], 1],
 				 [items[11],undefined ,items[11], items[57], 4],
-				 [items[55], undefined, undefined, items[55], items[34], 1]] 
+				 [undefined, items[55], items[55], undefined, items[34], 1]] 
 
 var bigRecipes=[[items[1],items[1],items[1],
 				 items[1],undefined,items[1],
