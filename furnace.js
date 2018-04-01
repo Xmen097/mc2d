@@ -3,7 +3,7 @@ var furnaceInventoryPrefab=[new inventorySpace(172, 78),
 			 new inventorySpace(172, 128),
 			 new inventorySpace(280, 103)];
 
-var furnaceRecipes=[[items[2], items[51]], [items[1], items[0]], [items[7], items[52]], [items[10], items[53]]]
+var furnaceRecipes=[[items[2], items[54]], [items[1], items[0]], [items[7], items[55]], [items[10], items[56]]]
 
 var smeltingTime=998;
 
