@@ -93,7 +93,7 @@ function connectToServer() {
 			for(var a=0;a<inventory.inventory.length;a++) {
 				for(var b=0;b<inventory.inventory[a].length;b++) {
 					inventory.inventory[a][b].count = parsedInv.inventory[a][b].count|0;
-					inventory.inventory[a][b].item = parsedInv.inventory[a][b].item ? items[parsedInv.inventory[a][b].item] : undefined;
+					inventory.inventory[a][b].item = typeof parsedInv.inventory[a][b].item == "number" ? items[parsedInv.inventory[a][b].item] : undefined;
 				}
 			}
 			for(var b=0;b<inventory.hotbar.length;b++) {
