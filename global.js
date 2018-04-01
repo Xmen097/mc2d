@@ -508,8 +508,15 @@ function update() {
 		for(var a of inventory.hotbar) {
 			a.reRender();
 		}
-		for(var a of furnace) {
-			a.reRender();
+		for(var a=0;a<furnace.length;a++) {
+			if(holding.getFrom != a || playing != 2) {
+				a.reRender();	
+			} else {
+				a.count-=holding.count;
+				if(a.count<=0)
+					a.item=undefined;
+				a.reRender();
+			}
 		}
 		for (var m of inventory.inventory) {
 			for(var a of m) {
