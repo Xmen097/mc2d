@@ -424,6 +424,7 @@ function startSP() {
 		lastTime = Date.now();
 		canvas.interval = setInterval(update, 30);	
 	} catch(err) {
+		playing=0;
 		console.log("No world created");
 	}
 
