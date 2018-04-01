@@ -508,7 +508,7 @@ function update() {
 		for(var a of inventory.hotbar) {
 			a.reRender();
 		}
-		for(var a=0;a<furnace.length;a++) {
+		for(var a of furnace) {
 			if(holding.getFrom != a || playing != 2) {
 				a.reRender();	
 			} else {
