@@ -5,7 +5,7 @@
 var smallRecipes=[[items[2], items[11], 4],
 				 [items[11], items[11], items[11], items[11], items[12], 1],
 				 [items[11],undefined ,items[11], items[57], 4],
-				 [undefined, items[55], items[55], undefined, items[34], 1]] 
+				 [items[55], undefined, undefined, items[55], items[34], 1]] 
 
 var bigRecipes=[[items[1],items[1],items[1],
 				 items[1],undefined,items[1],
@@ -122,7 +122,7 @@ function checkCraftingResult() {
 				craftingTable[9].count = a[4];
 				craftingTable[9].reRender();
 				return;
-			} else if(a.length == 6 && itemCount==countItemsInRecipe(a) && craftingTable[0].item==a[0] && craftingTable[1].item == a[1] && craftingTable[2].item == a[2] && craftingTable[3].item == a[3]) {
+			} else if(a.length == 6 && itemCount==countItemsInRecipe(a) && item.item==a[0] && craftingTable[craftingTable.indexOf(item)+1] && craftingTable[craftingTable.indexOf(item)+1].item == a[1] && craftingTable[craftingTable.indexOf(item)+3] && craftingTable[craftingTable.indexOf(item)+3].item == a[2] && craftingTable[craftingTable.indexOf(item)+4] && craftingTable[craftingTable.indexOf(item)+4].item == a[3]) {
 				craftingTable[9].item = a[4];
 				craftingTable[9].count = a[5];
 				craftingTable[9].reRender();
