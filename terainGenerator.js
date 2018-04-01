@@ -122,7 +122,7 @@ function mapGeneratorConstructor() {
 					map[a][b]=-1;
 			}
 		}
-		var treeCount=randomRange(this.mapLength/50,this.mapLength/20)
+		var treeCount=randomRange(this.mapLength/20,this.mapLength/10)
 		for(var a=0;a<treeCount;a++) {
 			var treeArea = Math.floor(this.mapLength/treeCount)
 			var treePosition=randomRange(a*treeArea+3, (a+1)*treeArea-3)

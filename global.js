@@ -209,7 +209,7 @@ var items = [
 	{name: "stone", durability: 500, stack: 64, x:13, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 1), id:0},   					    
 	{name: "cobblestone", durability: 500, stack: 64, x:7, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 1), id:1},												
 	{name: "wood", durability: 300, stack: 64, x:11, favType: "axe", smelting: 1000, drop: new drop(2), id:2},
-	{name: "leaves", durability: 50, stack: 64, x:12, favType:"scissors", smelting: 300, drop: new drop(undefined, 0, "scissors", 3), id:3},		
+	{name: "leaves", durability: 50, stack: 64, x:12, favType:"scissors", smelting: 250, drop: new drop(undefined, 0, "scissors", 3), id:3},		
 	{name: "grass", durability: 100, stack: 64, x:10, favType:"scissors", favType2: "shovel", drop: new drop(5, 1, "scissors", 4), id:4},
 	{name: "dirt", durability: 100, stack: 64, x:9, favType:"shovel", drop: new drop(5), id:5},
 	{name: "bedrock", durability: Infinity, stack: 64, favType:"pickaxe", x:6, drop: new drop(undefined), id:6},
@@ -374,54 +374,59 @@ function stopGame() {
 }
 
 function startSP() {
-	setupGame();
-	inventory = copyArr(inventoryPreset);
-	crafting = copyArr(craftingPreset);
-	craftingTable = copyArr(craftingTablePreset);
-    furnace = copyArr(furnaceInventoryPrefab);
-	playing=1;
-	var world = JSON.parse(localStorage["worlds"])[SPSelected];
-	menu=0;
-	map = world.map;
-	inventory = copyArr(inventoryPreset);
-	for(var a=0;a<inventory.inventory.length;a++) {
-		for(var b=0;b<inventory.inventory[a].length;b++) {
-			inventory.inventory[a][b].count = world.inventory.inventory[a][b].count|0;
-			inventory.inventory[a][b].item = world.inventory.inventory[a][b].item ? items[world.inventory.inventory[a][b].item.id] : undefined;
+	try {
+		setupGame();
+		inventory = copyArr(inventoryPreset);
+		crafting = copyArr(craftingPreset);
+		craftingTable = copyArr(craftingTablePreset);
+	    furnace = copyArr(furnaceInventoryPrefab);
+		playing=1;
+		var world = JSON.parse(localStorage["worlds"])[SPSelected];
+		menu=0;
+		map = world.map;
+		inventory = copyArr(inventoryPreset);
+		for(var a=0;a<inventory.inventory.length;a++) {
+			for(var b=0;b<inventory.inventory[a].length;b++) {
+				inventory.inventory[a][b].count = world.inventory.inventory[a][b].count|0;
+				inventory.inventory[a][b].item = world.inventory.inventory[a][b].item ? items[world.inventory.inventory[a][b].item.id] : undefined;
+			}
 		}
+		for(var b=0;b<inventory.hotbar.length;b++) {
+			inventory.hotbar[b].count = world.inventory.hotbar[b].count|0;
+			inventory.hotbar[b].item = world.inventory.hotbar[b].item ? items[world.inventory.hotbar[b].item.id] : undefined;
+		}
+		for(var b=0;b<inventory.armor.length;b++) {
+			inventory.armor[b].count = world.inventory.armor[b].count|0;
+			inventory.armor[b].item = world.inventory.armor[b].item ? items[world.inventory.armor[b].item.id] : undefined;
+		}
+		player.x = world.position.x;
+		player.y = world.position.y;
+		camera.y = -player.y+100
+		camera.x = Math.max(player.x-200, 0);
+		hotbarUI.y = player.y+193.34811529933478;
+		hotbarUI.x = Math.max(player.x-124.8170731707317, 75.1829268292683);
+		activeSlot.x = Math.max(player.x+7, 43+activeSlot.slot*33);
+		activeSlot.y = player.y+194
+		for(var a=0;a<furnaceSaves.length;a++) {
+			furnaceSaves[a].count = world.furnaces[a].count|0;
+			furnaceSaves[a].item = world.furnaces[a].item ? items[world.furnaces[a].item.id] : undefined;
+		}
+		for(var a=0;a<craftingTable.length;a++) {
+			craftingTable[a].count = world.craftingTable[a].count|0;
+			craftingTable[a].item = world.craftingTable[a].item ? items[world.craftingTable[a].item.id] : undefined;
+		}
+		for(var a=0;a<crafting.length;a++) {
+			crafting[a].count = world.crafting[a].count|0;
+			crafting[a].item = world.crafting[a].item ? items[world.crafting[a].item.id] : undefined;
+		}
+		renderMap();
+		autoSave= setInterval(saveWorld, 60000);
+		lastTime = Date.now();
+		canvas.interval = setInterval(update, 30);	
+	} catch(err) {
+		util.log("No world created");
 	}
-	for(var b=0;b<inventory.hotbar.length;b++) {
-		inventory.hotbar[b].count = world.inventory.hotbar[b].count|0;
-		inventory.hotbar[b].item = world.inventory.hotbar[b].item ? items[world.inventory.hotbar[b].item.id] : undefined;
-	}
-	for(var b=0;b<inventory.armor.length;b++) {
-		inventory.armor[b].count = world.inventory.armor[b].count|0;
-		inventory.armor[b].item = world.inventory.armor[b].item ? items[world.inventory.armor[b].item.id] : undefined;
-	}
-	player.x = world.position.x;
-	player.y = world.position.y;
-	camera.y = -player.y+100
-	camera.x = Math.max(player.x-200, 0);
-	hotbarUI.y = player.y+193.34811529933478;
-	hotbarUI.x = Math.max(player.x-124.8170731707317, 75.1829268292683);
-	activeSlot.x = Math.max(player.x+7, 43+activeSlot.slot*33);
-	activeSlot.y = player.y+194
-	for(var a=0;a<furnaceSaves.length;a++) {
-		furnaceSaves[a].count = world.furnaces[a].count|0;
-		furnaceSaves[a].item = world.furnaces[a].item ? items[world.furnaces[a].item.id] : undefined;
-	}
-	for(var a=0;a<craftingTable.length;a++) {
-		craftingTable[a].count = world.craftingTable[a].count|0;
-		craftingTable[a].item = world.craftingTable[a].item ? items[world.craftingTable[a].item.id] : undefined;
-	}
-	for(var a=0;a<crafting.length;a++) {
-		crafting[a].count = world.crafting[a].count|0;
-		crafting[a].item = world.crafting[a].item ? items[world.crafting[a].item.id] : undefined;
-	}
-	renderMap();
-	autoSave= setInterval(saveWorld, 60000);
-	lastTime = Date.now();
-	canvas.interval = setInterval(update, 30);
+
 }
 
 function startMP() {
