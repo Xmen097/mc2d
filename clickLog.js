@@ -21,9 +21,9 @@ onmousedown = function(event) {
 			menus.login();
 		}
 
-	}else if(menuOn==2) {
-		for(var a=0;a<savedSPs.length;a++) {
-			if(x>0.125*canvas.width && y>0.275*canvas.height+a*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+a*0.125*canvas.height) { 
+	}else if(menuOn==2) {		
+		for(var a=viewPoint;a<Math.min(5+viewPoint, savedSPs.length);a++) {
+			if(x>0.125*canvas.width && y>0.275*canvas.height+(a-viewPoint)*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+(a-viewPoint)*0.125*canvas.height) { 
 				SPSelected=a;
 				menus.selectSP();
 			}
@@ -36,8 +36,8 @@ onmousedown = function(event) {
 			menus.main()
 		} 
 	} else if(menuOn==3){
-		for(var a=0;a<savedMPs.length;a++) {
-			if(x>0.125*canvas.width && y>0.275*canvas.height+a*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+a*0.125*canvas.height) { 
+		for(var a=viewPoint;a<Math.min(5+viewPoint, savedSPs.length);a++) {
+			if(x>0.125*canvas.width && y>0.275*canvas.height+(a-viewPoint)*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+(a-viewPoint)*0.125*canvas.height) { 
 				MPSelected=a;
 				menus.selectMP();
 			}
