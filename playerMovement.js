@@ -18,6 +18,7 @@ function checkForMove() {
 			inventoryUI = undefined;
             furnaceUI = undefined;
             craftingUI=undefined;
+            chestUI=undefined;
             for(var a of furnaceSaves) {
                 if(a.active)
                     furnaceSaves[furnaceSaves.indexOf(a)].active=false;
@@ -39,6 +40,7 @@ function checkForMove() {
 			inventoryUI = undefined;
             furnaceUI = undefined;
             craftingUI=undefined;
+            chestUI=undefined;
             for(var a of furnaceSaves) {
                 if(a.active)
                     furnaceSaves[furnaceSaves.indexOf(a)].active=false;
@@ -54,6 +56,7 @@ function checkForMove() {
 			inventoryUI = undefined;
             furnaceUI = undefined;
             craftingUI=undefined;
+            chestUI=undefined;
             for(var a of furnaceSaves) {
                 if(a.active)
                     furnaceSaves[furnaceSaves.indexOf(a)].active=false;

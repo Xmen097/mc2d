@@ -84,7 +84,7 @@ onmousedown = function(event) {
 			ajax.onreadystatechange = function() {
 			if (ajax.readyState == 4) {
 				if (ajax.responseText) {
-					if(ajax.responseText != "Login server offline" && ajax.responseText != "Invalid name or password" && ajax.responseText != "Failed to generate token" && ajax.responseText != "Name is too long" && ajax.responseText != "User with that name already exists") {
+					if(ajax.responseText != "Login server offline" && ajax.responseText != "Invalid name or password" && ajax.responseText != "Failed to generate token") {
 						loginToken = ajax.responseText;
 						localStorage["name"]=name;
 						localStorage["token"]=loginToken;
@@ -115,7 +115,7 @@ onmousedown = function(event) {
 			ajax.onreadystatechange = function() {
 			if (ajax.readyState == 4) {
 				if (ajax.responseText) {
-					if(ajax.responseText != 'Login server offline' && ajax.responseText != 'Name or password is too short (<5)' && ajax.responseText != 'Failed to generate token' && ajax.responseText != "Names can only contain alphanumeric characters" && ajax.responseText != "User with that name already exists") {
+					if(ajax.responseText != 'Login server offline' && ajax.responseText != 'Name or password is too short (<5)' && ajax.responseText != 'Failed to generate token' && ajax.responseText != "Names can only contain alphanumeric characters" && ajax.responseText != "User with that name already exists" && ajax.responseText != "Name is too long") {
 						loginToken = ajax.responseText;
 						menus.main();
 					} else {
@@ -138,7 +138,7 @@ onmousedown = function(event) {
 			menuOn=7.2;
 			menus.signIn()
 		}
-	} else if(playing != 0 && craftingUI==undefined && furnaceUI==undefined && !inventoryOn && x <= canvas.width && y <= canvas.height && x >= 0 && y >= 0) {
+	} else if(playing != 0 && craftingUI==undefined && furnaceUI==undefined && chestUI==undefined && !inventoryOn && x <= canvas.width && y <= canvas.height && x >= 0 && y >= 0) {
 		if(event.button == 0){
 			breakBlock(event);
 		}else if(event.button == 2){
@@ -146,7 +146,8 @@ onmousedown = function(event) {
 			var y=Math.floor((event.pageY - document.getElementById('canvas').offsetTop + camera.y*-1)/canvas.tileSize);
 			if(map[y][x] != -1 && items[map[y][x]].active != undefined) {
 				if(items[map[y][x]].active == "furnace") {
-					inventoryUI=undefined;					inventoryOn = false;
+					inventoryUI=undefined;					
+					inventoryOn = false;
 					furnaceArrowUI = new component(72*canvas.width/820, 45*canvas.height/820, "textures/ui/furnaceArrow.png", camera.x + (canvas.width*0.469), camera.y*-1 + (canvas.height*0.294),"furnaceArrow");
 					furnaceFireUI = new component(40*canvas.width/820, 40*canvas.height/820, "textures/ui/furnaceFire.png", camera.x + (canvas.width*0.378), camera.y*-1 + (canvas.height*0.299),"furnaceFire");
 					furnaceUI = new component(359*canvas.width/500, 337*canvas.height/500, "textures/ui/furnace.png", camera.x + (canvas.width - 359*canvas.width/500)/2, camera.y*-1 + (canvas.height - 359*canvas.height/500)/2,"image");
@@ -189,6 +190,34 @@ onmousedown = function(event) {
 					}	
 					inventoryOn = false;
 					inventoryUI=undefined;
+				} else if(items[map[y][x]].active == "chest") {
+					chestUI = new component(359*canvas.width/500, 337*canvas.height/500, "textures/ui/chest.png", camera.x + (canvas.width - 359*canvas.width/500)/2, camera.y*-1 + (canvas.height - 359*canvas.height/500)/2,"image");
+					if(playing == 2) {
+						socket.emit("storage block", {x:x, y:y});
+						mpChest.x = x;
+						mpChest.y = y;
+					} else {
+						for(var a of chestSaves) {
+							if(a.x == x && a.y == y) {
+								chestSaves[chestSaves.indexOf(a)].active=true;
+								chest=a.inventory;
+							}
+						}	
+					}		
+					for (var m of inventory.inventory) {
+						for(var a of m) {
+							a.reRender();
+						}
+					}
+					for(var a of inventory.hotbar) {
+						a.reRender();
+					}	
+					for(var a of chest) {
+						if(a!=undefined && typeof a!= "number")
+						a.reRender();
+					}	
+					inventoryOn = false;
+					inventoryUI=undefined;
 				}
 			}else if(activeItem.item != undefined && activeItem.item.type == undefined && map[y][x] == -1) {
 				if(y == (Math.ceil(player.y/canvas.tileSize)) && x == Math.round(player.x/canvas.tileSize) || y == Math.ceil(player.y/canvas.tileSize)+1 && x == Math.round(player.x/canvas.tileSize)){return;}
@@ -203,7 +232,9 @@ onmousedown = function(event) {
 						if(playing==2)
 							socket.emit("map edit", {x:y, y:x, block: a, active: inventory.hotbar.indexOf(activeItem)});
 						if(items[a].active == "furnace") {
-							furnaceSaves[furnaceSaves.length] = {x:x, y:y, smelting:0, fuel:0, inventory:[new inventorySpace(172, 78), new inventorySpace(172, 128), new inventorySpace(280, 103)]};
+							furnaceSaves.push({x:x, y:y, smelting:0, fuel:0, inventory:copyArr(furnaceInventoryPrefab)});
+						} else if(items[a].active == "chest") {
+							chestSaves.push({x:x, y:y, inventory:copyArr(chestPreset)});
 						}
 						inventory.hotbar[activeSlot.slot-1].count-=1;
 						if(inventory.hotbar[activeSlot.slot-1].count == 0)
@@ -213,7 +244,7 @@ onmousedown = function(event) {
 				}
 			}
 		}
-	} else if(playing != 0 && inventoryOn != undefined || playing != 0 && furnaceUI != undefined || playing != 0 && craftingUI != undefined) {
+	} else if(playing != 0 && inventoryOn != undefined || playing != 0 && furnaceUI != undefined || playing != 0 && craftingUI != undefined || playing != 0 && chestUI != undefined) {
 		for(var a of inventory.inventory) { // search what item was clicked
 			for(var b of a) {
 				if(b.x-invBlockOffset <= x && x <= b.x+itemSize+invBlockOffset && b.y-invBlockOffset <= y && y <= b.y+itemSize+invBlockOffset) {
@@ -268,11 +299,18 @@ onmousedown = function(event) {
 					break;
 				}
 			}
+		} else if(chestUI != undefined) {
+			for(var b of chest) {
+				if(b!=undefined && b.x-invBlockOffset <= x && x <= b.x+itemSize+invBlockOffset && b.y-invBlockOffset <= y && y <= b.y+itemSize+invBlockOffset) {
+					clickedItem = b;
+					findSth=true;
+					break;
+				}
+			}
 		}
 		if(findSth) {findSth=false;} else return;
 //sebrani
-		if(holding.item == undefined && clickedItem.item != undefined || holding.item == clickedItem.item && clickedItem==crafting[4] || holding.item == clickedItem.item && clickedItem==furnace[2] || holding.item == clickedItem.item && clickedItem==craftingTable[9
-		]){ // pick-up clicked item
+		if(holding.item == undefined && clickedItem.item != undefined || holding.item == clickedItem.item && clickedItem==crafting[4] || holding.item == clickedItem.item && clickedItem==furnace[2] || holding.item == clickedItem.item && clickedItem==craftingTable[9]){ // pick-up clicked item
 			if(event.button == 0) {
 				holding.count += clickedItem.count;
 				holding.item = clickedItem.item;
@@ -386,6 +424,18 @@ onmousedown = function(event) {
 							start.z=furnace.indexOf(g);
 						}
 				}
+				for(var h of chest) {
+						if(clickedItem==h) {
+							end.y=chest.y+10;
+							end.x=chest.x;
+							end.z=chest.indexOf(h);
+						}
+						if(holding.getFrom==h) {
+							start.y=chest.y+10;
+							start.x=chest.x;
+							start.z=chest.indexOf(h);
+						}
+				}
 				if(clickedItem=="kill") {
 					end.y=7
 				}
@@ -440,7 +490,7 @@ onmouseup = function(event) {
 }
 
 onmousemove = function(event) {
-	if(holding.item != undefined && inventoryOn || holding.item != undefined && furnaceUI != undefined || holding.item != undefined && craftingUI != undefined) {
+	if(holding.item != undefined && inventoryOn || holding.item != undefined && furnaceUI != undefined || holding.item != undefined && craftingUI != undefined || holding.item != undefined && chestUI != undefined) {
 		holding.reRender();
 		var x = event.pageX - document.getElementById('canvas').offsetLeft;
 		var y = event.pageY - document.getElementById('canvas').offsetTop;

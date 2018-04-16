@@ -144,7 +144,7 @@ function copyArr(arr){
 	}
 }
 
-function world(getName, getInventory, getPosition, getMap, getFurnaces, getCraftingTable, getCrafting) {
+function world(getName, getInventory, getPosition, getMap, getFurnaces, getCraftingTable, getCrafting, getChests) {
 	this.name = getName; 
 	this.inventory = getInventory;
 	this.position = getPosition;
@@ -152,6 +152,7 @@ function world(getName, getInventory, getPosition, getMap, getFurnaces, getCraft
 	this.furnaces = getFurnaces;
 	this.craftingTable = getCraftingTable;
 	this.crafting = getCrafting;
+	this.chests = getChests;
 }
 
 
@@ -213,10 +214,10 @@ var items = [
 	{name: "grass", durability: 100, stack: 64, x:10, favType:"scissors", favType2: "shovel", drop: new drop(5, 1, "scissors", 4), id:4},
 	{name: "dirt", durability: 100, stack: 64, x:9, favType:"shovel", drop: new drop(5), id:5},
 	{name: "bedrock", durability: Infinity, stack: 64, favType:"pickaxe", x:6, drop: new drop(undefined), id:6},
-	{name: "iron ore", durability: 700, stack: 64, x:3, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 7), id:7},			
-	{name: "coal ore", durability: 600, stack: 64, x:0, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 54), id:8},				
-	{name: "diamond ore", durability: 1000, stack: 64, x:1, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 53), id:9},				
-	{name: "gold ore", durability: 800, stack: 64, x:2, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 10), id:10},				
+	{name: "iron ore", durability: 1000, stack: 64, x:3, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 7), id:7},			
+	{name: "coal ore", durability: 750, stack: 64, x:0, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 54), id:8},				
+	{name: "diamond ore", durability: 2000, stack: 64, x:1, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 53), id:9},				
+	{name: "gold ore", durability: 1500, stack: 64, x:2, favType:"pickaxe", drop: new drop(undefined, 0, "pickaxe", 10), id:10},				
 	{name: "wooden planks", durability: 200, stack: 64, x:5, favType: "axe", smelting: 500, drop: new drop(11), id:11},
 	{name: "crafting table", durability: 200, stack: 64, x:8, favType: "axe", active:"crafting", smelting: 1000, drop: new drop(12), id:12},
 	{name: "furnace", durability: 500, stack: 64, x:4, favType: "pickaxe", active:"furnace", drop: new drop(undefined, 0, "pickaxe", 13), id:13},			
@@ -241,29 +242,30 @@ var items = [
 	{name: "Diamond shoes", stack: 1, x:3, y:3, durability: 800, type: "shoes", id:32},
 	{name: "Golden shoes", stack: 1, x:4, y:3, durability: 1000, type: "shoes", id:33},
 	{name: "Scissors", stack:1, x:13, y:5, durability: 200, type: "scissors", multiplier:2, id:34},
-	{name: "Wood pickaxe", stack:1, x:0, y:6, durability: 500, type: "pickaxe", multiplier:6, id:35},
+	{name: "Wood pickaxe", stack:1, x:0, y:6, durability: 500, type: "pickaxe", multiplier:4, id:35},
 	{name: "Stone pickaxe", stack:1, x:1, y:6, durability: 500, type: "pickaxe", multiplier:8, id:36},
-	{name: "Iron pickaxe", stack:1, x:2, y:6, durability: 500, type: "pickaxe", multiplier:10, id:37},
-	{name: "Diamond pickaxe", stack:1, x:3, y:6, durability: 500, type: "pickaxe", multiplier:12, id:38},
-	{name: "Gold pickaxe", stack:1, x:4, y:6, durability: 500, type: "pickaxe", multiplier:12, id:39},
+	{name: "Iron pickaxe", stack:1, x:2, y:6, durability: 500, type: "pickaxe", multiplier:15, id:37},
+	{name: "Diamond pickaxe", stack:1, x:3, y:6, durability: 500, type: "pickaxe", multiplier:20, id:38},
+	{name: "Gold pickaxe", stack:1, x:4, y:6, durability: 500, type: "pickaxe", multiplier:17, id:39},
 	{name: "Admin pickaxe", stack:1, x:5, y:6, durability: Infinity, type: "pickaxe", multiplier:Infinity, id:40},
-	{name: "Wood axe", stack:1, x:0, y:7, durability: 500, type: "axe", multiplier:3, id:41},
-	{name: "Stone axe", stack:1, x:1, y:7, durability: 500, type: "axe", multiplier:4, id:42},
+	{name: "Wood axe", stack:1, x:0, y:7, durability: 500, type: "axe", multiplier:2, id:41},
+	{name: "Stone axe", stack:1, x:1, y:7, durability: 500, type: "axe", multiplier:3, id:42},
 	{name: "Iron axe", stack:1, x:2, y:7, durability: 500, type: "axe", multiplier:5, id:43},
-	{name: "Diamond axe", stack:1, x:3, y:7, durability: 500, type: "axe", multiplier:6, id:44},
+	{name: "Diamond axe", stack:1, x:3, y:7, durability: 500, type: "axe", multiplier:7, id:44},
 	{name: "Gold axe", stack:1, x:4, y:7, durability: 500, type: "axe", multiplier:6, id:45},
 	{name: "Admin axe", stack:1, x:5, y:7, durability: Infinity, type: "axe", multiplier:Infinity, id:46},
-	{name: "Wooden shovel", stack:1, x:0, y:5, durability: 50, type: "shovel", multiplier:2, id:47},
-	{name: "Stone shovel", stack:1, x:1, y:5, durability: 200, type: "shovel", multiplier:3, id:48},
-	{name: "Iron shovel", stack:1, x:2, y:5, durability: 500, type: "shovel", multiplier:4, id:49},
+	{name: "Wooden shovel", stack:1, x:0, y:5, durability: 50, type: "shovel", multiplier:1.5, id:47},
+	{name: "Stone shovel", stack:1, x:1, y:5, durability: 200, type: "shovel", multiplier:2, id:48},
+	{name: "Iron shovel", stack:1, x:2, y:5, durability: 500, type: "shovel", multiplier:3, id:49},
 	{name: "Diamond shovel", stack:1, x:3, y:5, durability: 1000, type: "shovel", multiplier:5, id:50},
-	{name: "Gold shovel", stack:1, x:4, y:5, durability: 100, type: "shovel", multiplier:5, id:51},
+	{name: "Gold shovel", stack:1, x:4, y:5, durability: 100, type: "shovel", multiplier:4, id:51},
 	{name: "Admin shovel", stack:1, x:5, y:5, durability: Infinity, type: "shovel", multiplier:Infinity, id:52},
 	{name: "Diamond", stack: 64, x:7, y:3, type: "item", id:53},
 	{name: "Coal", stack: 64, x:7, y:0, type: "item", smelting: 4000, id:54},
 	{name: "Iron ingot", stack: 64, x:7, y:1, type: "item", id:55},
 	{name: "Gold ingot", stack: 64, x:7, y:2, type: "item", id:56},
 	{name: "Stick", stack: 64, x:5, y:3, type: "item", smelting: 50, id:57},
+	{name: "Chest", durability: 200, stack: 64, x:14, favType: "axe", active:"chest", drop: new drop(58), id:58},	
 ]
 var camera = {
 	x: 0,
@@ -308,7 +310,8 @@ window.onload = function() {
 	    'textures/ui/furnaceFire.png',
 	    'textures/ui/hotbar.png',
 	    'textures/ui/inventory.png',
-	    'textures/blockSheet.png'
+	    'textures/blockSheet.png',
+	    'textures/ui/chest.png'
 	]);
 	resources.onReady(function() {
 		document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu
@@ -342,7 +345,7 @@ function saveWorld() {
 	}catch(e) {
 		worlds=[]
 	}
-	worlds[SPSelected] = new world(worldName, inventory, {x: player.x, y: player.y}, map, furnaceSaves, craftingTable, crafting)
+	worlds[SPSelected] = new world(worldName, inventory, {x: player.x, y: player.y}, map, furnaceSaves, craftingTable, crafting, chestSaves)
 	localStorage["worlds"] = JSON.stringify(worlds);
 	console.log("autoSaved")
 }
@@ -381,11 +384,11 @@ function startSP() {
 			inventory = copyArr(inventoryPreset);
 			crafting = copyArr(craftingPreset);
 			craftingTable = copyArr(craftingTablePreset);
-		    furnace = copyArr(furnaceInventoryPrefab);
+			furnaceSaves=[];
+			chestSaves=[];
 			playing=1;
 			menu=0;
 			map = world.map;
-			inventory = copyArr(inventoryPreset);
 			for(var a=0;a<inventory.inventory.length;a++) {
 				for(var b=0;b<inventory.inventory[a].length;b++) {
 					inventory.inventory[a][b].count = world.inventory.inventory[a][b].count|0;
@@ -400,6 +403,20 @@ function startSP() {
 				inventory.armor[b].count = world.inventory.armor[b].count|0;
 				inventory.armor[b].item = world.inventory.armor[b].item ? items[world.inventory.armor[b].item.id] : undefined;
 			}
+			for(var b=0;b<world.furnaces.length;b++) {
+				furnaceSaves[b] = copyArr(world.furnaces[b])
+				for(var c=0;c<world.furnaces[b].inventory.length;c++) {
+					furnaceSaves[b].inventory[c].count = world.furnaces[b].inventory[c].count|0;
+					furnaceSaves[b].inventory[c].item = world.furnaces[b].inventory[c].item ? items[world.furnaces[b].inventory[c].item.id] : undefined;
+				}
+			}
+			for(var b=0;b<world.chests.length;b++) {
+				chestSaves[b] = copyArr(world.chests[b])
+				for(var c=0;c<world.chests[b].inventory.length;c++) {
+					chestSaves[b].inventory[c].count = world.chests[b].inventory[c].count|0;
+					chestSaves[b].inventory[c].item = world.chests[b].inventory[c].item ? items[world.chests[b].inventory[c].item.id] : undefined;
+				}
+			}
 			player.x = world.position.x;
 			player.y = world.position.y;
 			camera.y = -player.y+100
@@ -408,6 +425,7 @@ function startSP() {
 			hotbarUI.x = Math.max(player.x-124.8170731707317, 75.1829268292683);
 			activeSlot.x = Math.max(player.x+7, 43+activeSlot.slot*33);
 			activeSlot.y = player.y+194
+			
 			for(var a=0;a<furnaceSaves.length;a++) {
 				furnaceSaves[a].count = world.furnaces[a].count|0;
 				furnaceSaves[a].item = world.furnaces[a].item ? items[world.furnaces[a].item.id] : undefined;
@@ -448,7 +466,7 @@ function update() {
 	if(!document.hasFocus()){ // delete all pressed keys, if can't check for release
 		pressedKeys=[];
 	};
-	deltaTime = Date.now() - lastTime;
+	deltaTime = Date.now() - lastTime; //usen in gravity math
 	context.setTransform(1,0,0,1,0,0);
 	canvas.clear();
     context.translate( -1*camera.x, camera.y );
@@ -557,6 +575,20 @@ function update() {
 			for(var a of m) {
 				a.reRender();
 			}				
+		}
+		holding.reRender()
+	}else if(typeof chestUI != "undefined") {
+		chestUI.update();
+		for(var a of inventory.hotbar) {
+			a.reRender();
+		}
+		for (var m of inventory.inventory) {
+			for(var a of m) {
+				a.reRender();
+			}				
+		}
+		for(var a of chest) {
+			a.reRender();
 		}
 		holding.reRender()
 	}

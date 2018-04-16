@@ -15,7 +15,7 @@ function component(width, height, texture, x, y, itemType, percent) {
             context.drawImage(this.image, this.x, this.y, this.width, this.height);
         }else if(this.itemType == "material") {
       	    this.image.src = "textures/blockSheet.png";
-            context.drawImage(this.image, (this.texture.x%14)*70+1, Math.floor(this.texture.x/14)*70+1, 69, 69, this.x, this.y, this.width, this.height);
+            context.drawImage(this.image, (this.texture.x%15)*70+1, Math.floor(this.texture.x/15)*70+1, 69, 69, this.x, this.y, this.width, this.height);
         } else if(this.itemType == "furnaceArrow") {
             this.image.src = "textures/ui/furnaceArrow.png";
             context.drawImage(this.image, 0, 0, Math.round(this.percent/2.27272727273), 30, this.x, this.y, this.percent/(100/this.width), this.height);
