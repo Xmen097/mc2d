@@ -144,7 +144,7 @@ function copyArr(arr){
 	}
 }
 
-function world(getName, getInventory, getPosition, getMap, getFurnaces, getCraftingTable, getCrafting, getChests) {
+function world(getName, getInventory, getPosition, getMap, getFurnaces, getCraftingTable, getCrafting, getChests, getHolding) {
 	this.name = getName; 
 	this.inventory = getInventory;
 	this.position = getPosition;
@@ -153,6 +153,7 @@ function world(getName, getInventory, getPosition, getMap, getFurnaces, getCraft
 	this.craftingTable = getCraftingTable;
 	this.crafting = getCrafting;
 	this.chests = getChests;
+	this.holding = getHolding;
 }
 
 
@@ -345,7 +346,7 @@ function saveWorld() {
 	}catch(e) {
 		worlds=[]
 	}
-	worlds[SPSelected] = new world(worldName, inventory, {x: player.x, y: player.y}, map, furnaceSaves, craftingTable, crafting, chestSaves)
+	worlds[SPSelected] = new world(worldName, inventory, {x: player.x, y: player.y}, map, furnaceSaves, craftingTable, crafting, chestSaves, holding)
 	localStorage["worlds"] = JSON.stringify(worlds);
 	console.log("autoSaved")
 }
@@ -426,12 +427,9 @@ function startSP() {
 			hotbarUI.y = player.y+193.34811529933478;
 			hotbarUI.x = Math.max(player.x-124.8170731707317, 75.1829268292683);
 			activeSlot.x = Math.max(player.x+7, 43+activeSlot.slot*33);
-			activeSlot.y = player.y+194
-			
-			for(var a=0;a<furnaceSaves.length;a++) {
-				furnaceSaves[a].count = world.furnaces[a].count|0;
-				furnaceSaves[a].item = world.furnaces[a].item ? items[world.furnaces[a].item.id] : undefined;
-			}
+			activeSlot.y = player.y+194;
+			holding = world.holding;
+			holding.item = world.holding.item ? items[world.holding.item.id] : undefined;
 			for(var a=0;a<craftingTable.length;a++) {
 				craftingTable[a].count = world.craftingTable[a].count|0;
 				craftingTable[a].item = world.craftingTable[a].item ? items[world.craftingTable[a].item.id] : undefined;
