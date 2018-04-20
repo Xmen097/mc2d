@@ -32,7 +32,28 @@ onkeydown = function(event) {
 			ip+=event.key
 		}
 		menus.createMP();
-	} else if(menuOn==4) {
+	} else if(menuOn==6 && event.key=="Enter") {
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function() {
+		if (ajax.readyState == 4) {
+			if (ajax.responseText) {
+				if(ajax.responseText != "Login server offline" && ajax.responseText != "Invalid name or password" && ajax.responseText != "Failed to generate token") {
+					loginToken = ajax.responseText;
+					localStorage["name"]=name;
+					localStorage["token"]=loginToken;
+					menus.main();
+				} else {
+					alert(ajax.responseText);
+				}
+			} else {
+				alert("Login server offline!")
+			}
+		}
+		}
+		ajax.open("POST", "index.php", true);
+		ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		ajax.send("name="+name+"&pasw="+pasw+"&type=login");
+	}else if(menuOn==4) {
 		if(event.key=="Backspace") {
 			worldName = worldName.slice(0, worldName.length-1)
 		}else if(event.key.length==1 && worldName.length < 20) {
