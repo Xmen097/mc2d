@@ -42,7 +42,7 @@ onkeydown = function(event) {
 	}else if(menuOn == 6.1 || menuOn == 7.1) {
 		if(event.key=="Backspace") {
 			name = name.slice(0, name.length-1)
-		}else if(event.key.length==1 && name.length < 32) {
+		}else if(event.key.length==1 && name.length < 31) {
 			name+=event.key
 		}
 		if(menuOn == 6.1){
@@ -52,7 +52,7 @@ onkeydown = function(event) {
 	} else if(menuOn == 6.2 || menuOn == 7.2) {
 		if(event.key=="Backspace") {
 			pasw = pasw.slice(0, pasw.length-1)
-		}else if(event.key.length==1 && pasw.length < 32) {
+		}else if(event.key.length==1 && pasw.length < 31) {
 			pasw+=event.key
 		}
 		if(menuOn == 6.2){
