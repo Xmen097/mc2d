@@ -411,7 +411,8 @@ function startSP() {
 				}
 			}
 			for(var b=0;b<world.chests.length;b++) {
-				chestSaves[b] = copyArr(chestPreset);
+				chestSaves[b] = copyArr(world.chests[b])
+				chestSaves[b].inventory = copyArr(chestPreset);
 				for(var c=0;c<world.chests[b].inventory.length;c++) {
 					chestSaves[b].inventory[c].count = world.chests[b].inventory[c].count|0;
 					chestSaves[b].inventory[c].item = world.chests[b].inventory[c].item ? items[world.chests[b].inventory[c].item.id] : undefined;
