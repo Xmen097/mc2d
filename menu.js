@@ -176,10 +176,10 @@ var menus = {
 		context.textAlign="start";
 		if(menuOn == 6.1) {
 			context.fillText(name+"|",0.19*canvas.width,0.41*canvas.height)
-			context.fillText(pasw,0.19*canvas.width,0.63*canvas.height)
+			context.fillText("*".repeat(pasw.length),0.19*canvas.width,0.63*canvas.height)
 		} else if( menuOn == 6.2) {
 			context.fillText(name,0.19*canvas.width,0.41*canvas.height)
-			context.fillText(pasw+"|",0.19*canvas.width,0.63*canvas.height)
+			context.fillText("*".repeat(pasw.length)+"|",0.19*canvas.width,0.63*canvas.height)
 		}
 	},
 	signIn: function() {
