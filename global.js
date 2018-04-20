@@ -430,6 +430,8 @@ function startSP() {
 			activeSlot.y = player.y+194;
 			holding = new inventorySpace();
 			holding.count = world.holding.count|0;
+			holding.x = world.holding.x|0;
+			holding.y = world.holding.y|0;
 			holding.item = world.holding.item ? items[world.holding.item.id] : undefined;
 			for(var a=0;a<craftingTable.length;a++) {
 				craftingTable[a].count = world.craftingTable[a].count|0;
