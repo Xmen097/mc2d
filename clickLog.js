@@ -36,7 +36,7 @@ onmousedown = function(event) {
 			menus.main()
 		} 
 	} else if(menuOn==3){
-		for(var a=viewPoint;a<Math.min(5+viewPoint, savedSPs.length);a++) {
+		for(var a=viewPoint;a<Math.min(5+viewPoint, savedMPs.length);a++) {
 			if(x>0.125*canvas.width && y>0.275*canvas.height+(a-viewPoint)*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+(a-viewPoint)*0.125*canvas.height) { 
 				MPSelected=a;
 				menus.selectMP();
