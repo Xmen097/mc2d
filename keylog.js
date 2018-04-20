@@ -53,7 +53,26 @@ onkeydown = function(event) {
 		ajax.open("POST", "index.php", true);
 		ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		ajax.send("name="+name+"&pasw="+pasw+"&type=login");
-	}else if(menuOn==4) {
+	} else if(Math.floor(menuOn)==7 && event.key=="Enter") {
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function() {
+		if (ajax.readyState == 4) {
+			if (ajax.responseText) {
+				if(ajax.responseText != 'Login server offline' && ajax.responseText != 'Name or password is too short (<5)' && ajax.responseText != 'Failed to generate token' && ajax.responseText != "Names can only contain alphanumeric characters" && ajax.responseText != "User with that name already exists" && ajax.responseText != "Name is too long") {
+					loginToken = ajax.responseText;
+					menus.main();
+				} else {
+					alert(ajax.responseText);
+				}
+			} else {
+				alert('Login server offline!')
+			}
+		}
+		}
+		ajax.open("POST", "index.php", true);
+		ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		ajax.send("name="+name+"&pasw="+pasw+"&type=create");
+	} else if(menuOn==4) {
 		if(event.key=="Backspace") {
 			worldName = worldName.slice(0, worldName.length-1)
 		}else if(event.key.length==1 && worldName.length < 20) {
