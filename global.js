@@ -429,7 +429,7 @@ function startSP() {
 			activeSlot.x = Math.max(player.x+7, 43+activeSlot.slot*33);
 			activeSlot.y = player.y+194;
 			holding = new inventorySpace();
-			holding = world.holding;
+			holding.count = world.holding.count|0;
 			holding.item = world.holding.item ? items[world.holding.item.id] : undefined;
 			for(var a=0;a<craftingTable.length;a++) {
 				craftingTable[a].count = world.craftingTable[a].count|0;
