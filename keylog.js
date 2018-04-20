@@ -32,7 +32,7 @@ onkeydown = function(event) {
 			ip+=event.key
 		}
 		menus.createMP();
-	} else if(menuOn==6 && event.key=="Enter") {
+	} else if(Math.floor(menuOn)==6 && event.key=="Enter") {
 		var ajax = new XMLHttpRequest();
 		ajax.onreadystatechange = function() {
 		if (ajax.readyState == 4) {
