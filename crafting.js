@@ -1,7 +1,3 @@
-// do 38 +0
-//do 45 +1
-//do 51 +2
-//od 52 +3
 var smallRecipes=[[items[2], items[11], 4],
 				 [items[11], items[11], items[11], items[11], items[12], 1],
 				 [items[11],undefined ,items[11], items[57], 4],
@@ -11,6 +7,10 @@ var bigRecipes=[[items[1],items[1],items[1],
 				 items[1],undefined,items[1],
 				 items[1],items[1],items[1],
 				 items[13], 1],
+				 [items[11],items[11],items[11],
+				 items[11],undefined,items[11],
+				 items[11],items[11],items[11],
+				 items[58], 1],
 				[items[11],undefined,undefined,
 				 items[57],undefined,undefined,
 				 items[57],undefined,undefined,
