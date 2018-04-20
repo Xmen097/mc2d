@@ -405,6 +405,7 @@ function startSP() {
 			}
 			for(var b=0;b<world.furnaces.length;b++) {
 				furnaceSaves[b] = copyArr(world.furnaces[b])
+				furnaceSaves[b].inventory = copyArr(furnaceInventoryPrefab);
 				for(var c=0;c<world.furnaces[b].inventory.length;c++) {
 					furnaceSaves[b].inventory[c].count = world.furnaces[b].inventory[c].count|0;
 					furnaceSaves[b].inventory[c].item = world.furnaces[b].inventory[c].item ? items[world.furnaces[b].inventory[c].item.id] : undefined;
