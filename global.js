@@ -428,6 +428,7 @@ function startSP() {
 			hotbarUI.x = Math.max(player.x-124.8170731707317, 75.1829268292683);
 			activeSlot.x = Math.max(player.x+7, 43+activeSlot.slot*33);
 			activeSlot.y = player.y+194;
+			holding = new inventorySpace();
 			holding = world.holding;
 			holding.item = world.holding.item ? items[world.holding.item.id] : undefined;
 			for(var a=0;a<craftingTable.length;a++) {
