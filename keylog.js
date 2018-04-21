@@ -25,6 +25,7 @@ onkeyup = function(event) {
 	pressedKeys[event.keyCode] = false;
 }
 onkeydown = function(event) {
+	event.preventDefault();
 	if(menuOn==5) {
 		if(event.key=="Backspace") {
 			ip = ip.slice(0, ip.length-1)
@@ -115,6 +116,17 @@ onkeydown = function(event) {
 			chatMessage = chatMessage.slice(0, chatMessage.length-1)
 		}else if(event.key=="Escape") {
 			chatOn=false;
+		}else if(event.key=="Tab") {
+			var playerNames = [];
+			var lastPart = chatMessage.split(' ').slice(-1)[0];
+			for(var a of remotePlayers) {
+				playerNames.push(a.name);
+			}
+			if(lastPart == "") {
+				chatMessage+=playerNames[0];
+			} else if(playerNames.includes(lastPart)) {
+				chatMessage = chatMessage.split(" ").slice(0, -1).push(playerNames[playerNames.indexOf(lastPart)+1<playerNames.length?playerNames.indexOf(lastPart):0])
+			}
 		}else if(event.key=="Enter") {
 			socket.emit("new message", chatMessage)
 			chatMessage="";
