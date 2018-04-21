@@ -461,6 +461,7 @@ function startMP() {
 	chatMessage=""
 	messagesList=[]
 	mpFurnace = copyArr(furnaceInventoryPrefab);
+	mpChest = copyArr(chestPreset);
 	lastTime = Date.now();
 	canvas.interval = setInterval(update, 30);
 }
