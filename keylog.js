@@ -126,7 +126,7 @@ onkeydown = function(event) {
 				chatMessage+=playerNames[0];
 			} else if(playerNames.includes(lastPart)) {
 				var chatMSG= chatMessage.split(" ").slice(0, -1);
-				chatMSG.push(playerNames[playerNames.indexOf(lastPart)+1<playerNames.length?playerNames.indexOf(lastPart):0]);
+				chatMSG.push(playerNames[playerNames.indexOf(lastPart)+1<playerNames.length?playerNames.indexOf(lastPart)+1:0]);
 				chatMessage = chatMSG.join(" ");
 			}
 		}else if(event.key=="Enter") {
