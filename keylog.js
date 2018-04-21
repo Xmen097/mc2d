@@ -127,7 +127,7 @@ onkeydown = function(event) {
 			} else if(playerNames.includes(lastPart)) {
 				var chatMSG= chatMessage.split(" ").slice(0, -1);
 				chatMSG.push(playerNames[playerNames.indexOf(lastPart)+1<playerNames.length?playerNames.indexOf(lastPart):0]);
-				chatMessage = chatMSG.join();
+				chatMessage = chatMSG.join(" ");
 			}
 		}else if(event.key=="Enter") {
 			socket.emit("new message", chatMessage)
