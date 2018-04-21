@@ -37,7 +37,7 @@ var chestSaves = [];
 var chestPreset = [new inventorySpace(84, 77), new inventorySpace(117, 77), new inventorySpace(150, 77), new inventorySpace(182, 77), new inventorySpace(215, 77), new inventorySpace(247, 77), new inventorySpace(280, 77), new inventorySpace(312, 77), new inventorySpace(345, 77),
 			 new inventorySpace(84, 102), new inventorySpace(117, 102), new inventorySpace(150, 102), new inventorySpace(182, 102), new inventorySpace(215, 102), new inventorySpace(247, 102), new inventorySpace(280, 102), new inventorySpace(312, 102), new inventorySpace(345, 102),
 			 new inventorySpace(84, 127), new inventorySpace(117, 127), new inventorySpace(150, 127), new inventorySpace(182, 127), new inventorySpace(215, 127), new inventorySpace(247, 127), new inventorySpace(280, 127), new inventorySpace(312, 127), new inventorySpace(345, 127)]
-
+chest = copyArr(chestPreset);
 
 var inventoryPreset = {
 	armor: [new inventorySpace(84, 62, items[14], 1), new inventorySpace(84, 88, items[20], 1), new inventorySpace(84, 113, items[26], 1), new inventorySpace(84, 139, items[32], 1)],
