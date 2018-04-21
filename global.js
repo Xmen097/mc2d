@@ -592,7 +592,14 @@ function update() {
 			}				
 		}
 		for(var a of chest) {
-			a.reRender();
+			if(holding.getFrom != a || playing != 2) {
+				a.reRender();	
+			} else {
+				a.count-=holding.count;
+				if(a.count<=0)
+					a.item=undefined;
+				a.reRender();
+			}
 		}
 		holding.reRender()
 	}
