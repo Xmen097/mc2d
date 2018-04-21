@@ -57,7 +57,7 @@ function checkForFurnaceSmelting() {
 				}	
 			}
 		}
-	} else if(furnaceUI) {
+	} else if(furnaceUI || chestUI) {
 		socket.emit("storage block", {x:mpFurnace.x, y:mpFurnace.y});
 	}
 }
