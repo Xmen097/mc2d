@@ -117,7 +117,7 @@ onkeydown = function(event) {
 		}else if(event.key=="Escape") {
 			chatOn=false;
 		}else if(event.key=="Tab") {
-			var playerNames = [];
+			var playerNames = [name];
 			var lastPart = chatMessage.split(' ').slice(-1)[0];
 			for(var a of remotePlayers) {
 				playerNames.push(a.name);
