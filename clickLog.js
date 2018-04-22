@@ -77,7 +77,10 @@ onmousedown = function(event) {
 			connectToServer();	
 		} else if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
 			menus.selectMP()
-		} 
+		} else if(x>0.53*canvas.width && y>0.55*canvas.height && x<0.53*canvas.width+0.5*canvas.tileSize && y<0.55*canvas.height+0.5*canvas.tileSize) {
+			saveMP = !saveMP;
+			menus.createMP();
+		}
 	} else if(Math.floor(menuOn) == 6) {
 		if(x>0.3*canvas.width && y>0.72*canvas.height && x<0.7*canvas.width && y<0.84*canvas.height) {
 			var ajax = new XMLHttpRequest();

@@ -25,7 +25,8 @@ onkeyup = function(event) {
 	pressedKeys[event.keyCode] = false;
 }
 onkeydown = function(event) {
-	event.preventDefault();
+	if(event.key!="F5" && event.key!="F12")
+		event.preventDefault();
 	if(menuOn==5) {
 		if(event.key=="Backspace") {
 			ip = ip.slice(0, ip.length-1)

@@ -76,6 +76,7 @@ var menus = {
 		},
 	selectMP: function() {
 		menuOn=3;
+		saveMP=false;
 		ip="";
 		if(typeof MPSelected == "undefined")
 			MPSelected=0	
@@ -137,10 +138,17 @@ var menus = {
 		context.fillText("Connect to server!",canvas.width/2,60)
 		context.textAlign="start"
 		context.fillText("IP:",canvas.width*0.125,canvas.height*0.375)
+		context.font=Math.round(0.05*canvas.height)+"px Verdana";
+		context.fillText("save:",canvas.width*0.4,canvas.height*0.6)
 		context.fillStyle="lightgrey";
 		context.fillRect(0.2*canvas.width, 0.3*canvas.height, 0.65*canvas.width, 0.1*canvas.height)
 		context.fillRect(0.3*canvas.width, 0.76*canvas.height, 0.4*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.85*canvas.width, 0.1*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
+		context.fillRect(0.53*canvas.width, 0.55*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
+		if(saveMP) {
+			context.fillStyle="black";
+			context.fillText(String.fromCharCode(10004),canvas.width*0.543,canvas.height*0.603)
+		}
 		context.fillStyle="black";
 		context.font=Math.round(0.045*350)+"px Verdana";
 		context.fillText("Connect",0.43*canvas.width,0.84*canvas.height)
