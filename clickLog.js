@@ -277,7 +277,7 @@ onmousedown = function(event) {
 				}
 			}
 			//kill slot
-			if(crafting[4].x-invBlockOffset <= x && x <= crafting[4].x+itemSize+invBlockOffset && (crafting[4].y+41)-invBlockOffset <= y && y <= (crafting[4].y+41)+itemSize+invBlockOffset) {
+			if(crafting[4].x-invBlockOffset <= x && x <= crafting[4].x+itemSize+invBlockOffset && (crafting[4].y+46)-invBlockOffset <= y && y <= (crafting[4].y+46)+itemSize+invBlockOffset) {
 				if(holding.item && holding.count > 0) {					
 					clickedItem = "kill";
 					findSth=true;
