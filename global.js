@@ -242,30 +242,30 @@ var items = [
 	{name: "Iron shoes", stack: 1, x:2, y:3, durability: 600, type: "shoes", id:31},
 	{name: "Diamond shoes", stack: 1, x:3, y:3, durability: 800, type: "shoes", id:32},
 	{name: "Golden shoes", stack: 1, x:4, y:3, durability: 1000, type: "shoes", id:33},
-	{name: "Scissors", stack:1, x:13, y:5, durability: 200, type: "scissors", multiplier:2, id:34},
-	{name: "Wood pickaxe", stack:1, x:0, y:6, durability: 500, type: "pickaxe", multiplier:4, id:35},
-	{name: "Stone pickaxe", stack:1, x:1, y:6, durability: 500, type: "pickaxe", multiplier:8, id:36},
-	{name: "Iron pickaxe", stack:1, x:2, y:6, durability: 500, type: "pickaxe", multiplier:15, id:37},
-	{name: "Diamond pickaxe", stack:1, x:3, y:6, durability: 500, type: "pickaxe", multiplier:20, id:38},
-	{name: "Gold pickaxe", stack:1, x:4, y:6, durability: 500, type: "pickaxe", multiplier:17, id:39},
-	{name: "Admin pickaxe", stack:1, x:5, y:6, durability: Infinity, type: "pickaxe", multiplier:Infinity, id:40},
-	{name: "Wood axe", stack:1, x:0, y:7, durability: 500, type: "axe", multiplier:2, id:41},
-	{name: "Stone axe", stack:1, x:1, y:7, durability: 500, type: "axe", multiplier:3, id:42},
-	{name: "Iron axe", stack:1, x:2, y:7, durability: 500, type: "axe", multiplier:5, id:43},
-	{name: "Diamond axe", stack:1, x:3, y:7, durability: 500, type: "axe", multiplier:7, id:44},
-	{name: "Gold axe", stack:1, x:4, y:7, durability: 500, type: "axe", multiplier:6, id:45},
-	{name: "Admin axe", stack:1, x:5, y:7, durability: Infinity, type: "axe", multiplier:Infinity, id:46},
-	{name: "Wooden shovel", stack:1, x:0, y:5, durability: 50, type: "shovel", multiplier:1.5, id:47},
-	{name: "Stone shovel", stack:1, x:1, y:5, durability: 200, type: "shovel", multiplier:2, id:48},
-	{name: "Iron shovel", stack:1, x:2, y:5, durability: 500, type: "shovel", multiplier:3, id:49},
-	{name: "Diamond shovel", stack:1, x:3, y:5, durability: 1000, type: "shovel", multiplier:5, id:50},
-	{name: "Gold shovel", stack:1, x:4, y:5, durability: 100, type: "shovel", multiplier:4, id:51},
-	{name: "Admin shovel", stack:1, x:5, y:5, durability: Infinity, type: "shovel", multiplier:Infinity, id:52},
-	{name: "Diamond", stack: 64, x:7, y:3, type: "item", id:53},
-	{name: "Coal", stack: 64, x:7, y:0, type: "item", smelting: 4000, id:54},
-	{name: "Iron ingot", stack: 64, x:7, y:1, type: "item", id:55},
-	{name: "Gold ingot", stack: 64, x:7, y:2, type: "item", id:56},
-	{name: "Stick", stack: 64, x:5, y:3, type: "item", smelting: 50, id:57},
+	{name: "Scissors", stack:1, x:3, y:11, durability: 200, type: "scissors", multiplier:2, id:34},
+	{name: "Wood pickaxe", stack:1, x:0, y:9, durability: 500, type: "pickaxe", multiplier:4, id:35},
+	{name: "Stone pickaxe", stack:1, x:0, y:6, durability: 500, type: "pickaxe", multiplier:8, id:36},
+	{name: "Iron pickaxe", stack:1, x:0, y:5, durability: 500, type: "pickaxe", multiplier:15, id:37},
+	{name: "Diamond pickaxe", stack:1, x:0, y:8, durability: 500, type: "pickaxe", multiplier:20, id:38},
+	{name: "Gold pickaxe", stack:1, x:0, y:7, durability: 500, type: "pickaxe", multiplier:17, id:39},
+	{name: "Admin pickaxe", stack:1, x:3, y:14, durability: Infinity, type: "pickaxe", multiplier:Infinity, id:40},
+	{name: "Wood axe", stack:1, x:3, y:0, durability: 500, type: "axe", multiplier:2, id:41},
+	{name: "Stone axe", stack:1, x:2, y:12, durability: 500, type: "axe", multiplier:3, id:42},
+	{name: "Iron axe", stack:1, x:2, y:11, durability: 500, type: "axe", multiplier:5, id:43},
+	{name: "Diamond axe", stack:1, x:2, y:14, durability: 500, type: "axe", multiplier:7, id:44},
+	{name: "Gold axe", stack:1, x:2, y:13, durability: 500, type: "axe", multiplier:6, id:45},
+	{name: "Admin axe", stack:1, x:3, y:13, durability: Infinity, type: "axe", multiplier:Infinity, id:46},
+	{name: "Wooden shovel", stack:1, x:0, y:3, durability: 50, type: "shovel", multiplier:1.5, id:47},
+	{name: "Stone shovel", stack:1, x:0, y:0, durability: 200, type: "shovel", multiplier:2, id:48},
+	{name: "Iron shovel", stack:1, x:1, y:12, durability: 500, type: "shovel", multiplier:3, id:49},
+	{name: "Diamond shovel", stack:1, x:0, y:2, durability: 1000, type: "shovel", multiplier:5, id:50},
+	{name: "Gold shovel", stack:1, x:0, y:1, durability: 100, type: "shovel", multiplier:4, id:51},
+	{name: "Admin shovel", stack:1, x:3, y:12, durability: Infinity, type: "shovel", multiplier:Infinity, id:52},
+	{name: "Diamond", stack: 64, x:1, y:1, type: "item", id:53},
+	{name: "Coal", stack: 64, x:1, y:2, type: "item", smelting: 4000, id:54},
+	{name: "Iron ingot", stack: 64, x:0, y:10, type: "item", id:55},
+	{name: "Gold ingot", stack: 64, x:0, y:14, type: "item", id:56},
+	{name: "Stick", stack: 64, x:1, y:0, type: "item", smelting: 50, id:57},
 	{name: "Chest", durability: 200, stack: 64, x:14, favType: "axe", active:"chest", drop: new drop(58), id:58},	
 ]
 var camera = {
@@ -273,14 +273,14 @@ var camera = {
 	y: 0
 }
 
-
+var tileMultiplier = 2;
 
 window.onload = function() {
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
-	canvas.tileSize = 50;
-	canvas.width = 450;
-	canvas.height =  350;
+	canvas.tileSize = 50*tileMultiplier;
+	canvas.width = 450*tileMultiplier;
+	canvas.height =  350*tileMultiplier;
 	canvas.clear = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 	}
@@ -357,11 +357,11 @@ function setupGame() {
 	craftingUI=undefined;
 	furnaceUI=undefined;
 	camera.y=50;
-	activeSlot = new component(63*canvas.width/820, 63*canvas.height/820, "textures/ui/selected.png", camera.x + (canvas.width - 63*canvas.width/820)/2, camera.y*-1 + (canvas.height - 63*canvas.height/820)/1.1,"image");
+	activeSlot = new component(63*canvas.width/820, 63*canvas.height/820, "textures/ui/selected.png", camera.x + (canvas.width - 63*canvas.width/820)*tileMultiplier/2, camera.y*-1 + (canvas.height - 63*canvas.height/820)*tileMultiplier/1.1,"image");
     activeSlot.slot=5;
     activeSlot.slotPosition=0;
-    hotbarUI = new component(546*canvas.width/820, 64*canvas.height/820, "textures/ui/hotbar.png", camera.x + (canvas.width - 546*canvas.width/820)/2, camera.y*-1 + (canvas.height - 64*canvas.height/820)/1.1,"image");
-    player = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/steveRight.png", (canvas.width+canvas.tileSize)/2-canvas.tileSize, 50, "image");
+    hotbarUI = new component(0.655*canvas.width, 64*canvas.height/820, "textures/ui/hotbar.png", camera.x + (canvas.width - 146*canvas.width/820)/2, camera.y*-1*tileMultiplier + (canvas.height - 64*canvas.height/820)/1.1,"image");
+    player = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/steveRight.png", (canvas.width+canvas.tileSize)/2, 50, "image");
 	activeItem=inventory.hotbar[activeSlot.slot]
 }
 
@@ -375,6 +375,8 @@ function stopGame() {
 	activeItem = undefined;
 	playing = 0;
 	clearInterval(canvas.interval);
+	if(typeof autoSave == "number")
+	clearInterval(autoSave);
 }
 
 function startSP() {
@@ -422,12 +424,12 @@ function startSP() {
 			}
 			player.x = world.position.x;
 			player.y = world.position.y;
-			camera.y = -player.y+100
-			camera.x = Math.max(player.x-200, 0);
-			hotbarUI.y = player.y+193.34811529933478;
-			hotbarUI.x = Math.max(player.x-124.8170731707317, 75.1829268292683);
-			activeSlot.x = Math.max(player.x+7, 43+activeSlot.slot*33);
-			activeSlot.y = player.y+194;
+			camera.y = -player.y+200
+			camera.x = Math.max(player.x-400, 0);
+			hotbarUI.y = player.y+(388);
+			hotbarUI.x = Math.max(player.x-248, 153);
+			activeSlot.x = Math.max(player.x+13, 83+activeSlot.slot*66);
+			activeSlot.y = player.y+388;
 			holding = new inventorySpace();
 			holding.count = world.holding.count|0;
 			holding.x = world.holding.x|0;
@@ -442,7 +444,7 @@ function startSP() {
 				crafting[a].item = world.crafting[a].item ? items[world.crafting[a].item.id] : undefined;
 			}
 			renderMap();
-			autoSave= setInterval(saveWorld, 60000);
+			autoSave = setInterval(saveWorld, 60000);
 			lastTime = Date.now();
 			canvas.interval = setInterval(update, 30);
 		}
@@ -452,6 +454,12 @@ function startSP() {
 function startMP() {
 	setupGame()
 	prevPos={x:player.x, y:player.y};
+	camera.y = -player.y+200
+	camera.x = Math.max(player.x-400, 0);
+	hotbarUI.y = player.y+(388);
+	hotbarUI.x = Math.max(player.x-248, 153);
+	activeSlot.x = Math.max(player.x+13, 83+activeSlot.slot*66);
+	activeSlot.y = player.y+388;
 	playing=2;
 	menu=0;
 	remoteDestroingBlock={};
@@ -470,7 +478,7 @@ function update() {
 	if(!document.hasFocus()){ // delete all pressed keys, if can't check for release
 		pressedKeys=[];
 	};
-	deltaTime = Date.now() - lastTime; //usen in gravity math
+	deltaTime = Date.now() - lastTime; //used in gravity math
 	context.setTransform(1,0,0,1,0,0);
 	canvas.clear();
     context.translate( -1*camera.x, camera.y );
@@ -488,6 +496,7 @@ function update() {
 			context.fillStyle="white";
 			context.font="10px Verdana";
 			context.textAlign = "center";
+			a.slot.reRender(-165+(a.x-camera.x)-(a.x-player.x)/2, -30+(a.y-camera.y*-1)-(a.y-player.y)/2, true, a.component.texture != "textures/player/steveRight.png");
 			context.fillText(a.name, a.x+canvas.tileSize/2, a.y-canvas.tileSize/10)
 		}
 		for(var a in remoteDestroingBlock) {
@@ -497,7 +506,6 @@ function update() {
 	if(destroingTexture != undefined)
 		destroingTexture.update();
 	hotbarUI.update();
-	activeSlot.update();
 	if(playing==2) {
 		context.fillStyle="white";
 		context.font="10px Verdana";
@@ -521,12 +529,16 @@ function update() {
 			inventory.hotbar[a].reRender(0, 45);
 		}
 	}   
+	activeSlot.update();
 	checkForMove();
 	checkForHotbarItemSelect();
 	checkForInventoryOpen();
 	checkForFurnaceSmelting();
 	player.gravity();
 	player.update();
+	if(activeItem.item) {
+		activeItem.reRender(235, 170, true);
+	}
 	if(typeof furnaceUI != "undefined") {
 		furnaceUI.update();
 		furnaceFireUI.update();
@@ -604,10 +616,10 @@ function update() {
 		holding.reRender()
 	}
 	if(playing==2) {
-		if(prevPos != undefined && prevPos.x != player.x || prevPos != undefined && prevPos.y != player.y) {
-			socket.emit("move player", {x: player.x, y: player.y, texture: player.texture == "textures/player/steveLeft.png" ? 0 : 1})
+		if(prevPos != undefined && prevPos.x != player.x || prevPos != undefined && prevPos.y != player.y || prevPos!= undefined && prevPos.slot != activeSlot.slot) {
+			socket.emit("move player", {x: player.x, y: player.y, texture: player.texture == "textures/player/steveLeft.png" ? 0 : 1, slot: activeSlot.slot-1})
 		}
-		prevPos={x:player.x, y:player.y}
+		prevPos={x:player.x, y:player.y, slot: activeSlot.slot}
 	}
 	lastTime = Date.now();
 }

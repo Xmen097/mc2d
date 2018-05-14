@@ -6,12 +6,13 @@ function connectToServer() {
 	include("https://"+ip+"/socket.io/socket.io.js", function() {
 		remotePlayers=[];
 
-		function Player(gtX, gtY, gtID, gtName) {
+		function Player(gtX, gtY, gtID, gtName, gtSlot) {
 			this.id = gtID,
 			this.name = gtName,
 			this.x = gtX,
 			this.y = gtY;
 			this.component = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/steveRight.png", this.x, this.y, "image");
+			this.slot = new inventorySpace(0, 0, items[parseInt(gtSlot)]);
 		}
 
 		function playerById(id) {
@@ -36,7 +37,7 @@ function connectToServer() {
 
 		function onNewPlayer(data) {
 			console.log("New player has connected to server")
-			remotePlayers.push(new Player(parseInt(data.x), parseInt(data.y), parseInt(data.id), String(data.name)))
+			remotePlayers.push(new Player(parseInt(data.x), parseInt(data.y), parseInt(data.id), String(data.name), data.slot))
 		}
 
 		function onRemovePlayer(data) {
@@ -69,6 +70,7 @@ function connectToServer() {
 				movePlayer.y=parseInt(data.y);
 				movePlayer.component.y=parseInt(data.y);
 				movePlayer.component.texture=parseInt(data.texture) ? "textures/player/steveRight.png" : "textures/player/steveLeft.png";
+				movePlayer.slot.item = items[data.slot]
 			}
 		}
 

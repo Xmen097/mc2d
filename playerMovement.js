@@ -1,7 +1,7 @@
 var timeout=false;
 var atGround=false;
-var speed = 10; //Values bigger, than 10 are buggy. 5 is ideal
-var gravity = 0.25;
+var speed = 20; //Values bigger, than 10 are buggy. 5 is ideal
+var gravity = 0.5;
 var jump=false;
 
 function checkForMove() {

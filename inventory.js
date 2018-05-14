@@ -3,26 +3,41 @@ var chestUI;
 var inventoryOn;
 var inventoryTimeout;
 var timeoutTime=150;
-var itemSize=20;
+var itemSize=20*tileMultiplier;
 var wheelSelectMe=1;
 
 function inventorySpace(x, y, item, count) {
 	this.item = item;
-	this.x = x || 0;
-	this.y = y || 0;
+	this.x = x*tileMultiplier || 0;
+	this.y = y*tileMultiplier || 0;
 	this.count = count || 0;
-	this.reRender = function(editX, editY) {
-		editX = editX || 0;
-		editY = editY || 0;
+	this.reRender = function(editX, editY, absolute, turn) {
+		absolute = absolute ? 0 : 1
+		editX = editX*tileMultiplier || 0;
+		editY = editY*tileMultiplier || 0;
 		if(this.item != undefined){
-			this.render = new component(itemSize, itemSize, this.item, this.x+camera.x+editX, this.y+camera.y*-1+editY, this.item.type || "material");	
+			this.render = new component(itemSize*(this.item.type&&!absolute&&this.item.type!="item"?2:1), itemSize*(this.item.type&&!absolute&&this.item.type!="item"?2:1), this.item, (this.item.type&&!absolute&&this.item.type!="item"?0:1)*(absolute*this.x+camera.x+editX), (this.item.type&&!absolute&&this.item.type!="item"?0:1)*(absolute*this.y+camera.y*-1+editY), this.item.type || "material");	
+			if(this.item.type&&!absolute&&this.item.type!="item") {
+				context.save()
+				context.transform(1,0,0,1,camera.x+editX-20,camera.y*-1+editY-70);
+				if(typeof turn == "undefined" && player.texture != "textures/player/steveRight.png" || turn) {
+					context.scale(-1,1)
+				}
+				context.transform(1,0,0,1,40,0);
+				context.rotate(0.6);
+			} else if(!absolute) {
+				this.render.x-=40;
+			}
 			this.render.update()
+			if(this.item.type&&!absolute&&this.item.type!="item") {
+				context.restore();
+			}
 			this.text = function() {
 				context.fillStyle="white";
-				context.font="10px Verdana";
+				context.font="15px Verdana";
 				context.textAlign = "left";
-				if(this.count > 1){
-					context.fillText(this.count,this.x+camera.x+itemSize/5+editX,this.y+itemSize+camera.y*-1+editY)
+				if(this.count > 1 && absolute){
+					context.fillText(this.count,absolute*this.x+camera.x+itemSize/5+editX,absolute*this.y+itemSize+camera.y*-1+editY)
 				}
 			}
 			this.text();
@@ -40,12 +55,12 @@ var chestPreset = [new inventorySpace(84, 77), new inventorySpace(117, 77), new 
 chest = copyArr(chestPreset);
 
 var inventoryPreset = {
-	armor: [new inventorySpace(84, 62, items[14], 1), new inventorySpace(84, 88, items[20], 1), new inventorySpace(84, 113, items[26], 1), new inventorySpace(84, 139, items[32], 1)],
-	inventory: [[new inventorySpace(84, 171), new inventorySpace(117, 171), new inventorySpace(150, 171), new inventorySpace(182, 171), new inventorySpace(215, 171), new inventorySpace(247, 171), new inventorySpace(280, 171), new inventorySpace(312, 171), new inventorySpace(345, 171)],
-				[new inventorySpace(84, 196), new inventorySpace(117, 196), new inventorySpace(150, 196), new inventorySpace(182, 196), new inventorySpace(215, 196), new inventorySpace(247, 196), new inventorySpace(280, 196), new inventorySpace(312, 196), new inventorySpace(345, 196)],
-				[new inventorySpace(84, 221), new inventorySpace(117, 221), new inventorySpace(150, 221), new inventorySpace(182, 221), new inventorySpace(215, 221), new inventorySpace(247, 221), new inventorySpace(280, 221), new inventorySpace(312, 221), new inventorySpace(345, 221)]
+	armor: [new inventorySpace(84, 62), new inventorySpace(84, 88), new inventorySpace(84, 113), new inventorySpace(84, 139)],
+	inventory: [[new inventorySpace(84, 170), new inventorySpace(117, 170), new inventorySpace(150, 170), new inventorySpace(181, 170), new inventorySpace(214, 170), new inventorySpace(246, 170), new inventorySpace(279, 170), new inventorySpace(311, 170), new inventorySpace(343, 170)],
+				[new inventorySpace(84, 196), new inventorySpace(117, 196), new inventorySpace(150, 196), new inventorySpace(181, 196), new inventorySpace(214, 196), new inventorySpace(246, 196), new inventorySpace(279, 196), new inventorySpace(311, 196), new inventorySpace(343, 196)],
+				[new inventorySpace(84, 222), new inventorySpace(117, 222), new inventorySpace(150, 222), new inventorySpace(181, 222), new inventorySpace(214, 222), new inventorySpace(246, 222), new inventorySpace(279, 222), new inventorySpace(311, 222), new inventorySpace(343, 222)]
 				],
-	hotbar: [new inventorySpace(84, 253), new inventorySpace(117, 253), new inventorySpace(150, 253), new inventorySpace(182, 253), new inventorySpace(215, 253), new inventorySpace(247, 253, items[47], 1), new inventorySpace(280, 253, items[41], 1), new inventorySpace(312, 253, items[38], 1), new inventorySpace(345, 253, items[34], 1)]			
+	hotbar: [new inventorySpace(84, 253), new inventorySpace(117, 253), new inventorySpace(150, 253), new inventorySpace(181, 253), new inventorySpace(214, 253), new inventorySpace(246, 253, items[47], 1), new inventorySpace(279, 253, items[41], 1), new inventorySpace(311, 253, items[38], 1), new inventorySpace(343, 253, items[34], 1)]			
 }
 inventory = copyArr(inventoryPreset);
 
@@ -106,7 +121,7 @@ window.addEventListener('wheel', function(event){
 			viewPoint++;
 			menus.selectSP();
 		}
-	} else if(menuOn=3) {
+	} else if(menuOn==3) {
 		if(whellDirection == "up" && viewPoint > 0) {
 			viewPoint--;
 			menus.selectMP();
@@ -120,23 +135,23 @@ function checkForHotbarItemSelect() {
 	if(pressedKeys[keys._1] && activeSlot.slot != 1 || wheelSelectMe == 1) {
 		activeSlot.slot = 1;
 		activeItem = inventory.hotbar[0]
-		activeSlot.x -= (131 + activeSlot.slotPosition);
-		activeSlot.slotPosition = -131;
+		activeSlot.x -= (131*tileMultiplier + activeSlot.slotPosition);
+		activeSlot.slotPosition = -131*tileMultiplier;
 	}else if(pressedKeys[keys._2] && activeSlot.slot != 2 || wheelSelectMe == 2) {
 		activeSlot.slot = 2;
 		activeItem = inventory.hotbar[1]
-		activeSlot.x -= (98 + activeSlot.slotPosition);
-		activeSlot.slotPosition = -98;
+		activeSlot.x -= (98*tileMultiplier + activeSlot.slotPosition);
+		activeSlot.slotPosition = -98*tileMultiplier;
 	}else if(pressedKeys[keys._3] && activeSlot.slot != 3 || wheelSelectMe == 3) {
 		activeSlot.slot = 3;
 		activeItem = inventory.hotbar[2]
-		activeSlot.x -= (65 + activeSlot.slotPosition);
-		activeSlot.slotPosition = -65;
+		activeSlot.x -= (65*tileMultiplier + activeSlot.slotPosition);
+		activeSlot.slotPosition = -65*tileMultiplier;
 	}else if(pressedKeys[keys._4] && activeSlot.slot != 4 || wheelSelectMe == 4) {
 		activeSlot.slot = 4;
 		activeItem = inventory.hotbar[3]
-		activeSlot.x -= (32 + activeSlot.slotPosition);
-		activeSlot.slotPosition = -32;
+		activeSlot.x -= (32*tileMultiplier + activeSlot.slotPosition);
+		activeSlot.slotPosition = -32*tileMultiplier;
 	}else if(pressedKeys[keys._5] && activeSlot.slot != 5 || wheelSelectMe == 5) {
 		activeSlot.slot = 5;
 		activeItem = inventory.hotbar[4]
@@ -145,23 +160,23 @@ function checkForHotbarItemSelect() {
 	}else if(pressedKeys[keys._6] && activeSlot.slot != 6 || wheelSelectMe == 6) {
 		activeSlot.slot = 6;
 		activeItem = inventory.hotbar[5]
-		activeSlot.x -= (-34 + activeSlot.slotPosition);
-		activeSlot.slotPosition = 34;
+		activeSlot.x -= (-32*tileMultiplier + activeSlot.slotPosition);
+		activeSlot.slotPosition = 32*tileMultiplier;
 	}else if(pressedKeys[keys._7] && activeSlot.slot != 7 || wheelSelectMe == 7) {
 		activeSlot.slot = 7;
 		activeItem = inventory.hotbar[6]
-		activeSlot.x -= (-67 + activeSlot.slotPosition);
-		activeSlot.slotPosition = 67;
+		activeSlot.x -= (-64*tileMultiplier + activeSlot.slotPosition);
+		activeSlot.slotPosition = 64*tileMultiplier;
 	}else if(pressedKeys[keys._8] && activeSlot.slot != 8 || wheelSelectMe == 8) {
 		activeSlot.slot = 8;
 		activeItem = inventory.hotbar[7]
-		activeSlot.x -= (-100 + activeSlot.slotPosition);
-		activeSlot.slotPosition = 100;
+		activeSlot.x -= (-97*tileMultiplier + activeSlot.slotPosition);
+		activeSlot.slotPosition = 97*tileMultiplier;
 	}else if(pressedKeys[keys._9] && activeSlot.slot != 9 || wheelSelectMe == 9) {
 		activeSlot.slot = 9;
 		activeItem = inventory.hotbar[8]
-		activeSlot.x -= (-133 + activeSlot.slotPosition);
-		activeSlot.slotPosition = 133;
+		activeSlot.x -= (-130*tileMultiplier + activeSlot.slotPosition);
+		activeSlot.slotPosition = 130*tileMultiplier;
 	}
 	wheelSelectMe=undefined;
 

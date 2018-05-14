@@ -21,7 +21,7 @@ var menus = {
 		context.textAlign="center";						
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
-		context.fillText("Minecraft 2D!",canvas.width/2,60)
+		context.fillText("Minecraft 2D!",canvas.width/2,canvas.height/6)
 		context.fillStyle="lightgrey";
 		context.fillRect(0.28*canvas.width, 0.28*canvas.height, 0.45*canvas.width, 0.14*canvas.height)
 		context.fillRect(0.28*canvas.width, 0.51*canvas.height, 0.45*canvas.width, 0.14*canvas.height)
