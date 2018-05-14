@@ -497,7 +497,7 @@ function update() {
 			context.font="15px Verdana";
 			context.textAlign = "left";
 			a.slot.reRender(35+(a.x-camera.x)/2, 70+(a.y-camera.y*-1)/2, true, a.component.texture != "textures/player/steveRight.png");
-			context.fillText(a.name, a.x+canvas.tileSize/2-40, a.y-canvas.tileSize/10)
+			context.fillText(a.name, a.x+canvas.tileSize/2-20, a.y-canvas.tileSize/10)
 		}
 		for(var a in remoteDestroingBlock) {
 			remoteDestroingBlock[a].update();
