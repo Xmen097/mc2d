@@ -496,7 +496,7 @@ function update() {
 			context.fillStyle="white";
 			context.font="10px Verdana";
 			context.textAlign = "center";
-			a.slot.reRender(35+(a.x-camera.x)/2-(a.x-player.x)/8, 70+(a.y-camera.y*-1)/2-(a.y-player.y)/8, true, a.component.texture != "textures/player/steveRight.png");
+			a.slot.reRender(35+(a.x-camera.x)/2, 70+(a.y-camera.y*-1)/2, true, a.component.texture != "textures/player/steveRight.png");
 			context.fillText(a.name, a.x+canvas.tileSize/2, a.y-canvas.tileSize/10)
 		}
 		for(var a in remoteDestroingBlock) {
