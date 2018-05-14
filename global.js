@@ -286,7 +286,7 @@ window.onload = function() {
 	}
 
 	context.fillStyle="white";
-	context.font="22px Verdana";
+	context.font="42px Verdana";
 	context.textAlign = "center";
 	context.fillText("Loading",canvas.width/2,canvas.height/2)
 	resources.load([
@@ -494,7 +494,7 @@ function update() {
 		for(var a of remotePlayers) {
 			a.component.update()
 			context.fillStyle="white";
-			context.font="10px Verdana";
+			context.font="15px Verdana";
 			context.textAlign = "center";
 			a.slot.reRender(35+(a.x-camera.x)/2, 70+(a.y-camera.y*-1)/2, true, a.component.texture != "textures/player/steveRight.png");
 			context.fillText(a.name, a.x+canvas.tileSize/2, a.y-canvas.tileSize/10)
@@ -508,7 +508,7 @@ function update() {
 	hotbarUI.update();
 	if(playing==2) {
 		context.fillStyle="white";
-		context.font="10px Verdana";
+		context.font="15px Verdana";
 		context.textAlign = "left";
 		if(messagesList.length>maxDisplayMessages && !chatOn) {
 			var a=messagesList.length-maxDisplayMessages;
