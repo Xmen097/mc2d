@@ -537,7 +537,7 @@ function update() {
 	player.gravity();
 	player.update();
 	if(activeItem.item) {
-		activeItem.reRender(-165+(player.x-camera.x), -30+(player.y-camera.y*-1), true);
+		activeItem.reRender(35+(player.x-camera.x)/2, 70+(player.y-camera.y*-1)/2, true);
 	}
 	if(typeof furnaceUI != "undefined") {
 		furnaceUI.update();
