@@ -360,6 +360,7 @@ function setupGame() {
 	activeSlot = new component(63*canvas.width/820, 63*canvas.height/820, "textures/ui/selected.png", camera.x + (canvas.width - 63*canvas.width/820)*tileMultiplier/2, camera.y*-1 + (canvas.height - 63*canvas.height/820)*tileMultiplier/1.1,"image");
     activeSlot.slot=5;
     activeSlot.slotPosition=0;
+	activeItem.item = inventory.hotbar[4]
     hotbarUI = new component(0.655*canvas.width, 64*canvas.height/820, "textures/ui/hotbar.png", camera.x + (canvas.width - 146*canvas.width/820)/2, camera.y*-1*tileMultiplier + (canvas.height - 64*canvas.height/820)/1.1,"image");
     player = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/steveRight.png", (canvas.width+canvas.tileSize)/2, 50, "image");
 	activeItem=inventory.hotbar[activeSlot.slot]
