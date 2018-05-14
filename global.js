@@ -495,7 +495,7 @@ function update() {
 			a.component.update()
 			context.fillStyle="white";
 			context.font="15px Verdana";
-			context.textAlign = "center";
+			context.textAlign = "left";
 			a.slot.reRender(35+(a.x-camera.x)/2, 70+(a.y-camera.y*-1)/2, true, a.component.texture != "textures/player/steveRight.png");
 			context.fillText(a.name, a.x+canvas.tileSize/2, a.y-canvas.tileSize/10)
 		}
@@ -517,7 +517,7 @@ function update() {
 		}else 
 			var a=0
 		for(var b=0;a<messagesList.length;a++,b++) {
-			context.fillText(messagesList[a],0.05*canvas.width+camera.x,0.05*canvas.width+camera.y*-1+12*b)
+			context.fillText(messagesList[a],0.05*canvas.width+camera.x,0.05*canvas.width+camera.y*-1+18*b)
 		}
 		if(chatOn) {
 			context.fillText(chatMessage+"|",0.05*canvas.width+camera.x,0.8*canvas.height+camera.y*-1)
