@@ -1,5 +1,4 @@
-var holding=new inventorySpace(); //t
-holding.getFrom;
+var holding=new inventorySpace();
 var clickedItem;
 var findSth;
 var invBlockOffset=5;
