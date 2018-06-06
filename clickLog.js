@@ -1,4 +1,4 @@
-var holding=new inventorySpace();
+var holding=new inventorySpace(); //t
 holding.getFrom;
 var clickedItem;
 var findSth;
