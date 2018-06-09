@@ -44,5 +44,6 @@ if(isset($_POST["name"]) && isset($_POST["pasw"]) && isset($_POST["type"])) {
 	}
 } else {
 	header( 'Location: index.html' ) ;  
+	header("Cache-Control: must-revalidate");
 }
 ?>

@@ -86,20 +86,20 @@ onmousedown = function(event) {
 		if(x>0.3*canvas.width && y>0.72*canvas.height && x<0.7*canvas.width && y<0.84*canvas.height) {
 			var ajax = new XMLHttpRequest();
 			ajax.onreadystatechange = function() {
-			if (ajax.readyState == 4) {
-				if (ajax.responseText) {
-					if(ajax.responseText != "Login server offline" && ajax.responseText != "Invalid name or password" && ajax.responseText != "Failed to generate token") {
-						loginToken = ajax.responseText;
-						localStorage["name"]=name;
-						localStorage["token"]=loginToken;
-						menus.main();
+				if (ajax.readyState == 4) {
+					if (ajax.responseText) {
+						if(ajax.responseText != "Login server offline" && ajax.responseText != "Invalid name or password" && ajax.responseText != "Failed to generate token") {
+							loginToken = ajax.responseText;
+							localStorage["name"]=name;
+							localStorage["token"]=loginToken;
+							menus.main();
+						} else {
+							alert(ajax.responseText);
+						}
 					} else {
-						alert(ajax.responseText);
+						alert("Login server offline!")
 					}
-				} else {
-					alert("Login server offline!")
 				}
-			}
 			}
 			ajax.open("POST", "index.php", true);
 			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
