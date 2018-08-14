@@ -21,11 +21,14 @@ function include(filename, onload, id) {
     head.appendChild(script);
 }
 //end
-
-if(localStorage["version"].split('.') != version) {
-    if(localStorage["version"].split('.')[0] != version[0] || localStorage["version"].split('.')[1] != version[1]) {
-        localStorage.clear();
-    }
+if(localStorage["version"]) {
+    if(localStorage["version"].split('.') != version) {
+        if(localStorage["version"].split('.')[0] != version[0] || localStorage["version"].split('.')[1] != version[1]) {
+            localStorage.clear();
+        }
+        localStorage["version"] = version.join('.')
+    } 
+} else {
     localStorage["version"] = version.join('.')
 }
 
