@@ -273,24 +273,26 @@ var camera = {
 	y: 0
 }
 
-var tileMultiplier = 2;
+var tileMultiplier = Math.floor(Math.min((window.innerWidth-17)/450, (window.innerHeight-18)/350)*100)/100;
 
 window.onload = function() {
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
-	canvas.tileSize = 50*tileMultiplier;
-	canvas.width = 450*tileMultiplier;
-	canvas.height =  350*tileMultiplier;
+	canvas.tileSize = Math.round(50*tileMultiplier);
+	canvas.width = 9*canvas.tileSize;
+	canvas.height =  7*canvas.tileSize;
 	canvas.clear = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 	}
 
 	context.fillStyle="white";
-	context.font="42px Verdana";
+	context.font=canvas.height/16+"px Verdana";
 	context.textAlign = "center";
-	context.fillText("Loading",canvas.width/2,canvas.height/2)
+	context.fillText("Loading...",canvas.width/2,canvas.height/2)
 	resources.load([
 	    'textures/backArrow.png',
+	    'textures/delete.png',
+	    'textures/arrow.png',
 	    'textures/itemSheet.png',
 	    'textures/breaking/0.png',
 	    'textures/breaking/1.png',
@@ -302,9 +304,9 @@ window.onload = function() {
 	    'textures/breaking/7.png',
 	    'textures/breaking/8.png',
 	    'textures/breaking/9.png',
-	    'textures/player/steveFront.png',
-	    'textures/player/steveLeft.png',
-	    'textures/player/steveRight.png',
+	    'textures/player/playerFront.png',
+	    'textures/player/playerLeft.png',
+	    'textures/player/playerRight.png',
 	    'textures/ui/crafting.png',
 	    'textures/ui/furnace.png',
 	    'textures/ui/furnaceArrow.png',
@@ -331,7 +333,7 @@ window.onload = function() {
 			}
 			ajax.open("POST", "index.php", true);
 			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			var random = sha256(""+Math.random());
+			var random = sha256(""+Math.random()*Math.random()+Math.random()*Math.random()+Math.random()*Math.random());
 			ajax.send("name="+localStorage["name"]+"&token="+sha256(localStorage["token"]+random)+"&salt="+random);
 		} else
 			menus.login();
@@ -339,15 +341,8 @@ window.onload = function() {
 }
 
 function saveWorld() {
-	try {
-		worlds=JSON.parse(localStorage["worlds"]);
-		if(worlds.constructor != Array)
-			throw new DOMException;
-	}catch(e) {
-		worlds=[]
-	}
-	worlds[SPSelected] = new world(worldName, inventory, {x: player.x, y: player.y}, map, furnaceSaves, craftingTable, crafting, chestSaves, holding)
-	localStorage["worlds"] = JSON.stringify(worlds);
+	var sWorld = new world(worldName, inventory, {x: player.x/tileMultiplier, y: player.y/tileMultiplier}, map, furnaceSaves, craftingTable, crafting, chestSaves, holding)
+	localStorage["world"+savedSPs[SPSelected].index] = JSON.stringify(sWorld);
 	console.log("autoSaved")
 }
 
@@ -356,19 +351,23 @@ function setupGame() {
 	menuOn=0;
 	craftingUI=undefined;
 	furnaceUI=undefined;
+	inventoryUI=undefined;
 	camera.y=50;
 	activeSlot = new component(63*canvas.width/820, 63*canvas.height/820, "textures/ui/selected.png", camera.x + (canvas.width - 63*canvas.width/820)*tileMultiplier/2, camera.y*-1 + (canvas.height - 63*canvas.height/820)*tileMultiplier/1.1,"image");
     activeSlot.slot=5;
     activeSlot.slotPosition=0;
     hotbarUI = new component(0.655*canvas.width, 64*canvas.height/820, "textures/ui/hotbar.png", camera.x + (canvas.width - 146*canvas.width/820)/2, camera.y*-1*tileMultiplier + (canvas.height - 64*canvas.height/820)/1.1,"image");
-    player = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/steveRight.png", (canvas.width+canvas.tileSize)/2, 50, "image");
-	activeItem=inventory.hotbar[activeSlot.slot-1]
+    player = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/playerRight.png", (canvas.width+canvas.tileSize)/2, 50, "image");
+	activeItem=inventory.hotbar[4]
 }
 
 function stopGame() {
 	camera.y=0;
 	activeSlot = undefined;
     hotbarUI = undefined;
+	craftingUI=undefined;
+	furnaceUI=undefined;
+	inventoryUI=undefined;
     player = undefined;
     holding.item=undefined;
     holding.count=0;
@@ -380,8 +379,8 @@ function stopGame() {
 }
 
 function startSP() {
-	if(localStorage["worlds"])  {
-		var world = JSON.parse(localStorage["worlds"])[SPSelected];
+	if(localStorage["world"+savedSPs[SPSelected].index]) {
+		var world = JSON.parse(localStorage["world"+savedSPs[SPSelected].index]);
 		if(world) {
 			setupGame();
 			inventory = copyArr(inventoryPreset);
@@ -422,14 +421,14 @@ function startSP() {
 					chestSaves[b].inventory[c].item = world.chests[b].inventory[c].item ? items[world.chests[b].inventory[c].item.id] : undefined;
 				}
 			}
-			player.x = world.position.x;
-			player.y = world.position.y;
-			camera.y = -player.y+200
-			camera.x = Math.max(player.x-400, 0);
-			hotbarUI.y = player.y+(388);
-			hotbarUI.x = Math.max(player.x-248, 153);
-			activeSlot.x = Math.max(player.x+13, 83+activeSlot.slot*66);
-			activeSlot.y = player.y+388;
+			player.x = world.position.x*tileMultiplier;
+			player.y = world.position.y*tileMultiplier;
+			camera.y = -player.y+100*tileMultiplier
+			camera.x = Math.max(player.x-200*tileMultiplier, 0);
+			hotbarUI.y = player.y+194*tileMultiplier;
+			hotbarUI.x = Math.max(player.x-124*tileMultiplier, 76.5*tileMultiplier);
+			activeSlot.x = Math.max(player.x+6.5*tileMultiplier, 41.5*tileMultiplier+activeSlot.slot*33*tileMultiplier);
+			activeSlot.y = player.y+194*tileMultiplier;
 			holding = new inventorySpace();
 			holding.count = world.holding.count|0;
 			holding.x = world.holding.x|0;
@@ -481,7 +480,7 @@ function update() {
 	deltaTime = Date.now() - lastTime; //used in gravity math
 	context.setTransform(1,0,0,1,0,0);
 	canvas.clear();
-    context.translate( -1*camera.x, camera.y );
+    context.translate(-1*camera.x, camera.y);
 	for(var a of renderedTile) {
 		if( typeof a == "object") {
 			for(var b of a) {
@@ -494,10 +493,10 @@ function update() {
 		for(var a of remotePlayers) {
 			a.component.update()
 			context.fillStyle="white";
-			context.font="15px Verdana";
-			context.textAlign = "left";
-			a.slot.reRender(35+(a.x-camera.x)/2, 70+(a.y-camera.y*-1)/2, true, a.component.texture != "textures/player/steveRight.png");
-			context.fillText(a.name, a.x+canvas.tileSize/2-30, a.y-canvas.tileSize/10)
+			context.font=canvas.height/35+"px Verdana";
+			context.textAlign = "center";
+			a.slot.reRender(-82.5*tileMultiplier+(a.x-camera.x)-(a.x-player.x)/2, -15*tileMultiplier+(a.y-camera.y*-1)-(a.y-player.y)/2, true, a.component.texture != "textures/player/playerRight.png");
+			context.fillText(a.name, a.x+canvas.tileSize/2, a.y-canvas.tileSize/10)
 		}
 		for(var a in remoteDestroingBlock) {
 			remoteDestroingBlock[a].update();
@@ -508,7 +507,7 @@ function update() {
 	hotbarUI.update();
 	if(playing==2) {
 		context.fillStyle="white";
-		context.font="15px Verdana";
+		context.font=canvas.height/2+"px Verdana";
 		context.textAlign = "left";
 		if(messagesList.length>maxDisplayMessages && !chatOn) {
 			var a=messagesList.length-maxDisplayMessages;
@@ -517,7 +516,7 @@ function update() {
 		}else 
 			var a=0
 		for(var b=0;a<messagesList.length;a++,b++) {
-			context.fillText(messagesList[a],0.05*canvas.width+camera.x,0.05*canvas.width+camera.y*-1+18*b)
+			context.fillText(messagesList[a],0.05*canvas.width+camera.x,0.05*canvas.width+camera.y*-1+12*b)
 		}
 		if(chatOn) {
 			context.fillText(chatMessage+"|",0.05*canvas.width+camera.x,0.8*canvas.height+camera.y*-1)
@@ -537,7 +536,7 @@ function update() {
 	player.gravity();
 	player.update();
 	if(activeItem.item) {
-		activeItem.reRender(35+(player.x-camera.x)/2, 70+(player.y-camera.y*-1)/2, true);
+		activeItem.reRender((player.x-camera.x)/tileMultiplier+35, 170, true);
 	}
 	if(typeof furnaceUI != "undefined") {
 		furnaceUI.update();
@@ -617,7 +616,7 @@ function update() {
 	}
 	if(playing==2) {
 		if(prevPos != undefined && prevPos.x != player.x || prevPos != undefined && prevPos.y != player.y || prevPos!= undefined && prevPos.slot != activeSlot.slot) {
-			socket.emit("move player", {x: player.x, y: player.y, texture: player.texture == "textures/player/steveLeft.png" ? 0 : 1, slot: activeSlot.slot-1})
+			socket.emit("move player", {x: player.x, y: player.y, texture: player.texture == "textures/player/playerLeft.png" ? 0 : 1, slot: activeSlot.slot-1})
 		}
 		prevPos={x:player.x, y:player.y, slot: activeSlot.slot}
 	}

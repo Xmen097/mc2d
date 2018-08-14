@@ -1,4 +1,5 @@
-var holding=new inventorySpace();//taat
+var holding=new inventorySpace();
+holding.getFrom;
 var clickedItem;
 var findSth;
 var invBlockOffset=5;
@@ -22,7 +23,14 @@ onmousedown = function(event) {
 
 	}else if(menuOn==2) {		
 		for(var a=viewPoint;a<Math.min(5+viewPoint, savedSPs.length);a++) {
-			if(x>0.125*canvas.width && y>0.275*canvas.height+(a-viewPoint)*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+(a-viewPoint)*0.125*canvas.height) { 
+			if(x>0.81*canvas.width && y>0.286*canvas.height+(a-viewPoint)*0.125*canvas.height && x<0.81*canvas.width+0.5*canvas.tileSize && y<0.286*canvas.height+(a-viewPoint)*0.125*canvas.height+0.5*canvas.tileSize) {
+				delete localStorage["world"+savedSPs[a].index];
+				savedSPs.splice(a, 1);
+				localStorage.worldList = JSON.stringify(savedSPs);
+				viewPoint=0;
+				SPSelected=0;
+				menus.selectSP();
+			}else if(x>0.125*canvas.width && y>0.275*canvas.height+(a-viewPoint)*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+(a-viewPoint)*0.125*canvas.height) { 
 				SPSelected=a;
 				menus.selectSP();
 			}
@@ -30,15 +38,28 @@ onmousedown = function(event) {
 		if(x>0.1*canvas.width && y>0.76*canvas.height && x<0.495*canvas.width && y<0.88*canvas.height) {
 			startSP();
 			if(localStorage.worldList)
-				worldName = JSON.parse(localStorage.worldList)[SPSelected];
+				worldName = JSON.parse(localStorage.worldList)[SPSelected].name;
 		} else if(x>0.505*canvas.width && y>0.76*canvas.height && x<0.9*canvas.width && y<0.88*canvas.height) {
 			menus.createSP();
 		} else if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
 			menus.main()
+		} else if(x>0.92*canvas.width && y>0.25*canvas.height && x<0.92*canvas.width+0.5*canvas.tileSize && y<0.25*canvas.height+0.5*canvas.tileSize && viewPoint > 0) {
+			viewPoint--;
+			menus.selectSP();
+		} else if(x>0.92*canvas.width && y>0.68*canvas.height && x<0.92*canvas.width+0.5*canvas.tileSize && y<0.68*canvas.height+0.5*canvas.tileSize && viewPoint < savedSPs.length-4) {
+			viewPoint++;
+			menus.selectSP();
 		} 
 	} else if(menuOn==3){
 		for(var a=viewPoint;a<Math.min(5+viewPoint, savedMPs.length);a++) {
-			if(x>0.125*canvas.width && y>0.275*canvas.height+(a-viewPoint)*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+(a-viewPoint)*0.125*canvas.height) { 
+			if(x>0.81*canvas.width && y>0.286*canvas.height+(a-viewPoint)*0.125*canvas.height && x<0.81*canvas.width+0.5*canvas.tileSize && y<0.286*canvas.height+(a-viewPoint)*0.125*canvas.height+0.5*canvas.tileSize) {
+				var serverList = JSON.parse(localStorage.serverList);
+				serverList.splice(a, 1);
+				localStorage.serverList = JSON.stringify(serverList);
+				viewPoint=0;
+				MPSelected=0;
+				menus.selectMP();
+			}else if(x>0.125*canvas.width && y>0.275*canvas.height+(a-viewPoint)*0.125*canvas.height && x<0.875*canvas.width && y<0.375*canvas.height+(a-viewPoint)*0.125*canvas.height) { 
 				MPSelected=a;
 				menus.selectMP();
 			}
@@ -52,30 +73,43 @@ onmousedown = function(event) {
 			menus.createMP();
 		} else if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
 			menus.main()
-		}  
+		}  else if(x>0.92*canvas.width && y>0.25*canvas.height && x<0.92*canvas.width+0.5*canvas.tileSize && y<0.25*canvas.height+0.5*canvas.tileSize && viewPoint > 0) {
+			viewPoint--;
+			menus.selectMP();
+		} else if(x>0.92*canvas.width && y>0.68*canvas.height && x<0.92*canvas.width+0.5*canvas.tileSize && y<0.68*canvas.height+0.5*canvas.tileSize && viewPoint < savedMPs.length-4) {
+			viewPoint++;
+			menus.selectMP();
+		} 
 	} else if(menuOn == 4) {
 		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
 			if(worldName) {
-				savedSPs.push(worldName);
-				localStorage["worldList"] = JSON.stringify(savedSPs);
-				try {
-					worlds=JSON.parse(localStorage["worlds"]);
-					if(worlds.constructor != Array)
-						throw new DOMException;
-				}catch(e) {
-					worlds=[]
-				}
 				mapGenerator.generate();
-				worlds.push(new world(worldName, inventory, {x: 200, y: 200}, map, [], craftingTablePreset, craftingPreset, [], new inventorySpace()))
-				localStorage["worlds"] = JSON.stringify(worlds);
+				var sWorld = new world(worldName, inventory, {x: 200/tileMultiplier, y: 200/tileMultiplier}, map, [], craftingTablePreset, craftingPreset, [], new inventorySpace());
+				localStorage["world"+savedSPs.length] = JSON.stringify(sWorld);
+				savedSPs.push({name:worldName, index:savedSPs.length});
+				localStorage["worldList"] = JSON.stringify(savedSPs);
 				menus.selectSP()
 			}
 		} else if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
-			menus.selectsp()
+			menus.selectSP()
 		} 
 	} else if(menuOn == 5) {
 		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
-			connectToServer();	
+			if(ip) {
+				if(saveMP) {
+					try {
+						savedMPs=JSON.parse(localStorage["serverList"]);
+						if(savedMPs.constructor != Array)
+							throw new DOMException;
+					}catch(e) {
+						savedMPs=[{name: "Official server", ip:"mc2d-officialserver.herokuapp.com"}]
+					}
+					savedMPs.push({name:ip, ip:ip})
+					localStorage["serverList"] = JSON.stringify(savedMPs);
+					menus.selectMP()
+				} else
+				connectToServer();	
+			}
 		} else if(x>0.85*canvas.width && y>0.1*canvas.height && x<0.85*canvas.width+0.5*canvas.tileSize && y<0.1*canvas.height+0.5*canvas.tileSize) {
 			menus.selectMP()
 		} else if(x>0.53*canvas.width && y>0.55*canvas.height && x<0.53*canvas.width+0.5*canvas.tileSize && y<0.55*canvas.height+0.5*canvas.tileSize) {
@@ -86,20 +120,20 @@ onmousedown = function(event) {
 		if(x>0.3*canvas.width && y>0.72*canvas.height && x<0.7*canvas.width && y<0.84*canvas.height) {
 			var ajax = new XMLHttpRequest();
 			ajax.onreadystatechange = function() {
-				if (ajax.readyState == 4) {
-					if (ajax.responseText) {
-						if(ajax.responseText != "Login server offline" && ajax.responseText != "Invalid name or password" && ajax.responseText != "Failed to generate token") {
-							loginToken = ajax.responseText;
-							localStorage["name"]=name;
-							localStorage["token"]=loginToken;
-							menus.main();
-						} else {
-							alert(ajax.responseText);
-						}
+			if (ajax.readyState == 4) {
+				if (ajax.responseText) {
+					if(ajax.responseText != "Login server offline" && ajax.responseText != "Invalid name or password" && ajax.responseText != "Failed to generate token") {
+						loginToken = ajax.responseText;
+						localStorage["name"]=name;
+						localStorage["token"]=loginToken;
+						menus.main();
 					} else {
-						alert("Login server offline!")
+						alert(ajax.responseText);
 					}
+				} else {
+					alert("Login server offline!")
 				}
+			}
 			}
 			ajax.open("POST", "index.php", true);
 			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -502,3 +536,32 @@ onmousemove = function(event) {
 		holding.y = y;
 	}
 }
+
+window.addEventListener('wheel', function(event){
+	var whellDirection = event.deltaY < 0 ? 'up' : 'down';
+	if(playing!=0) {
+	    if(whellDirection == "up" && activeSlot.slot != 1) {
+	    	wheelSelectMe = activeSlot.slot-1;
+	    	checkForHotbarItemSelect();
+	    }else if(whellDirection == "down" && activeSlot.slot != 9) {
+	    	wheelSelectMe = activeSlot.slot+1;
+	    	checkForHotbarItemSelect();
+	    }
+	} else if(menuOn==2) {
+		if(whellDirection == "up" && viewPoint > 0) {
+			viewPoint--;
+			menus.selectSP();
+		} else if(whellDirection == "down" && viewPoint < savedSPs.length-4) {
+			viewPoint++;
+			menus.selectSP();
+		}
+	} else if(menuOn==3) {
+		if(whellDirection == "up" && viewPoint > 0) {
+			viewPoint--;
+			menus.selectMP();
+		} else if(whellDirection == "down" && viewPoint < savedMPs.length-4) {
+			viewPoint++;
+			menus.selectMP();
+		}
+	}
+});

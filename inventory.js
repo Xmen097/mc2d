@@ -19,14 +19,14 @@ function inventorySpace(x, y, item, count) {
 			this.render = new component(itemSize*(this.item.type&&!absolute&&this.item.type!="item"?2:1), itemSize*(this.item.type&&!absolute&&this.item.type!="item"?2:1), this.item, (this.item.type&&!absolute&&this.item.type!="item"?0:1)*(absolute*this.x+camera.x+editX), (this.item.type&&!absolute&&this.item.type!="item"?0:1)*(absolute*this.y+camera.y*-1+editY), this.item.type || "material");	
 			if(this.item.type&&!absolute&&this.item.type!="item") {
 				context.save()
-				context.transform(1,0,0,1,camera.x+editX-20,camera.y*-1+editY-70);
-				if(typeof turn == "undefined" && player.texture != "textures/player/steveRight.png" || turn) {
+				context.transform(1,0,0,1,camera.x+editX-10*tileMultiplier,camera.y*-1+editY-35*tileMultiplier);
+				if(typeof turn == "undefined" && player.texture != "textures/player/playerRight.png" || turn) {
 					context.scale(-1,1)
 				}
-				context.transform(1,0,0,1,40,0);
+				context.transform(1,0,0,1,20*tileMultiplier,0);
 				context.rotate(0.6);
 			} else if(!absolute) {
-				this.render.x-=40;
+				this.render.x-=20*tileMultiplier;
 			}
 			this.render.update()
 			if(this.item.type&&!absolute&&this.item.type!="item") {
@@ -34,7 +34,7 @@ function inventorySpace(x, y, item, count) {
 			}
 			this.text = function() {
 				context.fillStyle="white";
-				context.font="15px Verdana";
+				context.font=Math.round(7.5*tileMultiplier)+"px Verdana";
 				context.textAlign = "left";
 				if(this.count > 1 && absolute){
 					context.fillText(this.count,absolute*this.x+camera.x+itemSize/5+editX,absolute*this.y+itemSize+camera.y*-1+editY)
@@ -102,35 +102,6 @@ function checkForInventoryOpen() {
 		setTimeout(function() {inventoryTimeout=false}, timeoutTime)
 	}
 }
-window.addEventListener('wheel', function(event){
-	if(playing!=0) {
-	    var whellDirection = event.deltaY < 0 ? 'up' : 'down';
-	    if(whellDirection == "up" && activeSlot.slot != 1) {
-	    	wheelSelectMe = activeSlot.slot-1;
-	    	checkForHotbarItemSelect();
-	    }else if(whellDirection == "down" && activeSlot.slot != 9) {
-	    	wheelSelectMe = activeSlot.slot+1;
-	    	checkForHotbarItemSelect();
-	    }
-	} else if(menuOn==2) {
-	    var whellDirection = event.deltaY < 0 ? 'up' : 'down';
-		if(whellDirection == "up" && viewPoint > 0) {
-			viewPoint--;
-			menus.selectSP();
-		} else if(whellDirection == "down" && viewPoint < savedSPs.length-4) {
-			viewPoint++;
-			menus.selectSP();
-		}
-	} else if(menuOn==3) {
-		if(whellDirection == "up" && viewPoint > 0) {
-			viewPoint--;
-			menus.selectMP();
-		} else if(whellDirection == "down" && viewPoint < savedMPs.length-4) {
-			viewPoint++;
-			menus.selectMP();
-		}
-	}
-});
 function checkForHotbarItemSelect() {
 	if(pressedKeys[keys._1] && activeSlot.slot != 1 || wheelSelectMe == 1) {
 		activeSlot.slot = 1;

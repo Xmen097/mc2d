@@ -21,7 +21,7 @@ var menus = {
 		context.textAlign="center";						
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
-		context.fillText("Minecraft 2D!",canvas.width/2,canvas.height/6)
+		context.fillText("MC2D",canvas.width/2,canvas.height/6)
 		context.fillStyle="lightgrey";
 		context.fillRect(0.28*canvas.width, 0.28*canvas.height, 0.45*canvas.width, 0.14*canvas.height)
 		context.fillRect(0.28*canvas.width, 0.51*canvas.height, 0.45*canvas.width, 0.14*canvas.height)
@@ -35,8 +35,10 @@ var menus = {
 	selectSP: function() {
 		menuOn=2;
 		worldName="";
-		if(typeof SPSelected == "undefined" || SPSelected < viewPoint || SPSelected > viewPoint+4)
+		if(typeof SPSelected == "undefined" || SPSelected < viewPoint)
 			SPSelected=viewPoint
+		if(SPSelected > viewPoint+3)
+			SPSelected=viewPoint+3;
 		try {
 			savedSPs=JSON.parse(localStorage["worldList"]);
 			if(savedSPs.constructor != Array)
@@ -59,7 +61,8 @@ var menus = {
 			context.fillRect(0.125*canvas.width, 0.275*canvas.height+(a-viewPoint)*0.125*canvas.height, 0.75*canvas.width, 0.1*canvas.height)
 			context.fillStyle="white";
 			context.font=Math.round(0.045*canvas.height)+"px Verdana";
-			context.fillText(savedSPs[a], 0.5*canvas.width, 1.5*Math.round(0.045*canvas.height)+0.275*canvas.height+(a-viewPoint)*0.125*canvas.height)
+			(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/delete.png", 0.81*canvas.width, 0.286*canvas.height+(a-viewPoint)*0.125*canvas.height, "image")).update();
+			context.fillText(savedSPs[a].name, 0.5*canvas.width, 1.5*Math.round(0.045*canvas.height)+0.275*canvas.height+(a-viewPoint)*0.125*canvas.height)
 		}
 		context.textAlign="start"
 		context.fillStyle="grey";
@@ -68,6 +71,20 @@ var menus = {
 		context.fillRect(0.1*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.505*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.85*canvas.width, 0.1*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
+		if(viewPoint > 0) {
+			context.fillRect(0.92*canvas.width, 0.25*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize);
+			(new component(0.4*canvas.tileSize, 0.4*canvas.tileSize, "textures/arrow.png", 0.92*canvas.width+0.05*canvas.tileSize, 0.25*canvas.height+0.05*canvas.tileSize, "image")).update();
+		}
+		if(viewPoint < savedSPs.length-4) {
+			context.translate(0.92*canvas.width+0.5*canvas.tileSize, 0.68*canvas.height+0.5*canvas.tileSize);
+			context.rotate(3.1415);
+			context.fillRect(0, 0, 0.5*canvas.tileSize, 0.5*canvas.tileSize);
+			context.translate(0.05*canvas.tileSize, 0.05*canvas.tileSize);
+			(new component(0.4*canvas.tileSize, 0.4*canvas.tileSize, "textures/arrow.png", 0, 0, "image")).update();
+			context.translate(-0.05*canvas.tileSize, -0.05*canvas.tileSize);
+			context.rotate(-3.1415);
+			context.translate(-(0.92*canvas.width+0.5*canvas.tileSize), -(0.68*canvas.height+0.5*canvas.tileSize));
+		}
 		context.fillStyle="black";
 		context.font=Math.round(0.045*canvas.height)+"px Verdana";
 		context.fillText("Play selected",0.18*canvas.width,0.84*canvas.height);
@@ -78,14 +95,22 @@ var menus = {
 		menuOn=3;
 		saveMP=false;
 		ip="";
-		if(typeof MPSelected == "undefined")
-			MPSelected=0	
-		savedMPs=[{name: "Official server", ip:"mc2d-officialserver.herokuapp.com"},{name: "Test server", ip:"mc2d-testserver.herokuapp.com"}]
+		if(typeof MPSelected == "undefined" || MPSelected < viewPoint)
+			MPSelected=viewPoint
+		if(MPSelected > viewPoint+3)
+			MPSelected=viewPoint+3;
+		try {
+			savedMPs=JSON.parse(localStorage["serverList"]);
+			if(savedMPs.constructor != Array)
+				throw new DOMException;
+		}catch(e) {
+			savedMPs=[{name: "Official server", ip:"mc2d-officialserver.herokuapp.com"}]
+		}
 		menus.bg();
 		context.fillStyle="white";
 		context.textAlign="center"
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
-		context.fillText("Play MultiPlayer!",canvas.width/2,60)
+		context.fillText("Play MultiPlayer!",canvas.width/2,0.17*canvas.height)
 		context.fillStyle="lightgrey";
 		context.fillRect(0.1*canvas.width, 0.25*canvas.height, 0.8*canvas.width, 0.5*canvas.height)
 		for(var a=viewPoint;a<Math.min(5+viewPoint, savedMPs.length);a++) {
@@ -96,6 +121,7 @@ var menus = {
 			context.fillRect(0.125*canvas.width, 0.275*canvas.height+(a-viewPoint)*0.125*canvas.height, 0.75*canvas.width, 0.1*canvas.height)
 			context.fillStyle="white";
 			context.font=Math.round(0.045*canvas.height)+"px Verdana";
+			(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/delete.png", 0.81*canvas.width, 0.286*canvas.height+(a-viewPoint)*0.125*canvas.height, "image")).update();
 			context.fillText(savedMPs[a].name, 0.5*canvas.width, 1.5*Math.round(0.045*canvas.height)+0.275*canvas.height+(a-viewPoint)*0.125*canvas.height)
 		}
 		context.textAlign="start"
@@ -104,6 +130,20 @@ var menus = {
 		context.fillRect(0.1*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.505*canvas.width, 0.76*canvas.height, 0.395*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.85*canvas.width, 0.1*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
+		if(viewPoint > 0) {
+			context.fillRect(0.92*canvas.width, 0.25*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize);
+			(new component(0.4*canvas.tileSize, 0.4*canvas.tileSize, "textures/arrow.png", 0.92*canvas.width+0.05*canvas.tileSize, 0.25*canvas.height+0.05*canvas.tileSize, "image")).update();
+		}
+		if(viewPoint < savedMPs.length-4) {
+			context.translate(0.92*canvas.width+0.5*canvas.tileSize, 0.68*canvas.height+0.5*canvas.tileSize);
+			context.rotate(3.1415);
+			context.fillRect(0, 0, 0.5*canvas.tileSize, 0.5*canvas.tileSize);
+			context.translate(0.05*canvas.tileSize, 0.05*canvas.tileSize);
+			(new component(0.4*canvas.tileSize, 0.4*canvas.tileSize, "textures/arrow.png", 0, 0, "image")).update();
+			context.translate(-0.05*canvas.tileSize, -0.05*canvas.tileSize);
+			context.rotate(-3.1415);
+			context.translate(-(0.92*canvas.width+0.5*canvas.tileSize), -(0.68*canvas.height+0.5*canvas.tileSize));
+		}
 		context.fillStyle="black";
 		context.font=Math.round(0.045*canvas.height)+"px Verdana";
 		context.fillText("Connect to selected",0.12*canvas.width,0.84*canvas.height)
@@ -116,7 +156,7 @@ var menus = {
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.textAlign="center"
-		context.fillText("Create new world!",canvas.width/2,60)
+		context.fillText("Create new world!",canvas.width/2,0.17*canvas.height)
 		context.textAlign="start"
 		context.fillText("Name:",canvas.width*0.03,canvas.height*0.375)
 		context.fillStyle="lightgrey";
@@ -124,7 +164,7 @@ var menus = {
 		context.fillRect(0.3*canvas.width, 0.76*canvas.height, 0.4*canvas.width, 0.12*canvas.height)
 		context.fillRect(0.85*canvas.width, 0.1*canvas.height, 0.5*canvas.tileSize, 0.5*canvas.tileSize)
 		context.fillStyle="black";
-		context.font=Math.round(0.045*350)+"px Verdana";
+		context.font=Math.round(0.045*canvas.height)+"px Verdana";
 		context.fillText("Create",0.43*canvas.width,0.84*canvas.height)
 		context.fillText(worldName+"|",0.22*canvas.width,0.37*canvas.height);
 		(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/backArrow.png", 0.85*canvas.width, 0.1*canvas.height, "image")).update();
@@ -135,7 +175,7 @@ var menus = {
 		context.fillStyle="white";
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.textAlign="center"
-		context.fillText("Connect to server!",canvas.width/2,60)
+		context.fillText("Connect to server!",canvas.width/2,0.17*canvas.height)
 		context.textAlign="start"
 		context.fillText("IP:",canvas.width*0.125,canvas.height*0.375)
 		context.font=Math.round(0.05*canvas.height)+"px Verdana";
@@ -150,7 +190,7 @@ var menus = {
 			context.fillText(String.fromCharCode(10004),canvas.width*0.543,canvas.height*0.603)
 		}
 		context.fillStyle="black";
-		context.font=Math.round(0.045*350)+"px Verdana";
+		context.font=Math.round(0.045*canvas.height)+"px Verdana";
 		context.fillText("Connect",0.43*canvas.width,0.84*canvas.height)
 		context.fillText(ip+"|",0.22*canvas.width,0.37*canvas.height);
 		(new component(0.5*canvas.tileSize, 0.5*canvas.tileSize, "textures/backArrow.png", 0.85*canvas.width, 0.1*canvas.height, "image")).update();
@@ -166,7 +206,7 @@ var menus = {
 		context.fillStyle="white";
 		context.textAlign="center";
 		context.font=Math.round(0.07*canvas.height)+"px Verdana";
-		context.fillText("Login to your account",canvas.width/2,0.18*canvas.height)
+		context.fillText("Login to your account",canvas.width/2,0.17*canvas.height)
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.fillText("Name:",canvas.width*0.5,canvas.height*0.335)
 		context.fillText("Password:",canvas.width*0.5,canvas.height*0.55)
@@ -201,7 +241,7 @@ var menus = {
 		context.fillStyle="white";
 		context.textAlign="center";
 		context.font=Math.round(0.07*canvas.height)+"px Verdana";
-		context.fillText("Create new account",canvas.width/2,0.18*canvas.height)
+		context.fillText("Create new account",canvas.width/2,0.17*canvas.height)
 		context.font=Math.round(0.062*canvas.height)+"px Verdana";
 		context.fillText("Name:",canvas.width*0.5,canvas.height*0.335)
 		context.fillText("Password:",canvas.width*0.5,canvas.height*0.55)

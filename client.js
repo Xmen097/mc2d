@@ -11,7 +11,7 @@ function connectToServer() {
 			this.name = gtName,
 			this.x = gtX,
 			this.y = gtY;
-			this.component = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/steveRight.png", this.x, this.y, "image");
+			this.component = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/playerRight.png", this.x, this.y, "image");
 			this.slot = new inventorySpace(0, 0, items[parseInt(gtSlot)]);
 		}
 
@@ -69,7 +69,7 @@ function connectToServer() {
 				movePlayer.component.x=parseInt(data.x);
 				movePlayer.y=parseInt(data.y);
 				movePlayer.component.y=parseInt(data.y);
-				movePlayer.component.texture=parseInt(data.texture) ? "textures/player/steveRight.png" : "textures/player/steveLeft.png";
+				movePlayer.component.texture=parseInt(data.texture) ? "textures/player/playerRight.png" : "textures/player/playerLeft.png";
 				movePlayer.slot.item = items[data.slot]
 			}
 		}
