@@ -22,6 +22,13 @@ function include(filename, onload, id) {
 }
 //end
 
+if(localStorage["version"].split('.') != version) {
+    if(localStorage["version"].split('.')[0] != version[0] || localStorage["version"].split('.')[1] != version[1]) {
+        localStorage.clear();
+    }
+    localStorage["version"] = version.join('.')
+}
+
 var scriptsToLoad = ["global.js", "breakingBlocks.js", "render.js", "playerMovement.js", "keylog.js", "inventory.js", "crafting.js", "furnace.js", "clickLog.js", "terainGenerator.js", "menu.js", "client.js", "sha256.js"]
 var scriptsSuccesfullyLoaded=0;
 window.onload = function() {
