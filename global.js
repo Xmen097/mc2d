@@ -42,28 +42,6 @@
 ]*/         
 var activeItem, menuOn, playing=0;
 
-
-//code for including js files from: http://zcourts.com/2011/10/06/dynamically-requireinclude-a-javascript-file-into-a-page-and-be-notified-when-its-loaded/
-function include(filename, onload, id) {
-    var head = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
-    if(id) {
-    	script.id = id;
-    }
-    script
-    script.src = filename;
-    script.type = 'text/javascript';
-    script.onload = script.onreadystatechange = function() {
-        if (script.readyState) {
-            if (script.readyState === 'complete' || script.readyState === 'loaded') {
-                script.onreadystatechange = null;onload();}
-            } else {
-                onload();
-            }
-        };
-    head.appendChild(script);
-}
-
 //code for loading sprites from: http://jlongster.com/Making-Sprite-based-Games-with-Canvas
 var resourceCache = {};
 var loading = [];
@@ -275,7 +253,7 @@ var camera = {
 
 var tileMultiplier = Math.floor(Math.min((window.innerWidth-17)/450, (window.innerHeight-18)/350)*100)/100;
 
-window.onload = function() {
+windowOnload = function() {
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
 	canvas.tileSize = Math.round(50*tileMultiplier);

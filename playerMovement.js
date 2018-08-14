@@ -1,6 +1,6 @@
 var timeout=false;
 var atGround=false;
-var speed = Math.round(10*tileMultiplier);
+var speed = Math.round(11*tileMultiplier);
 var gravity = 0.25*tileMultiplier;
 var jump=false;
 
@@ -20,7 +20,6 @@ function checkForMove() {
                     activeSlot.x -= move;
                 } else if(camera.x > 0 && player.x <= map[0].length*canvas.tileSize - (canvas.width+canvas.tileSize)/2) {
                     hotbarUI.x -= camera.x;   
-                    console.log(movePos, startPos) 
                     activeSlot.x -= camera.x;
                     camera.x = 0;
                 }
@@ -28,7 +27,6 @@ function checkForMove() {
             }
         }
         if(canMove) {
-            console.log("A")
             if(camera.x-speed >= 0 && player.x <= map[0].length*canvas.tileSize - (canvas.width+canvas.tileSize)/2) {   
                 camera.x -= speed;
                 hotbarUI.x -= speed;    
