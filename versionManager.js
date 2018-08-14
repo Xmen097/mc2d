@@ -34,12 +34,18 @@ if(localStorage["version"]) {
 
 var scriptsToLoad = ["global.js", "breakingBlocks.js", "render.js", "playerMovement.js", "keylog.js", "inventory.js", "crafting.js", "furnace.js", "clickLog.js", "terainGenerator.js", "menu.js", "client.js", "sha256.js"]
 var scriptsSuccesfullyLoaded=0;
+
 window.onload = function() {
-	for(var a of scriptsToLoad) {
-		include(a+"?version="+version.join("."), function() {
-			if(++scriptsSuccesfullyLoaded == scriptsToLoad.length) {
-				windowOnload();
-			}
-		});
-	}
+    scriptLoader();
+}
+
+function scriptLoader() {
+    if(scriptsSuccesfullyLoaded < scriptsToLoad.length) {
+        include(scriptsToLoad[scriptsSuccesfullyLoaded]+"?version="+version.join("."), function() {
+            scriptsSuccesfullyLoaded++;
+            scriptLoader();
+        });
+    } else {
+        windowOnload();
+    }
 }

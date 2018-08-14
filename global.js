@@ -250,7 +250,6 @@ var camera = {
 	x: 0,
 	y: 0
 }
-
 var tileMultiplier = Math.floor(Math.min((window.innerWidth-17)/450, (window.innerHeight-18)/350)*100)/100;
 
 windowOnload = function() {
