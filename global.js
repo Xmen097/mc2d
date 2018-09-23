@@ -429,13 +429,20 @@ function startSP() {
 
 function startMP() {
 	setupGame()
+	player.x *= tileMultiplier;
+	player.y *= tileMultiplier;
 	prevPos={x:player.x, y:player.y};
-	camera.y = -player.y+200
-	camera.x = Math.max(player.x-400, 0);
-	hotbarUI.y = player.y+(388);
-	hotbarUI.x = Math.max(player.x-248, 153);
-	activeSlot.x = Math.max(player.x+13, 83+activeSlot.slot*66);
-	activeSlot.y = player.y+388;
+	camera.y = -player.y+100*tileMultiplier
+	camera.x = Math.max(player.x-200*tileMultiplier, 0);
+	hotbarUI.y = player.y+194*tileMultiplier;
+	hotbarUI.x = Math.max(player.x-124*tileMultiplier, 76.5*tileMultiplier);
+	activeSlot.x = Math.max(player.x+6.5*tileMultiplier, 41.5*tileMultiplier+activeSlot.slot*33*tileMultiplier);
+	activeSlot.y = player.y+194*tileMultiplier;
+	holding = new inventorySpace();
+	holding.count = 0;
+	holding.x = 0;
+	holding.y = 0;
+	holding.item = undefined;
 	playing=2;
 	menu=0;
 	remoteDestroingBlock={};
@@ -484,7 +491,7 @@ function update() {
 	hotbarUI.update();
 	if(playing==2) {
 		context.fillStyle="white";
-		context.font=canvas.height/2+"px Verdana";
+		context.font=canvas.height/40+"px Verdana";
 		context.textAlign = "left";
 		if(messagesList.length>maxDisplayMessages && !chatOn) {
 			var a=messagesList.length-maxDisplayMessages;
@@ -493,10 +500,10 @@ function update() {
 		}else 
 			var a=0
 		for(var b=0;a<messagesList.length;a++,b++) {
-			context.fillText(messagesList[a],0.05*canvas.width+camera.x,0.05*canvas.width+camera.y*-1+12*b)
+			context.fillText(messagesList[a],0.025*canvas.width+camera.x,0.05*canvas.height+camera.y*-1+12*b*tileMultiplier)
 		}
 		if(chatOn) {
-			context.fillText(chatMessage+"|",0.05*canvas.width+camera.x,0.8*canvas.height+camera.y*-1)
+			context.fillText(chatMessage+"|",0.025*canvas.width+camera.x,0.8*canvas.height+camera.y*-1)
 		}
 	}
 	
@@ -593,7 +600,7 @@ function update() {
 	}
 	if(playing==2) {
 		if(prevPos != undefined && prevPos.x != player.x || prevPos != undefined && prevPos.y != player.y || prevPos!= undefined && prevPos.slot != activeSlot.slot) {
-			socket.emit("move player", {x: player.x, y: player.y, texture: player.texture == "textures/player/playerLeft.png" ? 0 : 1, slot: activeSlot.slot-1})
+			socket.emit("move player", {x: player.x/canvas.tileSize, y: player.y/canvas.tileSize, texture: player.texture == "textures/player/playerLeft.png" ? 0 : 1, slot: activeSlot.slot-1})
 		}
 		prevPos={x:player.x, y:player.y, slot: activeSlot.slot}
 	}

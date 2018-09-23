@@ -37,7 +37,7 @@ function connectToServer() {
 
 		function onNewPlayer(data) {
 			console.log("New player has connected to server")
-			remotePlayers.push(new Player(parseInt(data.x), parseInt(data.y), parseInt(data.id), String(data.name), data.slot))
+			remotePlayers.push(new Player(parseInt(data.x)*canvas.tileSize, parseInt(data.y)*canvas.tileSize, parseInt(data.id), String(data.name), data.slot))
 		}
 
 		function onRemovePlayer(data) {
