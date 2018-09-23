@@ -1,4 +1,4 @@
-var version = ["1","0","0"]
+var version = ["1","0","1"]
 
 //code for including js files from: http://zcourts.com/2011/10/06/dynamically-requireinclude-a-javascript-file-into-a-page-and-be-notified-when-its-loaded/
 function include(filename, onload, id) {
