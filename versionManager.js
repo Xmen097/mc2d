@@ -1,4 +1,4 @@
-var version = $("#versionManager").outerHTML.split("\"")[1].split("?")[1].split("=")[1].split(".");
+var version = document.getElementById("versionManager").outerHTML.split("\"")[1].split("?")[1].split("=")[1].split(".");
 
 //code for including js files from: http://zcourts.com/2011/10/06/dynamically-requireinclude-a-javascript-file-into-a-page-and-be-notified-when-its-loaded/
 function include(filename, onload, id) {
