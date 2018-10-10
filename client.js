@@ -65,10 +65,10 @@ function connectToServer() {
 		function onMovePlayer(data) {
 			var movePlayer=playerById(parseInt(data.id));
 			if(movePlayer) {
-				movePlayer.x=parseInt(data.x);
-				movePlayer.component.x=parseInt(data.x);
-				movePlayer.y=parseInt(data.y);
-				movePlayer.component.y=parseInt(data.y);
+				movePlayer.x=parseInt(data.x*canvas.tileSize);
+				movePlayer.component.x=parseInt(data.x*canvas.tileSize);
+				movePlayer.y=parseInt(data.y*canvas.tileSize);
+				movePlayer.component.y=parseInt(data.y*canvas.tileSize);
 				movePlayer.component.texture=parseInt(data.texture) ? "textures/player/playerRight.png" : "textures/player/playerLeft.png";
 				movePlayer.slot.item = items[data.slot]
 			}
