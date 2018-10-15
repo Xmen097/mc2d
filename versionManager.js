@@ -34,26 +34,28 @@ window.onload = function() {
         if (ajax.readyState == 4) {
             if(ajax.responseText) {
                 version = ajax.responseText;
-            } else 
+            } else {
                 failed=true;
                 version = ""+Math.random()+new Date()
+            }
+
+            if(!failed) {
+                if(localStorage["version"]) {
+                    if(localStorage["version"] != version) {
+                        if(localStorage["version"].split('.')[0] != version.split('.')[0]) {
+                            localStorage.clear();
+                        }
+                        localStorage["version"] = version
+                    } 
+                } else {
+                    localStorage["version"] = version
+                }
+            }
+            scriptLoader()
         } else {
             failed=true;
             version = ""+Math.random()+new Date()
         }
-        if(!failed) {
-            if(localStorage["version"]) {
-                if(localStorage["version"] != version) {
-                    if(localStorage["version"].split('.')[0] != version.split('.')[0]) {
-                        localStorage.clear();
-                    }
-                    localStorage["version"] = version
-                } 
-            } else {
-                localStorage["version"] = version
-            }
-        }
-        scriptLoader()
     }
     ajax.open("POST", "index.php", true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
