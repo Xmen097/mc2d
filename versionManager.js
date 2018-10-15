@@ -1,4 +1,5 @@
-
+var failed=false;
+var version;
 
 
 //code for including js files from: http://zcourts.com/2011/10/06/dynamically-requireinclude-a-javascript-file-into-a-page-and-be-notified-when-its-loaded/
@@ -28,8 +29,6 @@ var scriptsToLoad = ["global.js", "breakingBlocks.js", "render.js", "playerMovem
 var scriptsSuccesfullyLoaded=0;
 
 window.onload = function() {
-    var failed=false;
-    var version;
     var ajax = new XMLHttpRequest();
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4) {
