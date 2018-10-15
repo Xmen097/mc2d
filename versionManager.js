@@ -1,4 +1,21 @@
-var version = document.getElementById("versionManager").outerHTML.split("\"")[1].split("?")[1].split("=")[1].split(".");
+var failed=false;
+var version;
+var ajax = new XMLHttpRequest();
+ajax.onreadystatechange = function() {
+if (ajax.readyState == 4) {
+    if(ajax.responseText) {
+        version = ajax.responseText;
+    } else 
+        failed=true;
+        version = sha256(""+Math.random()+new Date())
+}else
+    failed=true;
+    version = sha256(""+Math.random()+new Date())
+}
+ajax.open("POST", "index.php", true);
+ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ajax.send("getVersion");
+
 
 //code for including js files from: http://zcourts.com/2011/10/06/dynamically-requireinclude-a-javascript-file-into-a-page-and-be-notified-when-its-loaded/
 function include(filename, onload, id) {
@@ -22,15 +39,17 @@ function include(filename, onload, id) {
 }
 //end
 
-if(localStorage["version"]) {
-    if(localStorage["version"].split('.') != version) {
-        if(localStorage["version"].split('.')[0] != version[0]) {
-            localStorage.clear();
-        }
-        localStorage["version"] = version.join('.')
-    } 
-} else {
-    localStorage["version"] = version.join('.')
+if(!failed) {
+    if(localStorage["version"]) {
+        if(localStorage["version"] != version) {
+            if(localStorage["version"].split('.')[0] != version.split('.')[0]) {
+                localStorage.clear();
+            }
+            localStorage["version"] = version
+        } 
+    } else {
+        localStorage["version"] = version
+    }
 }
 
 var scriptsToLoad = ["global.js", "breakingBlocks.js", "render.js", "playerMovement.js", "keylog.js", "inventory.js", "crafting.js", "furnace.js", "clickLog.js", "terainGenerator.js", "menu.js", "client.js", "sha256.js"]
@@ -42,7 +61,7 @@ window.onload = function() {
 
 function scriptLoader() {
     if(scriptsSuccesfullyLoaded < scriptsToLoad.length) {
-        include(scriptsToLoad[scriptsSuccesfullyLoaded]+"?version="+version.join("."), function() {
+        include(scriptsToLoad[scriptsSuccesfullyLoaded]+"?version="+version, function() {
             scriptsSuccesfullyLoaded++;
             scriptLoader();
         });
