@@ -23,18 +23,6 @@ function include(filename, onload, id) {
 }
 //end
 
-if(!failed) {
-    if(localStorage["version"]) {
-        if(localStorage["version"] != version) {
-            if(localStorage["version"].split('.')[0] != version.split('.')[0]) {
-                localStorage.clear();
-            }
-            localStorage["version"] = version
-        } 
-    } else {
-        localStorage["version"] = version
-    }
-}
 
 var scriptsToLoad = ["global.js", "breakingBlocks.js", "render.js", "playerMovement.js", "keylog.js", "inventory.js", "crafting.js", "furnace.js", "clickLog.js", "terainGenerator.js", "menu.js", "client.js", "sha256.js"]
 var scriptsSuccesfullyLoaded=0;
@@ -44,16 +32,28 @@ window.onload = function() {
     var version;
     var ajax = new XMLHttpRequest();
     ajax.onreadystatechange = function() {
-    if (ajax.readyState == 4) {
-        if(ajax.responseText) {
-            version = ajax.responseText;
-        } else 
+        if (ajax.readyState == 4) {
+            if(ajax.responseText) {
+                version = ajax.responseText;
+            } else 
+                failed=true;
+                version = ""+Math.random()+new Date()
+        } else {
             failed=true;
             version = ""+Math.random()+new Date()
-    } else {
-        failed=true;
-        version = ""+Math.random()+new Date()
-    }
+        }
+        if(!failed) {
+            if(localStorage["version"]) {
+                if(localStorage["version"] != version) {
+                    if(localStorage["version"].split('.')[0] != version.split('.')[0]) {
+                        localStorage.clear();
+                    }
+                    localStorage["version"] = version
+                } 
+            } else {
+                localStorage["version"] = version
+            }
+        }
         scriptLoader()
     }
     ajax.open("POST", "index.php", true);
