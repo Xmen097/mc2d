@@ -396,8 +396,8 @@ onmousedown = function(event) {
 //pokladani
 		} else if(clickedItem.item == holding.item && holding.count > 0 && clickedItem != crafting[4]  && clickedItem != furnace[2] || clickedItem.item == undefined && clickedItem != crafting[4] && clickedItem != craftingTable[9] && clickedItem != furnace[2] && clickedItem != inventory.armor[0] && clickedItem != inventory.armor[1] && clickedItem != inventory.armor[2] && clickedItem != inventory.armor[3] && holding.count > 0  || clickedItem == inventory.armor[0] && holding.item && holding.item.type == "helmet" && holding.count > 0 || clickedItem == inventory.armor[1] && holding.item &&holding.item.type == "chestplate"  && holding.count > 0   || clickedItem == inventory.armor[2] && holding.item && holding.item.type == "trousers" && holding.count > 0   || clickedItem == inventory.armor[3] && holding.item && holding.item.type == "shoes" && holding.count > 0 || clickedItem=="kill"){ // release clicked item
 			if(playing==2) {
-				var start={x:0, y:0};
-				var end={x:0, y:0};
+				var start={x:-1, y:-1};
+				var end={x:-1, y:-1};
 				for(var a of inventory.armor) {
 					if(clickedItem==a) {
 						end.y=4
@@ -464,12 +464,12 @@ onmousedown = function(event) {
 				}
 				for(var h of chest) {
 						if(clickedItem==h) {
-							end.y=chest.y+10;
+							end.y=chest.y+20;
 							end.x=chest.x;
 							end.z=chest.indexOf(h);
 						}
 						if(holding.getFrom==h) {
-							start.y=chest.y+10;
+							start.y=chest.y+20;
 							start.x=chest.x;
 							start.z=chest.indexOf(h);
 						}
