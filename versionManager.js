@@ -1,4 +1,3 @@
-var failed=false;
 var version;
 
 
