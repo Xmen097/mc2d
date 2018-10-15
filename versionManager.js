@@ -7,10 +7,10 @@ if (ajax.readyState == 4) {
         version = ajax.responseText;
     } else 
         failed=true;
-        version = sha256(""+Math.random()+new Date())
+        version = ""+Math.random()+new Date()
 }else
     failed=true;
-    version = sha256(""+Math.random()+new Date())
+    version = ""+Math.random()+new Date()
 }
 ajax.open("POST", "index.php", true);
 ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
