@@ -30,6 +30,7 @@ var scriptsSuccesfullyLoaded=0;
 window.onload = function() {
     var ajax = new XMLHttpRequest();
     ajax.onreadystatechange = function() {
+        console.log(ajax.readyState + "" + ajax.responseText)
         if (ajax.readyState == 4) {
             if(ajax.responseText) {
                 version = ajax.responseText;
