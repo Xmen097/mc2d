@@ -1,20 +1,4 @@
-var failed=false;
-var version;
-var ajax = new XMLHttpRequest();
-ajax.onreadystatechange = function() {
-if (ajax.readyState == 4) {
-    if(ajax.responseText) {
-        version = ajax.responseText;
-    } else 
-        failed=true;
-        version = ""+Math.random()+new Date()
-}else
-    failed=true;
-    version = ""+Math.random()+new Date()
-}
-ajax.open("POST", "index.php", true);
-ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-ajax.send("getVersion");
+
 
 
 //code for including js files from: http://zcourts.com/2011/10/06/dynamically-requireinclude-a-javascript-file-into-a-page-and-be-notified-when-its-loaded/
@@ -56,7 +40,25 @@ var scriptsToLoad = ["global.js", "breakingBlocks.js", "render.js", "playerMovem
 var scriptsSuccesfullyLoaded=0;
 
 window.onload = function() {
-    scriptLoader();
+    var failed=false;
+    var version;
+    var ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = function() {
+    if (ajax.readyState == 4) {
+        if(ajax.responseText) {
+            version = ajax.responseText;
+        } else 
+            failed=true;
+            version = ""+Math.random()+new Date()
+    } else {
+        failed=true;
+        version = ""+Math.random()+new Date()
+    }
+        scriptLoader()
+    }
+    ajax.open("POST", "index.php", true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send("getVersion");
 }
 
 function scriptLoader() {
