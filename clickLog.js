@@ -452,25 +452,25 @@ onmousedown = function(event) {
 				}
 				for(var g of furnace) {
 						if(clickedItem==g) {
-							end.y=mpFurnace.y+10;
+							end.y=mpFurnace.y+100;
 							end.x=mpFurnace.x;
 							end.z=furnace.indexOf(g);
 						}
 						if(holding.getFrom==g) {
-							start.y=mpFurnace.y+10;
+							start.y=mpFurnace.y+100;
 							start.x=mpFurnace.x;
 							start.z=furnace.indexOf(g);
 						}
 				}
 				for(var h of chest) {
 						if(clickedItem==h) {
-							end.y=chest.y+20;
-							end.x=chest.x;
+							end.y=chest.y;
+							end.x=chest.x+100;
 							end.z=chest.indexOf(h);
 						}
 						if(holding.getFrom==h) {
-							start.y=chest.y+20;
-							start.x=chest.x;
+							start.y=chest.y;
+							start.x=chest.x+100;
 							start.z=chest.indexOf(h);
 						}
 				}
