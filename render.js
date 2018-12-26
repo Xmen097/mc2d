@@ -21,7 +21,7 @@ function component(width, height, texture, x, y, itemType, percent) {
             context.drawImage(this.image, 0, 0, Math.round(this.percent/2.27272727273), 30, this.x, this.y, this.percent/(100/this.width), this.height);
         } else if(this.itemType == "furnaceFire") {
             this.image.src = "textures/ui/furnaceFire.png";
-            context.drawImage(this.image, 0, 26-Math.round(this.percent/3.84615384615), 28, Math.round(this.percent/3.84615384615), this.x, this.y+this.height-Math.round(this.percent/Math.round(100/this.height)), this.width, this.percent/(100/this.height));
+            context.drawImage(this.image, 0, 26-Math.round(this.percent/3.84615384615), 28, Math.round(this.percent/3.84615384615), this.x, this.y+26-Math.round(this.percent/3.84615384615), 28, Math.round(this.percent/3.84615384615));
         }else if(this.itemType != undefined){
             this.image.src = "textures/itemSheet.png";
             context.drawImage(this.image, this.texture.x*128+10, this.texture.y*128+10, 108, 108, this.x, this.y, this.width, this.height);
