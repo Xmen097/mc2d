@@ -84,7 +84,7 @@ onmousedown = function(event) {
 		if(x>0.3*canvas.width && y>0.76*canvas.height && x<0.7*canvas.width && y<0.88*canvas.height) {
 			if(worldName) {
 				mapGenerator.generate();
-				var sWorld = new world(worldName, inventory, {x: 200/tileMultiplier, y: 200/tileMultiplier}, map, [], craftingTablePreset, craftingPreset, [], new inventorySpace());
+				var sWorld = new world(worldName, copyArr(inventoryPreset), {x: 200/tileMultiplier, y: 200/tileMultiplier}, map, [], craftingTablePreset, craftingPreset, [], new inventorySpace());
 				localStorage["world"+savedSPs.length] = JSON.stringify(sWorld);
 				savedSPs.push({name:worldName, index:savedSPs.length});
 				localStorage["worldList"] = JSON.stringify(savedSPs);

@@ -371,7 +371,7 @@ function startSP() {
 			for(var a=0;a<inventory.inventory.length;a++) {
 				for(var b=0;b<inventory.inventory[a].length;b++) {
 					inventory.inventory[a][b].count = world.inventory.inventory[a][b].count|0;
-					inventory.inventory[a][b].item = world.inventory.inventory[a][b].item ? items[world.inventory.inventory[a][b].item.id] : undefined;
+					inventory.inventory[a][b].item =  .inventory.inventory[a][b].item ? items[world.inventory.inventory[a][b].item.id] : undefined;
 				}
 			}
 			for(var b=0;b<inventory.hotbar.length;b++) {
