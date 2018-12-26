@@ -187,7 +187,7 @@ onmousedown = function(event) {
 					inventoryUI=undefined;					
 					inventoryOn = false;
 					furnaceArrowUI = new component(72*canvas.width/820, 45*canvas.height/810, "textures/ui/furnaceArrow.png", camera.x + (canvas.width*0.453), camera.y*-1 + (canvas.height*0.309),"furnaceArrow");
-					furnaceFireUI = new component(42*canvas.width/800, 40*canvas.height/820, "textures/ui/furnaceFire.png", camera.x + (canvas.width*0.342), camera.y*-1 + (canvas.height*0.308),"furnaceFire");
+					furnaceFireUI = new component(44*canvas.width/800, 41*canvas.height/820, "textures/ui/furnaceFire.png", camera.x + (canvas.width*0.342), camera.y*-1 + (canvas.height*0.314),"furnaceFire");
 					furnaceUI = new component(359*canvas.width/500, 337*canvas.height/500, "textures/ui/furnace.png", camera.x + (canvas.width - 359*canvas.width/500)/2, camera.y*-1 + (canvas.height - 359*canvas.height/500)/2,"image");
 					if(playing == 2) {
 						socket.emit("storage block", {x:x, y:y});
