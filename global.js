@@ -291,7 +291,8 @@ windowOnload = function() {
 	    'textures/ui/hotbar.png',
 	    'textures/ui/inventory.png',
 	    'textures/blockSheet.png',
-	    'textures/ui/chest.png'
+	    'textures/ui/chest.png',
+	    'textures/ui/selected.png'
 	]);
 	resources.onReady(function() {
 		document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click menu

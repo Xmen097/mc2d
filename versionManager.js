@@ -33,6 +33,7 @@ window.onload = function() {
         if (ajax.readyState == 4) {
             if(ajax.responseText) {
                 version = ajax.responseText;
+                failed=false;
             } else {
                 failed=true;
                 version = ""+Math.random()+new Date()
@@ -51,9 +52,6 @@ window.onload = function() {
                 }
             }
             scriptLoader()
-        } else {
-            failed=true;
-            version = ""+Math.random()+new Date()
         }
     }
     ajax.open("POST", "index.php", true);
