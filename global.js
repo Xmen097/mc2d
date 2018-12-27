@@ -350,6 +350,7 @@ function stopGame() {
     holding.item=undefined;
     holding.count=0;
 	activeItem = undefined;
+	inventory = undefined;
 	playing = 0;
 	clearInterval(canvas.interval);
 	if(typeof autoSave == "number")
