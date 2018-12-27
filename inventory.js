@@ -60,7 +60,7 @@ var inventoryPreset = {
 				[new inventorySpace(84, 196), new inventorySpace(117, 196), new inventorySpace(150, 196), new inventorySpace(181, 196), new inventorySpace(214, 196), new inventorySpace(246, 196), new inventorySpace(279, 196), new inventorySpace(311, 196), new inventorySpace(343, 196)],
 				[new inventorySpace(84, 222), new inventorySpace(117, 222), new inventorySpace(150, 222), new inventorySpace(181, 222), new inventorySpace(214, 222), new inventorySpace(246, 222), new inventorySpace(279, 222), new inventorySpace(311, 222), new inventorySpace(343, 222)]
 				],
-	hotbar: [new inventorySpace(84, 253), new inventorySpace(117, 253), new inventorySpace(150, 253), new inventorySpace(181, 253), new inventorySpace(214, 253), new inventorySpace(246, 253, items[47], 1), new inventorySpace(279, 253, items[41], 1), new inventorySpace(311, 253, items[38], 1), new inventorySpace(343, 253, items[34], 1)]			
+	hotbar: [new inventorySpace(84, 253), new inventorySpace(117, 253), new inventorySpace(150, 253), new inventorySpace(181, 253), new inventorySpace(214, 253), new inventorySpace(246, 253), new inventorySpace(279, 253), new inventorySpace(311, 253), new inventorySpace(343, 253)]			
 }
 inventory = copyArr(inventoryPreset);
 
