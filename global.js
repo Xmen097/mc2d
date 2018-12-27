@@ -336,7 +336,6 @@ function setupGame() {
     activeSlot.slotPosition=0;
     hotbarUI = new component(0.655*canvas.width, 64*canvas.height/820, "textures/ui/hotbar.png", camera.x + (canvas.width - 146*canvas.width/820)/2, camera.y*-1*tileMultiplier + (canvas.height - 64*canvas.height/820)/1.1,"image");
     player = new component(canvas.tileSize, 2*canvas.tileSize, "textures/player/playerRight.png", (canvas.width+canvas.tileSize)/2, 50, "image");
-	activeItem=inventory.hotbar[4]
 }
 
 function stopGame() {
@@ -421,6 +420,7 @@ function startSP() {
 				crafting[a].count = world.crafting[a].count|0;
 				crafting[a].item = world.crafting[a].item ? items[world.crafting[a].item.id] : undefined;
 			}
+			activeItem=inventory.hotbar[4]
 			renderMap();
 			autoSave = setInterval(saveWorld, 60000);
 			lastTime = Date.now();
