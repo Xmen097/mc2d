@@ -445,6 +445,7 @@ function startMP() {
 	holding.x = 0;
 	holding.y = 0;
 	holding.item = undefined;
+	activeItem=inventory.hotbar[4];
 	playing=2;
 	menu=0;
 	remoteDestroingBlock={};
